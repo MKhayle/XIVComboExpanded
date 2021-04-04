@@ -69,7 +69,7 @@ namespace XIVComboExpandedPlugin
         WarriorMythrilTempestCombo = 10,
 
         [CustomComboInfo("Nascent Flash Feature", "Replace Nascent Flash with Raw intuition when level synced below 76", WAR.JobID, WAR.NascentFlash)]
-        WarriorMythrilTempestFeature = 66,
+        WarriorNascentFlashFeature = 66,
 
         #endregion
         // ====================================================================================
