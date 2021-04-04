@@ -669,7 +669,7 @@ namespace XIVComboExpandedPlugin
                 StormsPath = 26,
                 MythrilTempest = 40,
                 StormsEye = 50,
-                NascentFlash = 76
+                NascentFlash = 76;
         }
     }
 

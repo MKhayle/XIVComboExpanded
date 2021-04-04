@@ -348,8 +348,8 @@ namespace XIVComboExpandedPlugin
                 if (actionID == WAR.NascentFlash)
                 {
                     if (level >= WAR.Levels.NascentFlash)
-                        return WAR.NascentFlash
-                    return WAR.RawIntuition
+                        return WAR.NascentFlash;
+                    return WAR.RawIntuition;
                 }
             }
 
