@@ -4,7 +4,7 @@ namespace XIVComboExpandedPlugin
 {
     public enum CustomComboPreset
     {
-        // Last enum used: 65
+        // Last enum used: 66
         // ====================================================================================
         #region DRAGOON
 
@@ -67,6 +67,9 @@ namespace XIVComboExpandedPlugin
 
         [CustomComboInfo("Mythril Tempest Combo", "Replace Mythril Tempest with its combo chain", WAR.JobID, WAR.MythrilTempest)]
         WarriorMythrilTempestCombo = 10,
+
+        [CustomComboInfo("Nascent Flash Feature", "Replace Nascent Flash with Raw intuition when level synced below 76", WAR.JobID, WAR.NascentFlash)]
+        WarriorMythrilTempestFeature = 66,
 
         #endregion
         // ====================================================================================

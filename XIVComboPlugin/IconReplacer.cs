@@ -342,6 +342,17 @@ namespace XIVComboExpandedPlugin
                 }
             }
 
+            // Replace Nascent Flash with Raw Intuition if below level 76
+            if (Configuration.IsEnabled(CustomComboPreset.WarriorNascentFlashFeature))
+            {
+                if (actionID == WAR.NascentFlash)
+                {
+                    if (level >= WAR.Levels.NascentFlash)
+                        return WAR.NascentFlash
+                    return WAR.RawIntuition
+                }
+            }
+
             #endregion
             // ====================================================================================
             #region SAMURAI

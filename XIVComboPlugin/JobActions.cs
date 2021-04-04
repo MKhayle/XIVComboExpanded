@@ -648,7 +648,9 @@ namespace XIVComboExpandedPlugin
             Maim = 37,
             StormsEye = 45,
             MythrilTempest = 16462,
-            Overpower = 41;
+            Overpower = 41,
+            NascentFlash = 16464,
+            RawIntuition = 3551;
 
         public static class Buffs
         {
@@ -666,7 +668,8 @@ namespace XIVComboExpandedPlugin
                 Maim = 4,
                 StormsPath = 26,
                 MythrilTempest = 40,
-                StormsEye = 50;
+                StormsEye = 50,
+                NascentFlash = 76
         }
     }
 
