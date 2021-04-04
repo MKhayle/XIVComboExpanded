@@ -38,6 +38,7 @@ namespace XIVComboExpandedPlugin
             WarriorStormsPathCombo = 1L << 8,
             WarriorStormsEyeCombo = 1L << 9,
             WarriorMythrilTempestCombo = 1L << 10,
+            WarriorNascentFlashFeature = 1L << 66,
             SamuraiYukikazeCombo = 1L << 11,
             SamuraiGekkoCombo = 1L << 12,
             SamuraiKashaCombo = 1L << 13,
