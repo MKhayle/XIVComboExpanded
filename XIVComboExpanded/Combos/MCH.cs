@@ -62,6 +62,23 @@ namespace XIVComboExpandedPlugin.Combos
         }
     }
 
+    internal class MachinistHeatBlastFeature : CustomCombo
+    {
+        protected override CustomComboPreset Preset => CustomComboPreset.MachinistHeatBlastFeature;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == MCH.CleanShot || actionID == MCH.HeatedCleanShot)
+            {
+                var gauge = GetJobGauge<MCHGauge>();
+                if (gauge.IsOverheated && level >= MCH.Levels.Hypercharge)
+                    return MCH.HeatBlast;
+            }
+
+            return actionID;
+        }
+    }
+
     internal class MachinistMainCombo : CustomCombo
     {
         protected override CustomComboPreset Preset => CustomComboPreset.MachinistMainCombo;
