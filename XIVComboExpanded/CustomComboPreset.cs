@@ -8,7 +8,7 @@ namespace XIVComboExpandedPlugin
     /// </summary>
     public enum CustomComboPreset
     {
-        // Last enum used: 110
+        // Last enum used: 111
         // Available: 28,38,45,46
         // ====================================================================================
         #region ASTROLOGIAN
@@ -338,7 +338,7 @@ namespace XIVComboExpandedPlugin
 
         [OrderedEnum]
         [CustomComboInfo("Arcane Circle Harvest Feature", "Replace Arcane Circle with Plentiful Harvest when you have stacks of Immortal Sacrifice.", RPR.JobID, RPR.ArcaneCircle)]
-        ReaperHarvestFeature = 105,
+        ReaperHarvestFeature = 111,
 
         #endregion
         // ====================================================================================
