@@ -339,7 +339,6 @@ namespace XIVComboExpandedPlugin
         [OrderedEnum]
         [CustomComboInfo("Arcane Circle Harvest Feature", "Replace Arcane Circle with Plentiful Harvest when you have stacks of Immortal Sacrifice.", RPR.JobID, RPR.ArcaneCircle)]
         ReaperHarvestFeature = 111,
-
         #endregion
         // ====================================================================================
         #region RED MAGE
