@@ -336,6 +336,10 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Enshroud Communio Feature", "Replace Enshroud with Communio when Enshrouded.", RPR.JobID, RPR.Enshroud)]
         ReaperEnshroudCommunioFeature = 105,
 
+        [OrderedEnum]
+        [CustomComboInfo("Arcane Circle Harvest Feature", "Replace Arcane Circle with Plentiful Harvest when you have stacks of Immortal Sacrifice.", RPR.JobID, RPR.ArcaneCircle)]
+        ReaperHarvestFeature = 105,
+
         #endregion
         // ====================================================================================
         #region RED MAGE

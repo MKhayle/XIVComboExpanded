@@ -14,12 +14,15 @@
             NightmareScythe = uint.MaxValue,
             // Shroud
             Enshroud = uint.MaxValue,
-            Communio = uint.MaxValue;
+            Communio = uint.MaxValue,
+            ArcaneCircle = uint.MaxValue,
+            PlentifulHarvest = uint.MaxValue;
 
         public static class Buffs
         {
             public const ushort
-                Enshrouded = ushort.MaxValue;
+                Enshrouded = ushort.MaxValue,
+                ImmortalSacrifice = ushort.MaxValue;
         }
 
         public static class Debuffs
@@ -37,6 +40,7 @@
                 InfernalSlice = 30,
                 NightmareScythe = 45,
                 Enshroud = 80,
+                PlentifulHarvest = 88,
                 Communio = 90;
         }
     }
@@ -98,6 +102,22 @@
                     return RPR.Communio;
 
                 return RPR.Enshroud;
+            }
+
+            return actionID;
+        }
+    }
+
+    internal class ReaperHarvestFeature : CustomCombo
+    {
+        protected override CustomComboPreset Preset => CustomComboPreset.ReaperHarvestFeature;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == RPR.ArcaneCircle)
+            {
+                if (HasEffect(RPR.Buffs.ImmortalSacrifice) && level >= RPR.Levels.PlentifulHarvest)
+                    return RPR.PlentifulHarvest;
             }
 
             return actionID;
