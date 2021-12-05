@@ -314,13 +314,27 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Slice Combo", "Replace Infernal Slice with its combo chain.", RPR.JobID)]
         ReaperSliceCombo = 3901,
 
-        [CustomComboInfo("Scythe Combo", "Replace Nightmare Scythe with its combo chain.", RPR.JobID)]
+        [OrderedEnum]
+        [CustomComboInfo("Gibbet Slice Combo", "Replace Gibbet with the slice combo chain. Also changes to Gibbet/Gallows under Soul Reaver and Void/Cross Reaping under Enshroud", RPR.JobID, RPR.Gibbet)]
+        ReaperGibbetSliceCombo = 3906,
+
+        [OrderedEnum]
+        [CustomComboInfo("Gallows Slice Combo", "Replace Gallows with the slice combo chain. Also changes to Gibbet/Gallows under Soul Reaver and Void/Cross Reaping under Enshroud", RPR.JobID, RPR.Gallows)]
+        ReaperGallowsSliceCombo = 3907,
+
+        [OrderedEnum]
+        [CustomComboInfo("Scythe Combo", "Replace Nightmare Scythe with its combo chain.", RPR.JobID, RPR.NightmareScythe)]
         ReaperScytheCombo = 3902,
+
+        [OrderedEnum]
+        [CustomComboInfo("Guillotine Scythe Combo", "Replace Guillotine with the Scythe combo chain. Also changes to Guillotine under Soul Reaver and Grim Reaping under Enshroud", RPR.JobID, RPR.SpinningScythe)]
+        ReaperGuillotineScytheCombo = 3908,
 
         // [CustomComboInfo("Soul Reaver Feature", "Replace Infernal Slice and Blood Stalk with .", RPR.JobID)]
         // ReaperSoulReaverFeature = 3903,
 
-        [CustomComboInfo("Arcane Harvest Feature", "Replace Arcane Circle with Plentiful Harvest when you have stacks of Immortal Sacrifice.", RPR.JobID)]
+        [OrderedEnum]
+        [CustomComboInfo("Arcane Harvest Feature", "Replace Arcane Circle with Plentiful Harvest when you have stacks of Immortal Sacrifice.", RPR.JobID, RPR.ArcaneCircle)]
         ReaperHarvestFeature = 3904,
 
         [CustomComboInfo("Enshroud Communio Feature", "Replace Enshroud with Communio when Enshrouded.", RPR.JobID)]

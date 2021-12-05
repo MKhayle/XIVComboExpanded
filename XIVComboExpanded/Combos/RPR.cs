@@ -49,6 +49,11 @@
                 SpinningScythe = 25,
                 InfernalSlice = 30,
                 NightmareScythe = 45,
+                BloodStalk = 50,
+                GrimSwathe = 55,
+                Gibbet = 70,
+                Gallows = 70,
+                Guillotine = 70,
                 Enshroud = 80,
                 PlentifulHarvest = 88,
                 Communio = 90;
@@ -164,6 +169,111 @@
             {
                 if (level >= RPR.Levels.Communio && HasEffect(RPR.Buffs.Enshrouded))
                     return RPR.Communio;
+            }
+
+            return actionID;
+        }
+    }
+
+    internal class GibbetSliceCombo : CustomCombo
+    {
+        protected override CustomComboPreset Preset => CustomComboPreset.ReaperGibbetSliceCombo;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == RPR.Gibbet)
+            {
+                if (comboTime > 0)
+                {
+                    if (lastComboMove == RPR.Slice && level >= RPR.Levels.WaxingSlice)
+                        return RPR.WaxingSlice;
+
+                    if (lastComboMove == RPR.WaxingSlice && level >= RPR.Levels.InfernalSlice)
+                        return RPR.InfernalSlice;
+                }
+
+                // Check if we're in Soul Reaver or Enshrouded
+                if (HasEffect(RPR.Buffs.SoulReaver) || HasEffect(RPR.Buffs.Enshrouded))
+                {
+                    // If we have Enhanced Gibbet/Void Reaping and Soul Reaver/Shroud, this should always be next cast
+                    if ((HasEffect(RPR.Buffs.EnhancedGibbet) || HasEffect(RPR.Buffs.EnhancedVoidReaping)) && level >= RPR.Levels.Gibbet)
+                        return RPR.Gibbet;
+                    // Same for Gallows
+                    if ((HasEffect(RPR.Buffs.EnhancedGallows) || HasEffect(RPR.Buffs.EnhancedCrossReaping)) && level >= RPR.Levels.Gallows)
+                        return RPR.Gallows;
+
+                    // If we don't have enhanced, but are in Soul Reaver/Shroud, return Gibbet
+                    if (level >= RPR.Levels.Gibbet)
+                        return RPR.Gibbet;
+                }
+
+                // Return slice if nothing else to do
+                return RPR.Slice;
+            }
+
+            return actionID;
+        }
+    }
+
+    internal class GallowsSliceCombo : CustomCombo
+    {
+        protected override CustomComboPreset Preset => CustomComboPreset.ReaperGallowsSliceCombo;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == RPR.Gallows)
+            {
+                if (comboTime > 0)
+                {
+                    if (lastComboMove == RPR.Slice && level >= RPR.Levels.WaxingSlice)
+                        return RPR.WaxingSlice;
+
+                    if (lastComboMove == RPR.WaxingSlice && level >= RPR.Levels.InfernalSlice)
+                        return RPR.InfernalSlice;
+                }
+
+                // Check if we're in Soul Reaver or Shroud
+                if (HasEffect(RPR.Buffs.SoulReaver) || HasEffect(RPR.Buffs.Enshrouded))
+                {
+                    // If we have Enhanced Gibbet/Void Reaping and Soul Reaver/Shroud, this should always be next cast
+                    if ((HasEffect(RPR.Buffs.EnhancedGibbet) || HasEffect(RPR.Buffs.EnhancedVoidReaping)) && level >= RPR.Levels.Gibbet)
+                        return RPR.Gibbet;
+                    // Same for Gallows
+                    if ((HasEffect(RPR.Buffs.EnhancedGallows) || HasEffect(RPR.Buffs.EnhancedCrossReaping)) && level >= RPR.Levels.Gallows)
+                        return RPR.Gallows;
+
+                    // If we don't have enhanced, but are in Soul Reaver/Shroud, return Gibbet
+                    if (level >= RPR.Levels.Gibbet)
+                        return RPR.Gallows;
+                }
+
+                // Return slice if nothing else to do
+                return RPR.Slice;
+            }
+
+            return actionID;
+        }
+    }
+
+    internal class GuillotineScytheCombo : CustomCombo
+    {
+        protected override CustomComboPreset Preset => CustomComboPreset.ReaperGuillotineScytheCombo;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == RPR.Guillotine)
+            {
+                if (comboTime > 0)
+                {
+                    if (lastComboMove == RPR.SpinningScythe && level >= RPR.Levels.NightmareScythe)
+                        return RPR.NightmareScythe;
+                }
+
+                // If we're in Soul Reaver/Shroud, return Guillotine
+                if ((HasEffect(RPR.Buffs.SoulReaver) || HasEffect(RPR.Buffs.Enshrouded)) && level >= RPR.Levels.Guillotine)
+                    return RPR.Guillotine;
+
+                return RPR.SpinningScythe;
             }
 
             return actionID;
