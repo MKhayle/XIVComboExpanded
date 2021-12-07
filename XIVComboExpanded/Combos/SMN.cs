@@ -36,7 +36,6 @@ namespace XIVComboExpandedPlugin.Combos
         {
             public const byte
                 RadiantAegis = 2,
-                Painflare = 52,
                 Ruin3 = 54,
                 Ruin4 = 62,
                 SearingLight = 66,
@@ -94,9 +93,6 @@ namespace XIVComboExpandedPlugin.Combos
                     if (level >= SMN.Levels.Ruin4 && HasEffect(SMN.Buffs.FurtherRuin))
                         return SMN.Ruin4;
                 }
-
-                // Painflare
-                return OriginalHook(SMN.EnergySyphon);
             }
 
             return actionID;
