@@ -11,6 +11,8 @@ namespace XIVComboExpandedPlugin.Combos
             FeyBless = 16543,
             Consolation = 16546,
             EnergyDrain = 167,
+            Indomitability = 3583,
+            Lustrate = 189,
             Aetherflow = 166;
 
         public static class Buffs
@@ -57,11 +59,11 @@ namespace XIVComboExpandedPlugin.Combos
     {
         protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ScholarEnergyDrainFeature;
 
-        protected internal override uint[] ActionIDs { get; } = new[] { SCH.EnergyDrain };
+        protected internal override uint[] ActionIDs { get; } = new[] { SCH.EnergyDrain, SCH.Indomitability, SCH.Lustrate };
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == SCH.EnergyDrain)
+            if (actionID == SCH.EnergyDrain || actionID == SCH.Lustrate || actionID == SCH.Indomitability)
             {
                 var gauge = GetJobGauge<SCHGauge>();
 

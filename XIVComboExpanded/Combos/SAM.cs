@@ -26,6 +26,7 @@ namespace XIVComboExpandedPlugin.Combos
             KaeshiHiganbana = 16484,
             Shoha = 16487,
             // Misc
+            HissatsuShinten = 7490,
             HissatsuKyuten = 7491,
             Ikishoten = 16482,
             Shoha2 = 25779,
@@ -291,6 +292,25 @@ namespace XIVComboExpandedPlugin.Combos
         }
     }
 
+    internal class SamuraiShohaFeature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiShohaFeature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { SAM.HissatsuShinten };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == SAM.HissatsuShinten)
+            {
+                var gauge = GetJobGauge<SAMGauge>();
+
+                if (level >= SAM.Levels.Shoha && gauge.MeditationStacks >= 3)
+                    return SAM.Shoha;
+            }
+
+            return actionID;
+        }
+    }
     internal class SamuraiShoha2Feature : CustomCombo
     {
         protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiShoha2Feature;

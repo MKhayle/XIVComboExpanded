@@ -408,6 +408,9 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Iaijutsu to Shoha", "Replace Iaijutsu with Shoha when meditation is 3.", SAM.JobID)]
         SamuraiIaijutsuShohaFeature = 3410,
 
+        [CustomComboInfo("Shinten to Shoha", "Replace Hissatsu: Shinten with Shoha when Meditation is full.", SAM.JobID)]
+        SamuraiShohaFeature = 3413,
+
         [CustomComboInfo("Kyuten to Shoha II", "Replace Hissatsu: Kyuten with Shoha II when Meditation is full.", SAM.JobID)]
         SamuraiShoha2Feature = 3412,
 
@@ -421,7 +424,7 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Seraph Fey Blessing/Consolation", "Change Fey Blessing into Consolation when Seraph is out.", SCH.JobID)]
         ScholarSeraphConsolationFeature = 2801,
 
-        [CustomComboInfo("ED Aetherflow", "Change Energy Drain into Aetherflow when you have no more Aetherflow stacks.", SCH.JobID)]
+        [CustomComboInfo("ED/Lustrate/Indom Aetherflow", "Change Energy Drain, Lustrate, or Indom into Aetherflow when you have no more Aetherflow stacks.", SCH.JobID)]
         ScholarEnergyDrainFeature = 2802,
 
         #endregion
