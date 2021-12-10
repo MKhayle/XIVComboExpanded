@@ -123,7 +123,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class SummonerShinyOutburstFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SummonerFurtherOutburstFeature;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SummonerShinyOutburstFeature;
 
         protected internal override uint[] ActionIDs { get; } = new[] { SMN.Outburst, SMN.TriDisaster };
 

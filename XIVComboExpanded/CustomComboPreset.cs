@@ -53,6 +53,12 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Scathe/Xenoglossy Feature", "Scathe becomes Xenoglossy when available.", BLM.JobID)]
         BlackScatheFeature = 2507,
 
+        [CustomComboInfo("Ice AOE Feature", "(High) Blizzard 2 becomes Freeze in Umbral Ice.", BLM.JobID)]
+        BlackIceAOEFeature = 2508,
+
+        [CustomComboInfo("Fire AOE Feature", "(High) Fire 2 becomes Flare in Astral Fire with 1 or fewer Umbral Hearts.", BLM.JobID)]
+        BlackFireAOEFeature = 2509,
+
         #endregion
         // ====================================================================================
         #region BARD
