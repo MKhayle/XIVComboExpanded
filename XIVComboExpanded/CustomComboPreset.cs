@@ -451,6 +451,23 @@ namespace XIVComboExpandedPlugin
 
         // [CustomComboInfo("Kardia Into Soteria", "Kardia turns into Soteria when active and Soteria is off-cooldown.", SGE.JobID)]
         // SageKardiaFeature = 4001,
+        
+        [CustomComboInfo("Dosis Into Phlegma", "Dosis turns into Phlegma when available and not under the effect of Eukrasia")]
+        SageDosisPhlegmaFeature = 4002,
+        [CustomComboInfo("Dosis Into Toxikon Feature", "Dosis also turns into Toxikon when available, requires Dosis into Phlegma")]
+        SageDosisToxikonFeature = 4003,
+        [CustomComboInfo("Dosis Into Pneuma Feature", "Dosis also turns into Pneuma when available, requires Dosis into Phlegma")]
+        SageDosisPneumaFeature = 4004,
+        
+        [CustomComboInfo("Dyskrasia Into Phlegma", "Dyskrasia turns into Phlegma when available")]
+        SageDosisPhlegmaFeature = 4005,
+        [CustomComboInfo("Dyskrasia Into Toxikon Feature", "Dyskrasia also turns into Toxikon when available, requires Dyskrasia into Phlegma")]
+        SageDosisToxikonFeature = 4006,
+        [CustomComboInfo("Dyskrasia Into Pneuma Feature", "Dyskrasia also turns into Pneuma when available, requires Dyskrasia into Phlegma")]
+        SageDosisPneumaFeature = 4007,
+        
+        [CustomComboInfo("Druochole Into Taurochole Feature", "If Taurochole is up, use that instead of Druochole")]
+        SageTaurocholeDruocholeFeature = 4008,
 
         #endregion
         // ====================================================================================
