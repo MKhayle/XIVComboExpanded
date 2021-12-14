@@ -6,8 +6,10 @@
 
         public const uint
             Diagnosis = 24284,
-            Holos = 24310,
-            Ixochole = 24299;
+            Druochole = 24296,
+            Taurochole = 24303,
+            Ixochole = 24299,
+            Holos = 24310;
 
         public static class Buffs
         {
@@ -33,7 +35,27 @@
                 Dosis2 = 72,
                 Holos = 76,
                 Rizomata = 74,
-                Dosis3 = 82;
+                Dosis3 = 82,
+                Pneuma = 90;
+        }
+    }
+
+    internal class SageTaurocholeDruocholeFeature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SageTaurocholeDruocholeFeature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { SGE.Taurochole, SGE.Druochole };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == SGE.Taurochole)
+            {
+                if (level >= SGE.Levels.Taurochole)
+                    return CalcBestAction(actionID, SGE.Druochole);
+                return SGE.Druochole;
+            }
+
+            return actionID;
         }
     }
 }

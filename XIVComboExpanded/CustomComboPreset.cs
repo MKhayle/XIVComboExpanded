@@ -471,6 +471,9 @@ namespace XIVComboExpandedPlugin
         // [CustomComboInfo("Kardia Into Soteria", "Kardia turns into Soteria when active and Soteria is off-cooldown.", SGE.JobID)]
         // SageKardiaFeature = 4001,
 
+        [CustomComboInfo("Taurochole Into Druochole Feature", "Taurochole changes into Druochole while Taurochole is on cooldown")]
+        SageTaurocholeDruocholeFeature = 4002,
+
         #endregion
         // ====================================================================================
         #region SAMURAI
