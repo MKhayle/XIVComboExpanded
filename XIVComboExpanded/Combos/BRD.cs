@@ -91,7 +91,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class BardStraightShotUpgradeFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardStraightShotUpgradeFeature;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
 
         protected internal override uint[] ActionIDs { get; } = new[] { BRD.HeavyShot, BRD.BurstShot };
 
@@ -110,9 +110,12 @@ namespace XIVComboExpandedPlugin.Combos
                         return BRD.BlastArrow;
                 }
 
-                if (level >= BRD.Levels.StraightShot && HasEffect(BRD.Buffs.StraightShotReady))
-                    // Refulgent Arrow
-                    return OriginalHook(BRD.StraightShot);
+                if (IsEnabled(CustomComboPreset.BardStraightShotUpgradeFeature))
+                {
+                    if (level >= BRD.Levels.StraightShot && HasEffect(BRD.Buffs.StraightShotReady))
+                        // Refulgent Arrow
+                        return OriginalHook(BRD.StraightShot);
+                }
             }
 
             return actionID;
@@ -181,7 +184,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class BardShadowbiteFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardShadowbiteFeature;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
 
         protected internal override uint[] ActionIDs { get; } = new[] { BRD.QuickNock, BRD.Ladonsbite };
 
@@ -200,8 +203,11 @@ namespace XIVComboExpandedPlugin.Combos
                         return BRD.BlastArrow;
                 }
 
-                if (level >= BRD.Levels.Shadowbite && HasEffect(BRD.Buffs.ShadowbiteReady))
-                    return BRD.Shadowbite;
+                if (IsEnabled(CustomComboPreset.BardShadowbiteFeature))
+                {
+                    if (level >= BRD.Levels.Shadowbite && HasEffect(BRD.Buffs.ShadowbiteReady))
+                        return BRD.Shadowbite;
+                }
             }
 
             return actionID;

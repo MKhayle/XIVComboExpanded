@@ -8,19 +8,24 @@ namespace XIVComboExpandedPlugin
     /// </summary>
     public enum CustomComboPreset
     {
-        // A placeholder for when an attribute fails to be found.
-        [CustomComboInfo("None", "This should not be used.", ADV.JobID)]
-        None = 0,
+        [CustomComboInfo("Any", "This should not be displayed. This always returns true when used with IsEnabled.", ADV.JobID)]
+        Any = 0,
 
         // A placeholder for disabled combos due to various issues.
         [CustomComboInfo("Disabled", "This should not be used.", ADV.JobID)]
         Disabled = 99999,
 
         // ====================================================================================
+        #region ADV
+        #endregion
+        // ====================================================================================
         #region ASTROLOGIAN
 
         [CustomComboInfo("Draw on Play", "Play turns into Draw when no card is drawn, as well as the usual Play behavior.", AST.JobID)]
-        AstrologianCardsOnDrawFeature = 3301,
+        AstrologianDrawPlayFeature = 3301,
+
+        [CustomComboInfo("Astrodyne on Play", "Play turns into Astrodyne when seals are full.", AST.JobID)]
+        AstrologianAstrodynePlayFeature = 3304,
 
         [CustomComboInfo("Minor Arcana Play Feature", "Changes Minor Arcana to Crown Play when a card drawn.", AST.JobID)]
         AstrologianMinorArcanaPlayFeature = 3302,
@@ -49,6 +54,12 @@ namespace XIVComboExpandedPlugin
 
         [CustomComboInfo("Freeze/Flare Feature", "Freeze and Flare become whichever action you can currently use.", BLM.JobID)]
         BlackFreezeFlareFeature = 2506,
+
+        [CustomComboInfo("Fire 2 Feature", "(High) Fire 2 becomes Flare in Astral Fire with 1 or fewer Umbral Hearts.", BLM.JobID)]
+        BlackFire2Feature = 2508,
+
+        [CustomComboInfo("Ice 2 Feature", "(High) Blizzard 2 becomes Freeze in Umbral Ice.", BLM.JobID)]
+        BlackBlizzard2Feature = 2509,
 
         [CustomComboInfo("Scathe/Xenoglossy Feature", "Scathe becomes Xenoglossy when available.", BLM.JobID)]
         BlackScatheFeature = 2507,
@@ -152,6 +163,9 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Full Thrust Combo", "Replace Full Thrust with its combo chain.", DRG.JobID)]
         DragoonFullThrustCombo = 2204,
 
+        [CustomComboInfo("Wheeling Thrust / Fang and Claw Option", "When you have either Enhanced Fang and Claw or Wheeling Thrust, Chaos Thrust becomes Wheeling Thrust and Full Thrust becomes Fang and Claw.", DRG.JobID)]
+        DragoonFangThrustFeature = 2205,
+
         // [SecretCustomCombo]
         // [CustomComboInfo("Dive Dive Dive!", "Replace Spineshatter Dive, Dragonfire Dive, and Stardiver with whichever is available.", DRG.JobID)]
         // DragoonDiveFeature = 2205,
@@ -186,6 +200,10 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("No Mercy Feature", "Replace No Mercy with Bow Shock, and then Sonic Break, while No Mercy is active.", GNB.JobID)]
         GunbreakerNoMercyFeature = 3708,
 
+        [SecretCustomCombo]
+        [CustomComboInfo("Double Down Feature", "Replace Burst Strike and Fated Circle with Double Down when available.", GNB.JobID)]
+        GunbreakerDoubleDownFeature = 3709,
+
         #endregion
         // ====================================================================================
         #region MACHINIST
@@ -214,15 +232,18 @@ namespace XIVComboExpandedPlugin
         // ====================================================================================
         #region MONK
 
-        // [CustomComboInfo("Monk AoE Combo", "Replaces Rockbreaker and Four Point Fury with the AoE combo chain, when Perfect Balance is active, Rockbreaker does not change.", MNK.JobID)]
-        [CustomComboInfo("Monk AoE Combo", "Replaces Rockbreaker with the AoE combo chain, when Perfect Balance is active, Rockbreaker does not change.", MNK.JobID)]
+        [CustomComboInfo("Monk AoE Combo", "Replaces Rockbreaker and Four Point Fury with the AoE combo chain, when Perfect Balance is active, Rockbreaker does not change.", MNK.JobID)]
         MonkAoECombo = 2001,
 
-        // [CustomComboInfo("Monk Bootshine Feature", "Replaces Dragon Kick with Bootshine if both a form and Leaden Fist are up.", MNK.JobID)]
-        // MnkBootshineFeature = 2002,
+        [ParentCombo(MonkAoECombo)]
+        [CustomComboInfo("Monk AoE Balance Feature", "Replaces Monk's AoE Combo with Masterful Blitz if you have 3 Beast Chakra.", MNK.JobID)]
+        MonkAoEBalanceFeature = 2002,
 
-        [CustomComboInfo("Howling Fist / Meditation Feature", "Howling Fist with Meditation when the Fifth Chakra is not open.", MNK.JobID)]
+        [CustomComboInfo("Howling Fist / Meditation Feature", "Replace Howling Fist with Meditation when the Fifth Chakra is not open.", MNK.JobID)]
         MonkHowlingFistMeditationFeature = 2003,
+
+        [CustomComboInfo("Perfect Balance Feature", "Replace Perfect Balance with Masterful Blitz when you have 3 Beast Chakra.", MNK.JobID)]
+        MonkPerfectBalanceFeature = 2004,
 
         #endregion
         // ====================================================================================
@@ -276,11 +297,14 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Goring Blade Combo", "Replace Goring Blade with its combo chain.", PLD.JobID)]
         PaladinGoringBladeCombo = 1901,
 
-        [CustomComboInfo("Royal Authority Combo", "Replace Rage of Halone with its combo chain.", PLD.JobID)]
-        PaladinRageOfHaloneCombo = 1902,
+        [CustomComboInfo("Goring Blade Atonement Feature", "Replace Goring Blade with Atonement when under the effect of Sword Oath.", PLD.JobID)]
+        PaladinGoringBladeAtonementFeature = 1909,
 
-        [CustomComboInfo("Atonement Feature", "Replace Royal Authority with Atonement when under the effect of Sword Oath.", PLD.JobID)]
-        PaladinAtonementFeature = 1903,
+        [CustomComboInfo("Royal Authority Combo", "Replace Royal Authority with its combo chain.", PLD.JobID)]
+        PaladinRoyalAuthorityCombo = 1902,
+
+        [CustomComboInfo("Royal Authority Atonement Feature", "Replace Royal Authority with Atonement when under the effect of Sword Oath.", PLD.JobID)]
+        PaladinRoyalAuthorityAtonementFeature = 1903,
 
         [CustomComboInfo("Prominence Combo", "Replace Prominence with its combo chain.", PLD.JobID)]
         PaladinProminenceCombo = 1904,
@@ -344,7 +368,7 @@ namespace XIVComboExpandedPlugin
 
         [SecretCustomCombo]
         [ParentCombo(RedMageMeleeCombo)]
-        [CustomComboInfo("Redoublement Combo Plus", "Replaces Redoublement with Verflare/Verholy (and then Scorch and Resolution) after Enchanted Redoublement, whichever is more appropriate.", RDM.JobID)]
+        [CustomComboInfo("Redoublement Combo Plus", "Replaces Redoublement (and Moulinet) with Verflare/Verholy (and then Scorch and Resolution) after 3 mana stacks, whichever is more appropriate.", RDM.JobID)]
         RedMageMeleeComboPlus = 3503,
 
         [CustomComboInfo("Verproc into Jolt", "Replaces Verstone/Verfire with Jolt/Scorch when no proc is available.", RDM.JobID)]
@@ -408,11 +432,17 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Iaijutsu to Shoha", "Replace Iaijutsu with Shoha when meditation is 3.", SAM.JobID)]
         SamuraiIaijutsuShohaFeature = 3410,
 
+        [CustomComboInfo("Shinten to Senei", "Replace Hissatsu: Shinten with Senei when available.", SAM.JobID)]
+        SamuraiShintenSeneiFeature = 3414,
+
         [CustomComboInfo("Shinten to Shoha", "Replace Hissatsu: Shinten with Shoha when Meditation is full.", SAM.JobID)]
-        SamuraiShohaFeature = 3413,
+        SamuraiShintenShohaFeature = 3413,
+
+        [CustomComboInfo("Kyuten to Guren", "Replace Hissatsu: Kyuten with Guren when available.", SAM.JobID)]
+        SamuraiKyutenGurenFeature = 3415,
 
         [CustomComboInfo("Kyuten to Shoha II", "Replace Hissatsu: Kyuten with Shoha II when Meditation is full.", SAM.JobID)]
-        SamuraiShoha2Feature = 3412,
+        SamuraiKyutenShoha2Feature = 3412,
 
         [CustomComboInfo("Ikishoten Namikiri Feature", "Replace Ikishoten with Ogi Namikiri, Shoha, and then Kaeshi Namikiri when available.", SAM.JobID)]
         SamuraiIkishotenNamikiriFeature = 3411,

@@ -58,7 +58,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class DarkSouleaterCombo : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DarkSouleaterCombo;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
 
         protected internal override uint[] ActionIDs { get; } = new[] { DRK.Souleater };
 
@@ -72,16 +72,19 @@ namespace XIVComboExpandedPlugin.Combos
                         return DRK.Bloodspiller;
                 }
 
-                if (comboTime > 0)
+                if (IsEnabled(CustomComboPreset.DarkSouleaterCombo))
                 {
-                    if (lastComboMove == DRK.SyphonStrike && level >= DRK.Levels.Souleater)
-                        return DRK.Souleater;
+                    if (comboTime > 0)
+                    {
+                        if (lastComboMove == DRK.SyphonStrike && level >= DRK.Levels.Souleater)
+                            return DRK.Souleater;
 
-                    if (lastComboMove == DRK.HardSlash && level >= DRK.Levels.SyphonStrike)
-                        return DRK.SyphonStrike;
+                        if (lastComboMove == DRK.HardSlash && level >= DRK.Levels.SyphonStrike)
+                            return DRK.SyphonStrike;
+                    }
+
+                    return DRK.HardSlash;
                 }
-
-                return DRK.HardSlash;
             }
 
             return actionID;
@@ -90,7 +93,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class DarkStalwartSoulCombo : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DarkStalwartSoulCombo;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
 
         protected internal override uint[] ActionIDs { get; } = new[] { DRK.StalwartSoul };
 
@@ -104,13 +107,16 @@ namespace XIVComboExpandedPlugin.Combos
                         return DRK.Quietus;
                 }
 
-                if (comboTime > 0)
+                if (IsEnabled(CustomComboPreset.DarkStalwartSoulCombo))
                 {
-                    if (lastComboMove == DRK.Unleash && level >= DRK.Levels.StalwartSoul)
-                        return DRK.StalwartSoul;
-                }
+                    if (comboTime > 0)
+                    {
+                        if (lastComboMove == DRK.Unleash && level >= DRK.Levels.StalwartSoul)
+                            return DRK.StalwartSoul;
+                    }
 
-                return DRK.Unleash;
+                    return DRK.Unleash;
+                }
             }
 
             return actionID;

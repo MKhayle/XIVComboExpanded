@@ -23,8 +23,8 @@ namespace XIVComboExpandedPlugin.Combos
             BurstStrike = 16162,
             FatedCircle = 16163,
             Bloodfest = 16164,
-            DoubleDown = 25760,
-            Hypervelocity = 25759;
+            Hypervelocity = 25759,
+            DoubleDown = 25760;
 
         public static class Buffs
         {
@@ -116,18 +116,42 @@ namespace XIVComboExpandedPlugin.Combos
         }
     }
 
-    internal class GunbreakerBurstStrikeContinuation : CustomCombo
+    internal class GunbreakerBurstStrikeFatedCircle : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GunbreakerBurstStrikeCont;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
 
-        protected internal override uint[] ActionIDs { get; } = new[] { GNB.BurstStrike };
+        protected internal override uint[] ActionIDs { get; } = new[] { GNB.BurstStrike, GNB.FatedCircle };
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
             if (actionID == GNB.BurstStrike)
             {
-                if (level >= GNB.Levels.EnhancedContinuation && HasEffect(GNB.Buffs.ReadyToBlast))
-                    return GNB.Hypervelocity;
+                if (IsEnabled(CustomComboPreset.GunbreakerBurstStrikeCont))
+                {
+                    if (level >= GNB.Levels.EnhancedContinuation && HasEffect(GNB.Buffs.ReadyToBlast))
+                        return GNB.Hypervelocity;
+                }
+            }
+
+            if (actionID == GNB.BurstStrike || actionID == GNB.FatedCircle)
+            {
+                var gauge = GetJobGauge<GNBGauge>();
+
+                if (IsEnabled(CustomComboPreset.GunbreakerDoubleDownFeature))
+                {
+                    if (level >= GNB.Levels.DoubleDown && gauge.Ammo >= 2)
+                    {
+                        var doubleDown = GetCooldown(GNB.DoubleDown);
+                        if (!doubleDown.IsCooldown)
+                            return GNB.DoubleDown;
+                    }
+                }
+
+                if (IsEnabled(CustomComboPreset.GunbreakerEmptyBloodfestFeature))
+                {
+                    if (level >= GNB.Levels.Bloodfest && gauge.Ammo == 0)
+                        return GNB.Bloodfest;
+                }
             }
 
             return actionID;
@@ -164,12 +188,12 @@ namespace XIVComboExpandedPlugin.Combos
             {
                 if (comboTime > 0 && lastComboMove == GNB.DemonSlice && level >= GNB.Levels.DemonSlaughter)
                 {
-                    if (IsEnabled(CustomComboPreset.GunbreakerFatedCircleFeature) && level >= GNB.Levels.FatedCircle)
+                    if (IsEnabled(CustomComboPreset.GunbreakerFatedCircleFeature))
                     {
                         var gauge = GetJobGauge<GNBGauge>();
                         var maxAmmo = level >= GNB.Levels.CartridgeCharge2 ? 3 : 2;
 
-                        if (gauge.Ammo == maxAmmo)
+                        if (level >= GNB.Levels.FatedCircle && gauge.Ammo == maxAmmo)
                             return GNB.FatedCircle;
                     }
 
@@ -177,29 +201,6 @@ namespace XIVComboExpandedPlugin.Combos
                 }
 
                 return GNB.DemonSlice;
-            }
-
-            return actionID;
-        }
-    }
-
-    internal class GunbreakerEmptyBloodfestFeature : CustomCombo
-    {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GunbreakerEmptyBloodfestFeature;
-
-        protected internal override uint[] ActionIDs { get; } = new[] { GNB.BurstStrike, GNB.FatedCircle };
-
-        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-        {
-            if (actionID == GNB.BurstStrike || actionID == GNB.FatedCircle)
-            {
-                if (IsEnabled(CustomComboPreset.GunbreakerBurstStrikeCont) && level >= GNB.Levels.EnhancedContinuation && HasEffect(GNB.Buffs.ReadyToBlast))
-                    return GNB.Hypervelocity;
-
-                var gauge = GetJobGauge<GNBGauge>();
-
-                if (level >= GNB.Levels.Bloodfest && gauge.Ammo == 0)
-                    return GNB.Bloodfest;
             }
 
             return actionID;

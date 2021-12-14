@@ -97,7 +97,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class WhiteMageAfflatusFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WhiteMageAfflatusFeature;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
 
         protected internal override uint[] ActionIDs { get; } = new[] { WHM.Cure2, WHM.Medica };
 
@@ -107,26 +107,34 @@ namespace XIVComboExpandedPlugin.Combos
             {
                 var gauge = GetJobGauge<WHMGauge>();
 
-                if (IsEnabled(CustomComboPreset.WhiteMageSolaceMiseryFeature) && level >= WHM.Levels.AfflatusMisery && gauge.BloodLily == 3)
-                    return WHM.AfflatusMisery;
+                if (IsEnabled(CustomComboPreset.WhiteMageSolaceMiseryFeature))
+                {
+                    if (level >= WHM.Levels.AfflatusMisery && gauge.BloodLily == 3)
+                        return WHM.AfflatusMisery;
+                }
 
-                if (level >= WHM.Levels.AfflatusSolace && gauge.Lily > 0)
-                    return WHM.AfflatusSolace;
-
-                return actionID;
+                if (IsEnabled(CustomComboPreset.WhiteMageAfflatusFeature))
+                {
+                    if (level >= WHM.Levels.AfflatusSolace && gauge.Lily > 0)
+                        return WHM.AfflatusSolace;
+                }
             }
 
             if (actionID == WHM.Medica)
             {
                 var gauge = GetJobGauge<WHMGauge>();
 
-                if (IsEnabled(CustomComboPreset.WhiteMageRaptureMiseryFeature) && level >= WHM.Levels.AfflatusMisery && gauge.BloodLily == 3)
-                    return WHM.AfflatusMisery;
+                if (IsEnabled(CustomComboPreset.WhiteMageRaptureMiseryFeature))
+                {
+                    if (level >= WHM.Levels.AfflatusMisery && gauge.BloodLily == 3)
+                        return WHM.AfflatusMisery;
+                }
 
-                if (level >= WHM.Levels.AfflatusRapture && gauge.Lily > 0)
-                    return WHM.AfflatusRapture;
-
-                return actionID;
+                if (IsEnabled(CustomComboPreset.WhiteMageAfflatusFeature))
+                {
+                    if (level >= WHM.Levels.AfflatusRapture && gauge.Lily > 0)
+                        return WHM.AfflatusRapture;
+                }
             }
 
             return actionID;

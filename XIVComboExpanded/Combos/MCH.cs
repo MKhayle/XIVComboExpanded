@@ -22,6 +22,7 @@ namespace XIVComboExpandedPlugin.Combos
             // AoE
             SpreadShot = 2870,
             AutoCrossbow = 16497,
+            Scattergun = 25786,
             // Rook
             RookAutoturret = 2864,
             RookOverdrive = 7415,
@@ -145,11 +146,11 @@ namespace XIVComboExpandedPlugin.Combos
     {
         protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MachinistSpreadShotFeature;
 
-        protected internal override uint[] ActionIDs { get; } = new[] { MCH.SpreadShot };
+        protected internal override uint[] ActionIDs { get; } = new[] { MCH.SpreadShot, MCH.Scattergun };
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == MCH.SpreadShot)
+            if (actionID == MCH.SpreadShot || actionID == MCH.Scattergun)
             {
                 var gauge = GetJobGauge<MCHGauge>();
 

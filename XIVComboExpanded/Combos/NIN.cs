@@ -91,7 +91,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class NinjaArmorCrushCombo : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.NinjaArmorCrushCombo;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
 
         protected internal override uint[] ActionIDs { get; } = new[] { NIN.ArmorCrush };
 
@@ -108,16 +108,19 @@ namespace XIVComboExpandedPlugin.Combos
                         return NIN.ForkedRaiju;
                 }
 
-                if (comboTime > 0)
+                if (IsEnabled(CustomComboPreset.NinjaArmorCrushCombo))
                 {
-                    if (lastComboMove == NIN.GustSlash && level >= NIN.Levels.ArmorCrush)
-                        return NIN.ArmorCrush;
+                    if (comboTime > 0)
+                    {
+                        if (lastComboMove == NIN.GustSlash && level >= NIN.Levels.ArmorCrush)
+                            return NIN.ArmorCrush;
 
-                    if (lastComboMove == NIN.SpinningEdge && level >= NIN.Levels.GustSlash)
-                        return NIN.GustSlash;
+                        if (lastComboMove == NIN.SpinningEdge && level >= NIN.Levels.GustSlash)
+                            return NIN.GustSlash;
+                    }
+
+                    return NIN.SpinningEdge;
                 }
-
-                return NIN.SpinningEdge;
             }
 
             return actionID;
@@ -126,7 +129,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class NinjaAeolianEdgeCombo : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.NinjaAeolianEdgeCombo;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
 
         protected internal override uint[] ActionIDs { get; } = new[] { NIN.AeolianEdge };
 
@@ -143,16 +146,19 @@ namespace XIVComboExpandedPlugin.Combos
                         return NIN.ForkedRaiju;
                 }
 
-                if (comboTime > 0)
+                if (IsEnabled(CustomComboPreset.NinjaAeolianEdgeCombo))
                 {
-                    if (lastComboMove == NIN.GustSlash && level >= NIN.Levels.AeolianEdge)
-                        return NIN.AeolianEdge;
+                    if (comboTime > 0)
+                    {
+                        if (lastComboMove == NIN.GustSlash && level >= NIN.Levels.AeolianEdge)
+                            return NIN.AeolianEdge;
 
-                    if (lastComboMove == NIN.SpinningEdge && level >= NIN.Levels.GustSlash)
-                        return NIN.GustSlash;
+                        if (lastComboMove == NIN.SpinningEdge && level >= NIN.Levels.GustSlash)
+                            return NIN.GustSlash;
+                    }
+
+                    return NIN.SpinningEdge;
                 }
-
-                return NIN.SpinningEdge;
             }
 
             return actionID;
@@ -196,7 +202,7 @@ namespace XIVComboExpandedPlugin.Combos
                     return NIN.TrickAttack;
 
                 if (level >= NIN.Levels.Suiton && HasEffect(NIN.Buffs.Suiton))
-                    return NIN.Kassatsu;
+                    return NIN.TrickAttack;
             }
 
             return actionID;

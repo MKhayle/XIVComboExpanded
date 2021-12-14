@@ -76,11 +76,11 @@ namespace XIVComboExpandedPlugin.Combos
     {
         protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DragoonJumpFeature;
 
-        protected internal override uint[] ActionIDs { get; } = new[] { DRG.Jump };
+        protected internal override uint[] ActionIDs { get; } = new[] { DRG.Jump, DRG.HighJump };
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == DRG.Jump)
+            if (actionID == DRG.Jump || actionID == DRG.HighJump)
             {
                 if (level >= DRG.Levels.MirageDive && HasEffect(DRG.Buffs.DiveReady))
                     return DRG.MirageDive;
@@ -122,32 +122,41 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class DragoonChaosThrustCombo : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DragoonChaosThrustCombo;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
 
-        protected internal override uint[] ActionIDs { get; } = new[] { DRG.ChaosThrust };
+        protected internal override uint[] ActionIDs { get; } = new[] { DRG.ChaosThrust, DRG.ChaoticSpring };
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == DRG.ChaosThrust)
+            if (actionID == DRG.ChaosThrust || actionID == DRG.ChaoticSpring)
             {
-                if (level >= DRG.Levels.FangAndClaw && HasEffect(DRG.Buffs.SharperFangAndClaw))
-                    return DRG.FangAndClaw;
-
-                if (level >= DRG.Levels.WheelingThrust && HasEffect(DRG.Buffs.EnhancedWheelingThrust))
-                    return DRG.WheelingThrust;
-
-                if (comboTime > 0)
+                if (IsEnabled(CustomComboPreset.DragoonFangThrustFeature))
                 {
-                    if (lastComboMove == DRG.Disembowel && level >= DRG.Levels.ChaosThrust)
-                        // ChaoticSpring
-                        return OriginalHook(DRG.ChaosThrust);
-
-                    if ((lastComboMove == DRG.TrueThrust || lastComboMove == DRG.RaidenThrust) && level >= DRG.Levels.Disembowel)
-                        return DRG.Disembowel;
+                    if (level >= DRG.Levels.FangAndClaw && (HasEffect(DRG.Buffs.SharperFangAndClaw) || HasEffect(DRG.Buffs.EnhancedWheelingThrust)))
+                        return DRG.WheelingThrust;
                 }
 
-                // Vorpal Thrust
-                return OriginalHook(DRG.TrueThrust);
+                if (IsEnabled(CustomComboPreset.DragoonChaosThrustCombo))
+                {
+                    if (level >= DRG.Levels.FangAndClaw && HasEffect(DRG.Buffs.SharperFangAndClaw))
+                        return DRG.FangAndClaw;
+
+                    if (level >= DRG.Levels.WheelingThrust && HasEffect(DRG.Buffs.EnhancedWheelingThrust))
+                        return DRG.WheelingThrust;
+
+                    if (comboTime > 0)
+                    {
+                        if (lastComboMove == DRG.Disembowel && level >= DRG.Levels.ChaosThrust)
+                            // ChaoticSpring
+                            return OriginalHook(DRG.ChaosThrust);
+
+                        if ((lastComboMove == DRG.TrueThrust || lastComboMove == DRG.RaidenThrust) && level >= DRG.Levels.Disembowel)
+                            return DRG.Disembowel;
+                    }
+
+                    // Vorpal Thrust
+                    return OriginalHook(DRG.TrueThrust);
+                }
             }
 
             return actionID;
@@ -156,32 +165,41 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class DragoonFullThrustCombo : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DragoonFullThrustCombo;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
 
-        protected internal override uint[] ActionIDs { get; } = new[] { DRG.FullThrust };
+        protected internal override uint[] ActionIDs { get; } = new[] { DRG.FullThrust, DRG.HeavensThrust };
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == DRG.FullThrust)
+            if (actionID == DRG.FullThrust || actionID == DRG.HeavensThrust)
             {
-                if (level >= DRG.Levels.WheelingThrust && HasEffect(DRG.Buffs.EnhancedWheelingThrust))
-                    return DRG.WheelingThrust;
-
-                if (level >= DRG.Levels.FangAndClaw && HasEffect(DRG.Buffs.SharperFangAndClaw))
-                    return DRG.FangAndClaw;
-
-                if (comboTime > 0)
+                if (IsEnabled(CustomComboPreset.DragoonFangThrustFeature))
                 {
-                    if (lastComboMove == DRG.VorpalThrust && level >= DRG.Levels.FullThrust)
-                        // Heavens' Thrust
-                        return OriginalHook(DRG.FullThrust);
-
-                    if ((lastComboMove == DRG.TrueThrust || lastComboMove == DRG.RaidenThrust) && level >= DRG.Levels.VorpalThrust)
-                        return DRG.VorpalThrust;
+                    if (level >= DRG.Levels.FangAndClaw && (HasEffect(DRG.Buffs.SharperFangAndClaw) || HasEffect(DRG.Buffs.EnhancedWheelingThrust)))
+                        return DRG.FangAndClaw;
                 }
 
-                // Vorpal Thrust
-                return OriginalHook(DRG.TrueThrust);
+                if (IsEnabled(CustomComboPreset.DragoonFullThrustCombo))
+                {
+                    if (level >= DRG.Levels.WheelingThrust && HasEffect(DRG.Buffs.EnhancedWheelingThrust))
+                        return DRG.WheelingThrust;
+
+                    if (level >= DRG.Levels.FangAndClaw && HasEffect(DRG.Buffs.SharperFangAndClaw))
+                        return DRG.FangAndClaw;
+
+                    if (comboTime > 0)
+                    {
+                        if (lastComboMove == DRG.VorpalThrust && level >= DRG.Levels.FullThrust)
+                            // Heavens' Thrust
+                            return OriginalHook(DRG.FullThrust);
+
+                        if ((lastComboMove == DRG.TrueThrust || lastComboMove == DRG.RaidenThrust) && level >= DRG.Levels.VorpalThrust)
+                            return DRG.VorpalThrust;
+                    }
+
+                    // Vorpal Thrust
+                    return OriginalHook(DRG.TrueThrust);
+                }
             }
 
             return actionID;
@@ -202,7 +220,7 @@ namespace XIVComboExpandedPlugin.Combos
                 {
                     var gauge = GetJobGauge<DRGGauge>();
 
-                    if (gauge.BOTDState == BOTDState.LOTD)
+                    if (gauge.IsLOTDActive)
                         return CalcBestAction(actionID, DRG.SpineshatterDive, DRG.DragonfireDive, DRG.Stardiver);
 
                     return CalcBestAction(actionID, DRG.SpineshatterDive, DRG.DragonfireDive);

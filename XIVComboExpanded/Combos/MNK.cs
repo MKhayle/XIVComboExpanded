@@ -1,3 +1,6 @@
+using System.Linq;
+
+using Dalamud.Game.ClientState.JobGauge.Enums;
 using Dalamud.Game.ClientState.JobGauge.Types;
 
 namespace XIVComboExpandedPlugin.Combos
@@ -14,11 +17,13 @@ namespace XIVComboExpandedPlugin.Combos
             TwinSnakes = 61,
             ArmOfTheDestroyer = 62,
             Demolish = 66,
+            PerfectBalance = 69,
             Rockbreaker = 70,
             Meditation = 3546,
             FourPointFury = 16473,
             Enlightenment = 16474,
-            HowlingFist = 25763;
+            HowlingFist = 25763,
+            MasterfulBlitz = 25764;
 
         public static class Buffs
         {
@@ -50,6 +55,7 @@ namespace XIVComboExpandedPlugin.Combos
                 DragonKick = 50,
                 PerfectBalance = 50,
                 FormShift = 52,
+                MasterfulBlitz = 60,
                 Enlightenment = 70,
                 ShadowOfTheDestroyer = 82;
         }
@@ -63,6 +69,17 @@ namespace XIVComboExpandedPlugin.Combos
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
+            if (actionID == MNK.Rockbreaker || actionID == MNK.FourPointFury)
+            {
+                if (IsEnabled(CustomComboPreset.MonkAoEBalanceFeature))
+                {
+                    var gauge = GetJobGauge<MNKGauge>();
+
+                    if (!gauge.BeastChakra.Contains(BeastChakra.NONE))
+                        return OriginalHook(MNK.MasterfulBlitz);
+                }
+            }
+
             if (actionID == MNK.Rockbreaker)
             {
                 if (level >= MNK.Levels.PerfectBalance && HasEffect(MNK.Buffs.PerfectBalance))
@@ -81,25 +98,27 @@ namespace XIVComboExpandedPlugin.Combos
                 if (level >= MNK.Levels.Rockbreaker && HasEffect(MNK.Buffs.CoerlForm))
                     return MNK.Rockbreaker;
 
-                return MNK.ArmOfTheDestroyer;
+                // Shadow of the Destroyer
+                return OriginalHook(MNK.ArmOfTheDestroyer);
             }
 
-            // if (actionID == MNK.FourPointFury)
-            // {
-            //     var gauge = GetJobGauge<MNKGauge>();
-            //
-            //     if (level >= MNK.Levels.ArmOfTheDestroyer && !gauge.BeastChakra.Contains(BeastChakra.OPOOPO))
-            //         // Shadow of the Destroyer
-            //         return OriginalHook(MNK.ArmOfTheDestroyer);
-            //
-            //     if (level >= MNK.Levels.FourPointFury && !gauge.BeastChakra.Contains(BeastChakra.RAPTOR))
-            //         return MNK.FourPointFury;
-            //
-            //     if (level >= MNK.Levels.Rockbreaker && !gauge.BeastChakra.Contains(BeastChakra.COEURL))
-            //         return MNK.Rockbreaker;
-            //
-            //     return MNK.ArmOfTheDestroyer;
-            // }
+            if (actionID == MNK.FourPointFury)
+            {
+                var gauge = GetJobGauge<MNKGauge>();
+
+                if (level >= MNK.Levels.ArmOfTheDestroyer && !gauge.BeastChakra.Contains(BeastChakra.OPOOPO))
+                    // Shadow of the Destroyer
+                    return OriginalHook(MNK.ArmOfTheDestroyer);
+
+                if (level >= MNK.Levels.FourPointFury && !gauge.BeastChakra.Contains(BeastChakra.RAPTOR))
+                    return MNK.FourPointFury;
+
+                if (level >= MNK.Levels.Rockbreaker && !gauge.BeastChakra.Contains(BeastChakra.COEURL))
+                    return MNK.Rockbreaker;
+
+                // Shadow of the Destroyer
+                return OriginalHook(MNK.ArmOfTheDestroyer);
+            }
 
             return actionID;
         }
@@ -109,23 +128,39 @@ namespace XIVComboExpandedPlugin.Combos
     {
         protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkHowlingFistMeditationFeature;
 
-        protected internal override uint[] ActionIDs { get; } = new[] { MNK.HowlingFist };
+        protected internal override uint[] ActionIDs { get; } = new[] { MNK.HowlingFist, MNK.Enlightenment };
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == MNK.HowlingFist)
+            if (actionID == MNK.HowlingFist || actionID == MNK.Enlightenment)
             {
                 var gauge = GetJobGauge<MNKGauge>();
-                unsafe
-                {
-                    var chakra = *(byte*)(gauge.Address + 0x8);
 
-                    if (level >= MNK.Levels.Meditation && chakra < 5)
-                        return MNK.Meditation;
-                }
+                if (level >= MNK.Levels.Meditation && gauge.Chakra < 5)
+                    return MNK.Meditation;
 
                 // Enlightenment
                 return OriginalHook(MNK.HowlingFist);
+            }
+
+            return actionID;
+        }
+    }
+
+    internal class MonkPerfectBalanceFeature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkPerfectBalanceFeature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { MNK.PerfectBalance };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == MNK.PerfectBalance)
+            {
+                var gauge = GetJobGauge<MNKGauge>();
+
+                if (!gauge.BeastChakra.Contains(BeastChakra.NONE))
+                    return OriginalHook(MNK.MasterfulBlitz);
             }
 
             return actionID;

@@ -28,6 +28,8 @@ namespace XIVComboExpandedPlugin.Combos
             // Misc
             HissatsuShinten = 7490,
             HissatsuKyuten = 7491,
+            HissatsuSenei = 16481,
+            HissatsuGuren = 7496,
             Ikishoten = 16482,
             Shoha2 = 25779,
             OgiNamikiri = 25781,
@@ -61,6 +63,8 @@ namespace XIVComboExpandedPlugin.Combos
                 Yukikaze = 50,
                 MeikyoShisui = 50,
                 HissatsuKyuten = 64,
+                HissatsuGuren = 70,
+                HissatsuSenei = 72,
                 TsubameGaeshi = 76,
                 Shoha = 80,
                 Shoha2 = 82,
@@ -208,9 +212,9 @@ namespace XIVComboExpandedPlugin.Combos
         }
     }
 
-    internal class SamuraiTsubameGaeshiShohaFeature : CustomCombo
+    internal class SamuraiTsubameFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiTsubameGaeshiShohaFeature;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
 
         protected internal override uint[] ActionIDs { get; } = new[] { SAM.TsubameGaeshi };
 
@@ -220,39 +224,28 @@ namespace XIVComboExpandedPlugin.Combos
             {
                 var gauge = GetJobGauge<SAMGauge>();
 
-                if (level >= SAM.Levels.Shoha && gauge.MeditationStacks >= 3)
-                    return SAM.Shoha;
+                if (IsEnabled(CustomComboPreset.SamuraiTsubameGaeshiShohaFeature))
+                {
+                    if (level >= SAM.Levels.Shoha && gauge.MeditationStacks >= 3)
+                        return SAM.Shoha;
+                }
+
+                if (IsEnabled(CustomComboPreset.SamuraiTsubameGaeshiIaijutsuFeature))
+                {
+                    if (level >= SAM.Levels.TsubameGaeshi && gauge.Sen == Sen.NONE)
+                        return OriginalHook(SAM.TsubameGaeshi);
+
+                    return OriginalHook(SAM.Iaijutsu);
+                }
             }
 
             return actionID;
         }
     }
 
-    internal class SamuraiTsubameGaeshiIaijutsuFeature : CustomCombo
+    internal class SamuraiIaijutsuFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiTsubameGaeshiIaijutsuFeature;
-
-        protected internal override uint[] ActionIDs { get; } = new[] { SAM.TsubameGaeshi };
-
-        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-        {
-            if (actionID == SAM.TsubameGaeshi)
-            {
-                var gauge = GetJobGauge<SAMGauge>();
-
-                if (level >= SAM.Levels.TsubameGaeshi && gauge.Sen == Sen.NONE)
-                    return OriginalHook(SAM.TsubameGaeshi);
-
-                return OriginalHook(SAM.Iaijutsu);
-            }
-
-            return actionID;
-        }
-    }
-
-    internal class SamuraiIaijutsuShohaFeature : CustomCombo
-    {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiIaijutsuShohaFeature;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
 
         protected internal override uint[] ActionIDs { get; } = new[] { SAM.Iaijutsu };
 
@@ -262,39 +255,28 @@ namespace XIVComboExpandedPlugin.Combos
             {
                 var gauge = GetJobGauge<SAMGauge>();
 
-                if (level >= SAM.Levels.Shoha && gauge.MeditationStacks >= 3)
-                    return SAM.Shoha;
+                if (IsEnabled(CustomComboPreset.SamuraiIaijutsuShohaFeature))
+                {
+                    if (level >= SAM.Levels.Shoha && gauge.MeditationStacks >= 3)
+                        return SAM.Shoha;
+                }
+
+                if (IsEnabled(CustomComboPreset.SamuraiIaijutsuTsubameGaeshiFeature))
+                {
+                    if (level >= SAM.Levels.TsubameGaeshi && gauge.Sen == Sen.NONE)
+                        return OriginalHook(SAM.TsubameGaeshi);
+
+                    return OriginalHook(SAM.Iaijutsu);
+                }
             }
 
             return actionID;
         }
     }
 
-    internal class SamuraiIaijutsuTsubameGaeshiFeature : CustomCombo
+    internal class SamuraiShinten : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiIaijutsuTsubameGaeshiFeature;
-
-        protected internal override uint[] ActionIDs { get; } = new[] { SAM.Iaijutsu };
-
-        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-        {
-            if (actionID == SAM.Iaijutsu)
-            {
-                var gauge = GetJobGauge<SAMGauge>();
-
-                if (level >= SAM.Levels.TsubameGaeshi && gauge.Sen == Sen.NONE)
-                    return OriginalHook(SAM.TsubameGaeshi);
-
-                return OriginalHook(SAM.Iaijutsu);
-            }
-
-            return actionID;
-        }
-    }
-
-    internal class SamuraiShohaFeature : CustomCombo
-    {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiShohaFeature;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
 
         protected internal override uint[] ActionIDs { get; } = new[] { SAM.HissatsuShinten };
 
@@ -304,16 +286,26 @@ namespace XIVComboExpandedPlugin.Combos
             {
                 var gauge = GetJobGauge<SAMGauge>();
 
-                if (level >= SAM.Levels.Shoha && gauge.MeditationStacks >= 3)
-                    return SAM.Shoha;
+                if (IsEnabled(CustomComboPreset.SamuraiShintenShohaFeature))
+                {
+                    if (level >= SAM.Levels.Shoha && gauge.MeditationStacks >= 3)
+                        return SAM.Shoha;
+                }
+
+                if (IsEnabled(CustomComboPreset.SamuraiShintenSeneiFeature))
+                {
+                    if (level >= SAM.Levels.HissatsuSenei && GetCooldown(SAM.HissatsuSenei).CooldownRemaining == 0)
+                        return SAM.HissatsuSenei;
+                }
             }
 
             return actionID;
         }
     }
-    internal class SamuraiShoha2Feature : CustomCombo
+
+    internal class SamuraiKyuten : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiShoha2Feature;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
 
         protected internal override uint[] ActionIDs { get; } = new[] { SAM.HissatsuKyuten };
 
@@ -323,8 +315,17 @@ namespace XIVComboExpandedPlugin.Combos
             {
                 var gauge = GetJobGauge<SAMGauge>();
 
-                if (level >= SAM.Levels.Shoha2 && gauge.MeditationStacks >= 3)
-                    return SAM.Shoha2;
+                if (IsEnabled(CustomComboPreset.SamuraiKyutenShoha2Feature))
+                {
+                    if (level >= SAM.Levels.Shoha2 && gauge.MeditationStacks >= 3)
+                        return SAM.Shoha2;
+                }
+
+                if (IsEnabled(CustomComboPreset.SamuraiKyutenGurenFeature))
+                {
+                    if (level >= SAM.Levels.HissatsuGuren && GetCooldown(SAM.HissatsuGuren).CooldownRemaining == 0)
+                        return SAM.HissatsuGuren;
+                }
             }
 
             return actionID;

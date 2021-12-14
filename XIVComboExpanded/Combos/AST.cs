@@ -19,7 +19,8 @@ namespace XIVComboExpandedPlugin.Combos
             Spire = 4406,
             MinorArcana = 7443,
             Play = 17055,
-            CrownPlay = 25869;
+            CrownPlay = 25869,
+            Astrodyne = 25870;
 
         public static class Buffs
         {
@@ -39,6 +40,7 @@ namespace XIVComboExpandedPlugin.Combos
             public const byte
                 Benefic2 = 26,
                 Draw = 30,
+                Astrodyne = 50,
                 MinorArcana = 70,
                 CrownPlay = 70;
         }
@@ -46,7 +48,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class AstrologianCardsOnDrawFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstrologianCardsOnDrawFeature;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
 
         protected internal override uint[] ActionIDs { get; } = new[] { AST.Play };
 
@@ -55,8 +57,18 @@ namespace XIVComboExpandedPlugin.Combos
             if (actionID == AST.Play)
             {
                 var gauge = GetJobGauge<ASTGauge>();
-                if (level >= AST.Levels.Draw && gauge.DrawnCard == CardType.NONE)
-                    return AST.Draw;
+
+                if (IsEnabled(CustomComboPreset.AstrologianAstrodynePlayFeature))
+                {
+                    if (level >= AST.Levels.Astrodyne && !gauge.ContainsSeal(SealType.NONE))
+                        return AST.Astrodyne;
+                }
+
+                if (IsEnabled(CustomComboPreset.AstrologianDrawPlayFeature))
+                {
+                    if (level >= AST.Levels.Draw && gauge.DrawnCard == CardType.NONE)
+                        return AST.Draw;
+                }
             }
 
             return actionID;

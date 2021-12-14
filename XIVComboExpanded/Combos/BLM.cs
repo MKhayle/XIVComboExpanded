@@ -29,6 +29,9 @@ namespace XIVComboExpandedPlugin.Combos
             Despair = 16505,
             UmbralSoul = 16506,
             Xenoglossy = 16507,
+            Blizzard2 = 25793,
+            HighFire2 = 25794,
+            HighBlizzard2 = 25795,
             Paradox = 25797;
 
         public static class Buffs
@@ -77,10 +80,11 @@ namespace XIVComboExpandedPlugin.Combos
             if (actionID == BLM.Fire4 || actionID == BLM.Blizzard4)
             {
                 var gauge = GetJobGauge<BLMGauge>();
+
                 if (level >= BLM.Levels.Blizzard4 && gauge.InUmbralIce)
                     return BLM.Blizzard4;
 
-                if (level >= BLM.Levels.Fire4)
+                if (level >= BLM.Levels.Fire4 && gauge.InAstralFire)
                     return BLM.Fire4;
             }
 
@@ -99,7 +103,8 @@ namespace XIVComboExpandedPlugin.Combos
             if (actionID == BLM.Transpose)
             {
                 var gauge = GetJobGauge<BLMGauge>();
-                if (level >= BLM.Levels.UmbralSoul && gauge.InUmbralIce && gauge.IsEnochianActive)
+
+                if (level >= BLM.Levels.UmbralSoul && gauge.IsEnochianActive && gauge.InUmbralIce)
                     return BLM.UmbralSoul;
             }
 
@@ -125,49 +130,6 @@ namespace XIVComboExpandedPlugin.Combos
         }
     }
 
-    internal class BlackBlizzardFeature : CustomCombo
-    {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackBlizzardFeature;
-
-        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Blizzard };
-
-        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-        {
-            if (actionID == BLM.Blizzard)
-            {
-                var gauge = GetJobGauge<BLMGauge>();
-
-                if (level >= BLM.Levels.Blizzard3 && !gauge.InUmbralIce)
-                    return BLM.Blizzard3;
-            }
-
-            return actionID;
-        }
-    }
-
-    internal class BlackFreezeFeature : CustomCombo
-    {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFreezeFlareFeature;
-
-        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Freeze, BLM.Flare };
-
-        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-        {
-            if (actionID == BLM.Freeze || actionID == BLM.Flare)
-            {
-                var gauge = GetJobGauge<BLMGauge>();
-
-                if (level >= BLM.Levels.Freeze && gauge.InUmbralIce)
-                    return BLM.Freeze;
-
-                if (level >= BLM.Levels.Flare)
-                    return BLM.Flare;
-            }
-
-            return actionID;
-        }
-    }
-
     internal class BlackFireFeature : CustomCombo
     {
         protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFireFeature;
@@ -185,6 +147,92 @@ namespace XIVComboExpandedPlugin.Combos
 
                 // Paradox
                 return OriginalHook(BLM.Fire);
+            }
+
+            return actionID;
+        }
+    }
+
+    internal class BlackBlizzardFeature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackBlizzardFeature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Blizzard };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == BLM.Blizzard)
+            {
+                var gauge = GetJobGauge<BLMGauge>();
+
+                if (level >= BLM.Levels.Blizzard3 && !gauge.InUmbralIce)
+                    return BLM.Blizzard3;
+
+                // Paradox
+                return OriginalHook(BLM.Blizzard);
+            }
+
+            return actionID;
+        }
+    }
+
+    internal class BlackFreezeFlareFeature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFreezeFlareFeature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Freeze, BLM.Flare };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == BLM.Freeze || actionID == BLM.Flare)
+            {
+                var gauge = GetJobGauge<BLMGauge>();
+
+                if (level >= BLM.Levels.Freeze && gauge.InUmbralIce)
+                    return BLM.Freeze;
+
+                if (level >= BLM.Levels.Flare && gauge.InAstralFire)
+                    return BLM.Flare;
+            }
+
+            return actionID;
+        }
+    }
+
+    internal class BlackFire2Feature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFire2Feature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Fire2, BLM.HighFire2 };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == BLM.Fire2 || actionID == BLM.HighFire2)
+            {
+                var gauge = GetJobGauge<BLMGauge>();
+
+                if (level >= BLM.Levels.Flare && gauge.InAstralFire && gauge.UmbralHearts <= 1)
+                    return BLM.Flare;
+            }
+
+            return actionID;
+        }
+    }
+
+    internal class BlackBlizzard2Feature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackBlizzard2Feature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Blizzard2, BLM.HighBlizzard2 };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == BLM.Blizzard2 || actionID == BLM.HighBlizzard2)
+            {
+                var gauge = GetJobGauge<BLMGauge>();
+
+                if (level >= BLM.Levels.Freeze && gauge.InUmbralIce)
+                    return BLM.Freeze;
             }
 
             return actionID;

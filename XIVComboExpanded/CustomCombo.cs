@@ -79,7 +79,7 @@ namespace XIVComboExpandedPlugin.Combos
             if (!IsEnabled(this.Preset))
                 return false;
 
-            var classJobID = LocalPlayer?.ClassJob.Id;
+            var classJobID = LocalPlayer!.ClassJob.Id;
             if (this.JobID != ADV.JobID && this.ClassID != ADV.ClassID &&
                 this.JobID != classJobID && this.ClassID != classJobID)
                 return false;
@@ -172,7 +172,7 @@ namespace XIVComboExpandedPlugin.Combos
         /// </summary>
         /// <param name="preset">Preset to check.</param>
         /// <returns>A value indicating whether the preset is enabled.</returns>
-        protected static bool IsEnabled(CustomComboPreset preset) => Service.Configuration.IsEnabled(preset);
+        protected static bool IsEnabled(CustomComboPreset preset) => preset == CustomComboPreset.Any || Service.Configuration.IsEnabled(preset);
 
         /// <summary>
         /// Find if the player is in condition.

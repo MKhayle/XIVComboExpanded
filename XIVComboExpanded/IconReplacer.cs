@@ -6,8 +6,6 @@ using System.Runtime.InteropServices;
 
 using Dalamud.Hooking;
 using Dalamud.Logging;
-using Dalamud.Utility;
-using XIVComboExpandedPlugin.Attributes;
 using XIVComboExpandedPlugin.Combos;
 
 namespace XIVComboExpandedPlugin
@@ -22,7 +20,6 @@ namespace XIVComboExpandedPlugin
         private readonly Hook<GetIconDelegate> getIconHook;
 
         private IntPtr actionManager = IntPtr.Zero;
-        private HashSet<uint> comboActionIDs = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IconReplacer"/> class.
@@ -34,8 +31,6 @@ namespace XIVComboExpandedPlugin
                 .Select(t => Activator.CreateInstance(t))
                 .Cast<CustomCombo>()
                 .ToList();
-
-            this.UpdateEnabledActionIDs();
 
             this.getActionCooldownSlot = Marshal.GetDelegateForFunctionPointer<GetActionCooldownSlotDelegate>(Service.Address.GetActionCooldown);
 
@@ -58,17 +53,6 @@ namespace XIVComboExpandedPlugin
         }
 
         /// <summary>
-        /// Update what action IDs are allowed to be modified. This pulls from <see cref="PluginConfiguration.EnabledActions"/>.
-        /// </summary>
-        internal void UpdateEnabledActionIDs()
-        {
-            this.comboActionIDs = this.customCombos
-                .Where(combo => Service.Configuration.EnabledActions.Contains(combo.Preset))
-                .SelectMany(combo => combo.ActionIDs)
-                .ToHashSet();
-        }
-
-        /// <summary>
         /// Calls the original hook.
         /// </summary>
         /// <param name="actionID">Action ID.</param>
@@ -82,7 +66,7 @@ namespace XIVComboExpandedPlugin
             try
             {
                 var localPlayer = Service.ClientState.LocalPlayer;
-                if (localPlayer == null || !this.comboActionIDs.Contains(actionID))
+                if (localPlayer == null)
                     return this.OriginalHook(actionID);
 
                 var lastComboMove = *(uint*)Service.Address.LastComboMove;
