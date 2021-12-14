@@ -29,9 +29,6 @@ namespace XIVComboExpandedPlugin.Combos
             Despair = 16505,
             UmbralSoul = 16506,
             Xenoglossy = 16507,
-            Blizzard2 = 25793,
-            HighFire2 = 25794,
-            HighBlizzard2 = 25795,
             Paradox = 25797;
 
         public static class Buffs
@@ -211,7 +208,7 @@ namespace XIVComboExpandedPlugin.Combos
             {
                 var gauge = GetJobGauge<BLMGauge>();
 
-                if (level >= BLM.Levels.Flare && gauge.InAstralFire && gauge.UmbralHearts <= 1)
+                if (level >= BLM.Levels.Blizzard4 && gauge.InAstralFire && gauge.UmbralHearts <= 1)
                     return BLM.Flare;
             }
 
