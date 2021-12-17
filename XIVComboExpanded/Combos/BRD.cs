@@ -91,7 +91,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class BardStraightShotUpgradeFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BrdAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { BRD.HeavyShot, BRD.BurstShot };
 
@@ -184,7 +184,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class BardShadowbiteFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BrdAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { BRD.QuickNock, BRD.Ladonsbite };
 

@@ -97,7 +97,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class WhiteMageAfflatusFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WhmAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { WHM.Cure2, WHM.Medica };
 

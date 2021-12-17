@@ -1,6 +1,6 @@
 using Dalamud.Data;
-using Dalamud.Game;
 using Dalamud.Game.ClientState;
+using Dalamud.Game.ClientState.Buddy;
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.JobGauge;
 using Dalamud.Game.ClientState.Objects;
@@ -36,6 +36,12 @@ namespace XIVComboExpandedPlugin
         /// </summary>
         [PluginService]
         internal static DalamudPluginInterface Interface { get; private set; } = null!;
+
+        /// <summary>
+        /// Gets the Dalamud buddy list.
+        /// </summary>
+        [PluginService]
+        internal static BuddyList BuddyList { get; private set; } = null!;
 
         /// <summary>
         /// Gets the Dalamud chat gui.

@@ -91,7 +91,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class NinjaArmorCrushCombo : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.NinAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { NIN.ArmorCrush };
 
@@ -129,7 +129,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class NinjaAeolianEdgeCombo : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.NinAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { NIN.AeolianEdge };
 

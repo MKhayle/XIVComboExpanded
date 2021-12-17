@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
+using XIVComboExpandedPlugin.Combos;
+
 namespace XIVComboExpandedPlugin.Attributes
 {
     /// <summary>
@@ -94,6 +96,8 @@ namespace XIVComboExpandedPlugin.Attributes
                 38 => "Dancer",
                 39 => "Reaper",
                 40 => "Sage",
+                DOH.JobID => "Disciples of the Hand",
+                DOL.JobID => "Disciples of the Land",
                 _ => "Unknown",
             };
         }

@@ -118,7 +118,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class GunbreakerBurstStrikeFatedCircle : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GnbAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { GNB.BurstStrike, GNB.FatedCircle };
 

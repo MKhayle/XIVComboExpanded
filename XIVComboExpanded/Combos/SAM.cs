@@ -122,6 +122,9 @@ namespace XIVComboExpandedPlugin.Combos
                         return SAM.Jinpu;
                 }
 
+                if (IsEnabled(CustomComboPreset.SamuraiGekkoOption))
+                    return SAM.Jinpu;
+
                 return SAM.Hakaze;
             }
 
@@ -150,6 +153,9 @@ namespace XIVComboExpandedPlugin.Combos
                     if (lastComboMove == SAM.Hakaze && level >= SAM.Levels.Shifu)
                         return SAM.Shifu;
                 }
+
+                if (IsEnabled(CustomComboPreset.SamuraiKashaOption))
+                    return SAM.Shifu;
 
                 return SAM.Hakaze;
             }
@@ -214,7 +220,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class SamuraiTsubameFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { SAM.TsubameGaeshi };
 
@@ -245,7 +251,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class SamuraiIaijutsuFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { SAM.Iaijutsu };
 
@@ -276,7 +282,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class SamuraiShinten : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { SAM.HissatsuShinten };
 
@@ -305,7 +311,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class SamuraiKyuten : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { SAM.HissatsuKyuten };
 

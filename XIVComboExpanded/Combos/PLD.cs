@@ -60,7 +60,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class PaladinGoringBladeCombo : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PldAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { PLD.GoringBlade };
 
@@ -95,7 +95,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class PaladinRageOfHaloneCombo : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PldAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { PLD.RageOfHalone, PLD.RoyalAuthority };
 

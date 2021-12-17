@@ -122,7 +122,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class DragoonChaosThrustCombo : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DrgAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { DRG.ChaosThrust, DRG.ChaoticSpring };
 
@@ -165,7 +165,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class DragoonFullThrustCombo : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DrgAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { DRG.FullThrust, DRG.HeavensThrust };
 

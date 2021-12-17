@@ -48,7 +48,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class AstrologianCardsOnDrawFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { AST.Play };
 

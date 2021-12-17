@@ -58,7 +58,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class DarkSouleaterCombo : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DrkAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { DRK.Souleater };
 
@@ -93,7 +93,7 @@ namespace XIVComboExpandedPlugin.Combos
 
     internal class DarkStalwartSoulCombo : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.Any;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DrkAny;
 
         protected internal override uint[] ActionIDs { get; } = new[] { DRK.StalwartSoul };
 

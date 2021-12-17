@@ -80,11 +80,18 @@ namespace XIVComboExpandedPlugin.Combos
                 return false;
 
             var classJobID = LocalPlayer!.ClassJob.Id;
+
+            if (classJobID >= 8 && classJobID <= 15)
+                classJobID = DOH.JobID;
+
+            if (classJobID >= 16 && classJobID <= 18)
+                classJobID = DOL.JobID;
+
             if (this.JobID != ADV.JobID && this.ClassID != ADV.ClassID &&
                 this.JobID != classJobID && this.ClassID != classJobID)
                 return false;
 
-            if (!this.ActionIDs.Contains(actionID))
+            if (this.ActionIDs.Length > 0 && !this.ActionIDs.Contains(actionID))
                 return false;
 
             var resultingActionID = this.Invoke(actionID, lastComboActionID, comboTime, level);
@@ -172,7 +179,7 @@ namespace XIVComboExpandedPlugin.Combos
         /// </summary>
         /// <param name="preset">Preset to check.</param>
         /// <returns>A value indicating whether the preset is enabled.</returns>
-        protected static bool IsEnabled(CustomComboPreset preset) => preset == CustomComboPreset.Any || Service.Configuration.IsEnabled(preset);
+        protected static bool IsEnabled(CustomComboPreset preset) => (int)preset < 100 || Service.Configuration.IsEnabled(preset);
 
         /// <summary>
         /// Find if the player is in condition.
@@ -180,6 +187,12 @@ namespace XIVComboExpandedPlugin.Combos
         /// <param name="flag">Condition flag.</param>
         /// <returns>A value indicating whether the player is in the condition.</returns>
         protected static bool HasCondition(ConditionFlag flag) => Service.Condition[flag];
+
+        /// <summary>
+        /// Find if the player has a pet present.
+        /// </summary>
+        /// <returns>A value indicating whether the play has a pet present.</returns>
+        protected static bool HasPetPresent() => Service.BuddyList.PetBuddyPresent;
 
         /// <summary>
         /// Find if an effect on the player exists.
