@@ -260,6 +260,9 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Double Down Feature", "Replace Burst Strike and Fated Circle with Double Down when available.", GNB.JobID)]
         GunbreakerDoubleDownFeature = 3709,
 
+        [CustomComboInfo("Burst Strike Feature", "In addition to the Solid Barrel combo, add Burst Strike when charges are full.", GNB.JobID)]
+        GunbreakerBurstStrikeFeature = 3710,
+
         #endregion
         // ====================================================================================
         #region MACHINIST

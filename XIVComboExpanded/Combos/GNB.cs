@@ -48,6 +48,7 @@ namespace XIVComboExpandedPlugin.Combos
                 NoMercy = 2,
                 BrutalShell = 4,
                 SolidBarrel = 26,
+                BurstStrike = 30,
                 DemonSlaughter = 40,
                 SonicBreak = 54,
                 BowShock = 62,
@@ -73,7 +74,18 @@ namespace XIVComboExpandedPlugin.Combos
                 if (comboTime > 0)
                 {
                     if (lastComboMove == GNB.BrutalShell && level >= GNB.Levels.SolidBarrel)
+                    {
+                        if (IsEnabled(CustomComboPreset.GunbreakerBurstStrikeFeature))
+                        {
+                            var gauge = GetJobGauge<GNBGauge>();
+                            var maxAmmo = level >= GNB.Levels.CartridgeCharge2 ? 3 : 2;
+
+                            if (level >= GNB.Levels.BurstStrike && gauge.Ammo == maxAmmo)
+                                return GNB.BurstStrike;
+                        }
+
                         return GNB.SolidBarrel;
+                    }
 
                     if (lastComboMove == GNB.KeenEdge && level >= GNB.Levels.BrutalShell)
                         return GNB.BrutalShell;
