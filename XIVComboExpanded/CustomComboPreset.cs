@@ -437,6 +437,20 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Shadow Communio Feature", "Replace Shadow of Death with Communio when one stack of Shroud is left.", RPR.JobID)]
         ReaperShadowCommunioFeature = 3924,
 
+        [ConflictingCombos(ReaperSoulGibbetFeature)]
+        [CustomComboInfo("Soul Gallows Feature", "Replace Soul Slice with Gallows while Reaving or Enshrouded.", RPR.JobID)]
+        ReaperSoulGallowsFeature = 3925,
+
+        [ConflictingCombos(ReaperSoulGallowsFeature)]
+        [CustomComboInfo("Soul Gibbet Feature", "Replace Soul Slice with Gibbet while Reaving or Enshrouded.", RPR.JobID)]
+        ReaperSoulGibbetFeature = 3926,
+
+        [CustomComboInfo("Soul Lemure's Feature", "Replace Soul Slice with Lemure's Slice when two or more stacks of Void Shroud are active.", RPR.JobID)]
+        ReaperSoulLemuresFeature = 3927,
+
+        [CustomComboInfo("Soul Communio Feature", "Replace Soul Slice with Communio when one stack of Shroud is left.", RPR.JobID)]
+        ReaperSoulCommunioFeature = 3928,
+
         [CustomComboInfo("Scythe Combo", "Replace Nightmare Scythe with its combo chain.", RPR.JobID)]
         ReaperScytheCombo = 3902,
 

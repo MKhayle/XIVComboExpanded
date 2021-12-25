@@ -14,6 +14,9 @@ namespace XIVComboExpandedPlugin.Combos
             // AoE
             SpinningScythe = 24376,
             NightmareScythe = 24377,
+            // Generators
+            SoulSlice = 24380,
+            SoulScythe = 24381,
             // Soul Reaver
             BloodStalk = 24389,
             Gibbet = 24382,
@@ -232,6 +235,46 @@ namespace XIVComboExpandedPlugin.Combos
                         return OriginalHook(RPR.Gallows);
 
                     if (IsEnabled(CustomComboPreset.ReaperShadowGibbetFeature))
+                        // Void Reaping
+                        return OriginalHook(RPR.Gibbet);
+                }
+            }
+
+            return actionID;
+        }
+    }
+
+    internal class ReaperSoulSlice : ReaperCustomCombo
+    {
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == RPR.SoulSlice)
+            {
+                var gauge = GetJobGauge<RPRGauge>();
+
+                if (level >= RPR.Levels.Enshroud && gauge.EnshroudedTimeRemaining > 0)
+                {
+                    if (IsEnabled(CustomComboPreset.ReaperSoulCommunioFeature))
+                    {
+                        if (level >= RPR.Levels.Communio && gauge.LemureShroud == 1 && gauge.VoidShroud == 0)
+                        return RPR.Communio;
+                    }
+
+                    if (IsEnabled(CustomComboPreset.ReaperSoulLemuresFeature))
+                    {
+                        if (level >= RPR.Levels.EnhancedShroud && gauge.VoidShroud >= 2)
+                        return RPR.LemuresSlice;
+                }
+                }
+
+                if ((level >= RPR.Levels.SoulReaver && HasEffect(RPR.Buffs.SoulReaver)) ||
+                    (level >= RPR.Levels.Enshroud && gauge.EnshroudedTimeRemaining > 0))
+                {
+                    if (IsEnabled(CustomComboPreset.ReaperSoulGallowsFeature))
+                        // Cross Reaping
+                        return OriginalHook(RPR.Gallows);
+
+                    if (IsEnabled(CustomComboPreset.ReaperSoulGibbetFeature))
                         // Void Reaping
                         return OriginalHook(RPR.Gibbet);
                 }
