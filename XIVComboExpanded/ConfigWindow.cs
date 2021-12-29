@@ -102,7 +102,7 @@ namespace XIVComboExpandedPlugin
             var enabled = Service.Configuration.IsEnabled(preset);
             var secret = Service.Configuration.IsSecret(preset);
             var conflicts = Service.Configuration.GetConflicts(preset);
-            var children = Service.Configuration.GetChildren(preset);
+
             if (ImGui.Checkbox(info.FancyName, ref enabled))
             {
                 if (enabled)
@@ -187,16 +187,20 @@ namespace XIVComboExpandedPlugin
 
             i++;
 
-            if (enabled && children.Any())
+            if (enabled)
             {
-                ImGui.Indent();
-                ImGui.Indent();
-                foreach (var (childPreset, childInfo) in children)
+                var children = Service.Configuration.GetChildren(preset);
+                if (children.Any())
                 {
-                    this.DrawPreset(childPreset, childInfo, ref i);
+                    ImGui.Indent();
+                    ImGui.Indent();
+                    foreach (var (childPreset, childInfo) in children)
+                    {
+                        this.DrawPreset(childPreset, childInfo, ref i);
+                    }
+                    ImGui.Unindent();
+                    ImGui.Unindent();
                 }
-                ImGui.Unindent();
-                ImGui.Unindent();
             }
         }
     }
