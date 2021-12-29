@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Dalamud.Configuration;
 using Dalamud.Utility;
@@ -86,5 +87,18 @@ namespace XIVComboExpandedPlugin
         /// <returns>The parent preset.</returns>
         public CustomComboPreset? GetParent(CustomComboPreset preset)
             => preset.GetAttribute<ParentComboAttribute>()?.ParentPreset;
+
+        /// <summary>
+        /// Gets the children combo presets, or an empty list.
+        /// </summary>
+        /// <param name="preset">Preset to check.</param>
+        /// <returns>List of (preset, info attribute) tuples.</returns>
+        internal (CustomComboPreset Preset, CustomComboInfoAttribute Info)[] GetChildren(
+            CustomComboPreset preset)
+            => Enum.GetValues(typeof(CustomComboPreset))
+                .Cast<CustomComboPreset>()
+                .Where(pre => this.GetParent(pre) != null && this.GetParent(pre) == preset)
+                .Select(pre => (pre, pre.GetAttribute<CustomComboInfoAttribute>()))
+                .ToArray();
     }
 }
