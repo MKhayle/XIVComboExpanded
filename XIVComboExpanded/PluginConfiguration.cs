@@ -89,10 +89,10 @@ namespace XIVComboExpandedPlugin
             => preset.GetAttribute<ParentComboAttribute>()?.ParentPreset;
 
         /// <summary>
-        /// Gets the children combo presets, or an empty list.
+        /// Gets the children combo presets, or an empty array.
         /// </summary>
         /// <param name="preset">Preset to check.</param>
-        /// <returns>List of (preset, info attribute) tuples.</returns>
+        /// <returns>Array of (preset, info attribute) tuples.</returns>
         internal (CustomComboPreset Preset, CustomComboInfoAttribute Info)[] GetChildren(
             CustomComboPreset preset)
             => Enum.GetValues(typeof(CustomComboPreset))

@@ -18,6 +18,8 @@ namespace XIVComboExpandedPlugin
     internal class ConfigWindow : Window
     {
         private readonly Dictionary<string, List<(CustomComboPreset Preset, CustomComboInfoAttribute Info)>> groupedPresets;
+        private readonly Dictionary<CustomComboPreset, (CustomComboPreset Preset, CustomComboInfoAttribute Info)[]> parentToChildrenPresets;
+        private readonly Dictionary<CustomComboPreset, CustomComboPreset?> childToParentPresets;
         private readonly Vector4 shadedColor = new(0.68f, 0.68f, 0.68f, 1.0f);
 
         /// <summary>
@@ -34,12 +36,19 @@ namespace XIVComboExpandedPlugin
                 .Select(preset => (Preset: preset, Info: preset.GetAttribute<CustomComboInfoAttribute>()))
                 .Where(tpl => tpl.Info != null)
                 .OrderBy(tpl => tpl.Info.JobName)
-                .ThenBy(tpl => Service.Configuration.GetChildren(tpl.Preset).Any()) // Move combos with children to top
                 .ThenBy(tpl => tpl.Info.Order)
                 .GroupBy(tpl => tpl.Info.JobName)
                 .ToDictionary(
                     tpl => tpl.Key,
                     tpl => tpl.ToList());
+
+            this.parentToChildrenPresets = new Dictionary<CustomComboPreset, (CustomComboPreset Preset, CustomComboInfoAttribute Info)[]>();
+            this.childToParentPresets = new Dictionary<CustomComboPreset, CustomComboPreset?>();
+            foreach (var comboPreset in Enum.GetValues<CustomComboPreset>())
+            {
+                this.parentToChildrenPresets.Add(comboPreset, Service.Configuration.GetChildren(comboPreset));
+                this.childToParentPresets.Add(comboPreset, Service.Configuration.GetParent(comboPreset));
+            }
 
             this.SizeCondition = ImGuiCond.FirstUseEver;
             this.Size = new Vector2(740, 490);
@@ -77,12 +86,10 @@ namespace XIVComboExpandedPlugin
                     foreach (var (preset, info) in this.groupedPresets[jobName])
                     {
                         var secret = Service.Configuration.IsSecret(preset);
-                        var parent = Service.Configuration.GetParent(preset);
-                        if (parent != null || (secret && !showSecrets))
+                        if (this.childToParentPresets[preset] != null || (secret && !showSecrets))
                             continue;
 
                         ImGui.PushItemWidth(200);
-
                         this.DrawPreset(preset, info, ref i);
                     }
                 }
@@ -93,7 +100,6 @@ namespace XIVComboExpandedPlugin
             }
 
             ImGui.PopStyleVar();
-
             ImGui.EndChild();
         }
 
@@ -108,6 +114,7 @@ namespace XIVComboExpandedPlugin
                 if (enabled)
                 {
                     Service.Configuration.EnabledActions.Add(preset);
+                    this.EnableParentPresets(preset);
                     foreach (var conflict in conflicts)
                     {
                         Service.Configuration.EnabledActions.Remove(conflict);
@@ -187,20 +194,35 @@ namespace XIVComboExpandedPlugin
 
             i++;
 
-            if (enabled)
+            if (this.parentToChildrenPresets[preset].Any())
             {
-                var children = Service.Configuration.GetChildren(preset);
-                if (children.Any())
+                ImGui.Indent();
+                ImGui.Indent();
+                foreach (var childPreset in this.parentToChildrenPresets[preset])
                 {
-                    ImGui.Indent();
-                    ImGui.Indent();
-                    foreach (var (childPreset, childInfo) in children)
-                    {
-                        this.DrawPreset(childPreset, childInfo, ref i);
-                    }
-                    ImGui.Unindent();
-                    ImGui.Unindent();
+                    this.DrawPreset(childPreset.Preset, childPreset.Info, ref i);
                 }
+                ImGui.Unindent();
+                ImGui.Unindent();
+            }
+        }
+
+        /// <summary>
+        /// Iterates up a preset's parent tree, enabling each of them.
+        /// </summary>
+        /// <param name="preset">Combo preset getting enabled.</param>
+        private void EnableParentPresets(CustomComboPreset preset)
+        {
+            var parent = this.childToParentPresets[preset];
+            while (parent != null)
+            {
+                var parentVal = parent.Value;
+                if (!Service.Configuration.EnabledActions.Contains(parentVal))
+                {
+                    Service.Configuration.EnabledActions.Add(parentVal);
+                }
+
+                parent = this.childToParentPresets[parentVal];
             }
         }
     }
