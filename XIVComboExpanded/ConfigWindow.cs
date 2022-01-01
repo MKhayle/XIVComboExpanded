@@ -73,6 +73,13 @@ namespace XIVComboExpandedPlugin
                 ImGui.EndTooltip();
             }
 
+            var hideChildren = Service.Configuration.HideDisabledFeaturesChildren;
+            if (ImGui.Checkbox("Hide children of disabled features", ref hideChildren))
+            {
+                Service.Configuration.HideDisabledFeaturesChildren = hideChildren;
+                Service.Configuration.Save();
+            }
+
             ImGui.BeginChild("scrolling", new Vector2(0, -1), true);
 
             ImGui.PushStyleVar(ImGuiStyleVar.ItemSpacing, new Vector2(0, 5));
@@ -194,16 +201,20 @@ namespace XIVComboExpandedPlugin
 
             i++;
 
-            if (this.parentToChildrenPresets[preset].Any())
+            var hideChildren = Service.Configuration.HideDisabledFeaturesChildren;
+            if (!hideChildren || enabled)
             {
-                ImGui.Indent();
-                ImGui.Indent();
-                foreach (var childPreset in this.parentToChildrenPresets[preset])
+                if (this.parentToChildrenPresets[preset].Any())
                 {
-                    this.DrawPreset(childPreset.Preset, childPreset.Info, ref i);
+                    ImGui.Indent();
+                    ImGui.Indent();
+                    foreach (var childPreset in this.parentToChildrenPresets[preset])
+                    {
+                        this.DrawPreset(childPreset.Preset, childPreset.Info, ref i);
+                    }
+                    ImGui.Unindent();
+                    ImGui.Unindent();
                 }
-                ImGui.Unindent();
-                ImGui.Unindent();
             }
         }
 
