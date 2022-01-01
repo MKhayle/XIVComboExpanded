@@ -220,6 +220,10 @@ namespace XIVComboExpandedPlugin
                 if (!Service.Configuration.EnabledActions.Contains(parentVal))
                 {
                     Service.Configuration.EnabledActions.Add(parentVal);
+                    foreach (var conflict in Service.Configuration.GetConflicts(parentVal))
+                    {
+                        Service.Configuration.EnabledActions.Remove(conflict);
+                    }
                 }
 
                 parent = this.childToParentPresets[parentVal];
