@@ -210,6 +210,9 @@ namespace XIVComboExpandedPlugin
                     ImGui.Indent();
                     foreach (var childPreset in this.parentToChildrenPresets[preset])
                     {
+                        var isSecret = Service.Configuration.IsSecret(childPreset.Preset);
+                        if (isSecret && !Service.Configuration.EnableSecretCombos)
+                            continue;
                         this.DrawPreset(childPreset.Preset, childPreset.Info, ref i);
                     }
                     ImGui.Unindent();
