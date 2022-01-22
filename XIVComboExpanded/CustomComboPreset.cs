@@ -585,6 +585,9 @@ namespace XIVComboExpandedPlugin
 
         [CustomComboInfo("Soul Communio Feature", "Replace Soul Slice with Communio when one stack of Shroud is left.", RPR.JobID)]
         ReaperSoulCommunioFeature = 3928,
+        
+        [CustomComboInfo("Soul Slice Blood Stalk Feature", "Replace Soul Slice with Blood Stalk when available.", RPR.JobID)]
+        ReaperSoulBloodStalkFeature = 3934,
 
         [CustomComboInfo("Scythe Combo", "Replace Nightmare Scythe with its combo chain.", RPR.JobID)]
         ReaperScytheCombo = 3902,
@@ -603,6 +606,9 @@ namespace XIVComboExpandedPlugin
 
         [CustomComboInfo("Scythe Harvest Moon Feature", "Replace Nightmare Scythe with Harvest Moon when Soulsow is active and you have a target.", RPR.JobID)]
         ReaperScytheHarvestMoonFeature = 3932,
+        
+        [CustomComboInfo("Soul Scythe Grim Swathe Feature", "Replace Soul Scythe with Grim Swathe when available.", RPR.JobID)]
+        ReaperSoulScytheGrimSwatheFeature = 3935,
 
         [CustomComboInfo("Enhanced Soul Reaver Feature", "Replace Gibbet and Gallows with whichever is currently enhanced while Reaving.", RPR.JobID)]
         ReaperEnhancedSoulReaverFeature = 3917,
