@@ -17,6 +17,7 @@ namespace XIVComboExpandedPlugin.Combos
             DragonKick = 74,
             SnapPunch = 56,
             TwinSnakes = 61,
+            TrueStrike = 54,
             ArmOfTheDestroyer = 62,
             Demolish = 66,
             PerfectBalance = 69,
@@ -53,7 +54,10 @@ namespace XIVComboExpandedPlugin.Combos
         public static class Levels
         {
             public const byte
+                TrueStrike = 4,
+                SnapPunch = 6,
                 Meditation = 15,
+                TwinSnakes = 18,
                 ArmOfTheDestroyer = 26,
                 Rockbreaker = 30,
                 Demolish = 30,
@@ -180,13 +184,76 @@ namespace XIVComboExpandedPlugin.Combos
                         return OriginalHook(MNK.MasterfulBlitz);
                 }
 
-                if (IsEnabled(CustomComboPreset.MonkBootshineFeature))
+                if (IsEnabled(CustomComboPreset.MonkBootshineFeature) && !IsEnabled(CustomComboPreset.MonkDragonKickCombo))
                 {
                     if (HasEffect(MNK.Buffs.LeadenFist))
                         return MNK.Bootshine;
 
                     if (level < MNK.Levels.DragonKick)
                         return MNK.Bootshine;
+                }
+
+                if (IsEnabled(CustomComboPreset.MonkDragonKickCombo))
+                {
+                    if (HasEffect(MNK.Buffs.OpoOpoForm) || HasEffect(MNK.Buffs.FormlessFist) || HasEffect(MNK.Buffs.PerfectBalance))
+                    {
+                        if (IsEnabled(CustomComboPreset.MonkBootshineFeature))
+                        {
+                            if (HasEffect(MNK.Buffs.LeadenFist))
+                                return MNK.Bootshine;
+                        }
+
+                        return actionID;
+                    }
+
+                    if (HasEffect(MNK.Buffs.RaptorForm)) return MNK.TwinSnakes;
+
+                    if (HasEffect(MNK.Buffs.CoerlForm)) return MNK.Demolish;
+                }
+            }
+
+            return actionID;
+        }
+    }
+
+    internal class MonkBootshine : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MnkAny;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == MNK.Bootshine && IsEnabled(CustomComboPreset.MonkBootshineCombo))
+            {
+                var gauge = GetJobGauge<MNKGauge>();
+
+                if (IsEnabled(CustomComboPreset.MonkBootshineFeature) && IsEnabled(CustomComboPreset.MonkDragonKickMeditationFeature))
+                {
+                    if (level >= MNK.Levels.Meditation && gauge.Chakra < 5 && !HasCondition(ConditionFlag.InCombat))
+                        return MNK.Meditation;
+                }
+
+                if (IsEnabled(CustomComboPreset.MonkBootshineFeature) && IsEnabled(CustomComboPreset.MonkDragonKickBalanceFeature))
+                {
+                    if (!gauge.BeastChakra.Contains(BeastChakra.NONE))
+                        return OriginalHook(MNK.MasterfulBlitz);
+                }
+
+                if (IsEnabled(CustomComboPreset.MonkDragonKickCombo))
+                {
+                    if (HasEffect(MNK.Buffs.OpoOpoForm) || HasEffect(MNK.Buffs.FormlessFist) || HasEffect(MNK.Buffs.PerfectBalance))
+                    {
+                        if (IsEnabled(CustomComboPreset.MonkBootshineFeature))
+                        {
+                            if (!HasEffect(MNK.Buffs.LeadenFist) && level >= MNK.Levels.DragonKick)
+                                return MNK.DragonKick;
+                        }
+
+                        return actionID;
+                    }
+
+                    if (HasEffect(MNK.Buffs.RaptorForm)) return level < MNK.Levels.TrueStrike ? MNK.Bootshine : MNK.TrueStrike;
+
+                    if (HasEffect(MNK.Buffs.CoerlForm)) return level < MNK.Levels.SnapPunch ? MNK.Bootshine : MNK.SnapPunch;
                 }
             }
 
