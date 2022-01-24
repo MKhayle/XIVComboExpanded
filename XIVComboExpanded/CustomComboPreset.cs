@@ -403,6 +403,12 @@ namespace XIVComboExpandedPlugin
         // ====================================================================================
         #region MONK
 
+        [CustomComboInfo("Monk Bootshine Combo", "Replace Bootshine with Monk's Bootshine/True Strike/Snap Punch combo.", MNK.JobID)]
+        MonkBootshineCombo = 2013,
+
+        [CustomComboInfo("Monk Dragon Kick Combo", "Replace Dragon Kick with Monk's Dragon Kick/Twin Snakes/Demolish combo.\nYou will still need Demolish/Twin Snakes on your bar for Perfect Balance and Form Shift.", MNK.JobID)]
+        MonkDragonKickCombo = 2014,
+
         [CustomComboInfo("Monk AoE Combo", "Replace Masterful Blitz with the AoE combo chain. This was changed from Rockbreaker due to an action queueing bug.", MNK.JobID)]
         MonkAoECombo = 2001,
 
