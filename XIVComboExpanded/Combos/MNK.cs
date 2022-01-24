@@ -14,13 +14,14 @@ namespace XIVComboExpandedPlugin.Combos
 
         public const uint
             Bootshine = 53,
-            DragonKick = 74,
+            TrueStrike = 54,
             SnapPunch = 56,
             TwinSnakes = 61,
             ArmOfTheDestroyer = 62,
             Demolish = 66,
             PerfectBalance = 69,
             Rockbreaker = 70,
+            DragonKick = 74,
             Meditation = 3546,
             RiddleOfFire = 7395,
             Brotherhood = 7396,
@@ -187,6 +188,50 @@ namespace XIVComboExpandedPlugin.Combos
 
                     if (level < MNK.Levels.DragonKick)
                         return MNK.Bootshine;
+                }
+            }
+
+            return actionID;
+        }
+    }
+
+    internal class MonkTwinSnakesKick : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MnkAny;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == MNK.TwinSnakes)
+            {
+                if (IsEnabled(CustomComboPreset.MonkTwinSnakesFeature))
+                {
+                    var status = FindEffect(MNK.Buffs.TwinSnakes);
+
+                    if (status is not null && status?.RemainingTime > 6.0) {
+                        return MNK.TrueStrike;
+                    }
+                }
+            }
+
+            return actionID;
+        }
+    }
+
+    internal class MonkDemolishKick : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MnkAny;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == MNK.Demolish)
+            {
+                if (IsEnabled(CustomComboPreset.MonkDemolishFeature))
+                {
+                    var status = FindTargetEffect(MNK.Debuffs.Demolish);
+
+                    if (status is not null && status?.RemainingTime > 6.0) {
+                        return MNK.SnapPunch;
+                    }
                 }
             }
 
