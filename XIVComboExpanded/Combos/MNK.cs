@@ -238,23 +238,20 @@ namespace XIVComboExpandedPlugin.Combos
                         return OriginalHook(MNK.MasterfulBlitz);
                 }
 
-                if (IsEnabled(CustomComboPreset.MonkDragonKickCombo))
+                if (HasEffect(MNK.Buffs.OpoOpoForm) || HasEffect(MNK.Buffs.FormlessFist) || HasEffect(MNK.Buffs.PerfectBalance))
                 {
-                    if (HasEffect(MNK.Buffs.OpoOpoForm) || HasEffect(MNK.Buffs.FormlessFist) || HasEffect(MNK.Buffs.PerfectBalance))
+                    if (IsEnabled(CustomComboPreset.MonkBootshineFeature))
                     {
-                        if (IsEnabled(CustomComboPreset.MonkBootshineFeature))
-                        {
-                            if (!HasEffect(MNK.Buffs.LeadenFist) && level >= MNK.Levels.DragonKick)
-                                return MNK.DragonKick;
-                        }
-
-                        return actionID;
+                        if (!HasEffect(MNK.Buffs.LeadenFist) && level >= MNK.Levels.DragonKick)
+                            return MNK.DragonKick;
                     }
 
-                    if (HasEffect(MNK.Buffs.RaptorForm)) return level < MNK.Levels.TrueStrike ? MNK.Bootshine : MNK.TrueStrike;
-
-                    if (HasEffect(MNK.Buffs.CoerlForm)) return level < MNK.Levels.SnapPunch ? MNK.Bootshine : MNK.SnapPunch;
+                    return actionID;
                 }
+
+                if (HasEffect(MNK.Buffs.RaptorForm)) return level < MNK.Levels.TrueStrike ? MNK.Bootshine : MNK.TrueStrike;
+
+                if (HasEffect(MNK.Buffs.CoerlForm)) return level < MNK.Levels.SnapPunch ? MNK.Bootshine : MNK.SnapPunch;
             }
 
             return actionID;
