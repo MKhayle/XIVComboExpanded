@@ -987,8 +987,24 @@ public enum CustomComboPreset
     [CustomComboInfo("Primal Release Feature", "Replace Inner Release with Primal Rend when available", WAR.JobID)]
     WarriorPrimalReleaseFeature = 2108,
 
-    [CustomComboInfo("Warrior Overcap Protection", "Replace Gauge increasing moves with Gauge spending moves when about to overcap", WAR.JobID)]
+    [CustomComboInfo("Gauge Overcap Protection", "Replace Gauge increasing moves with Gauge spending moves when about to overcap", WAR.JobID)]
     WarriorOvercapProtection = 2114,
+
+    [ParentCombo(WarriorOvercapProtection)]
+    [CustomComboInfo("Exclude Maim", "Replace Gauge increasing moves with Gauge spending moves when about to overcap", WAR.JobID)]
+    WarriorExcludeMaimProtection = 2115,
+
+    [ParentCombo(WarriorOvercapProtection)]
+    [CustomComboInfo("Exclude Storm's Path", "Replace Gauge increasing moves with Gauge spending moves when about to overcap", WAR.JobID)]
+    WarriorExcludeStormsPathProtection = 2116,
+
+    [ParentCombo(WarriorOvercapProtection)]
+    [CustomComboInfo("Exclude Storm's Eye", "Replace Gauge increasing moves with Gauge spending moves when about to overcap", WAR.JobID)]
+    WarriorExcludeStormsEyeProtection = 2117,
+
+    [ParentCombo(WarriorOvercapProtection)]
+    [CustomComboInfo("Exclude Steel Cyclone", "Replace Gauge increasing moves with Gauge spending moves when about to overcap.", WAR.JobID)]
+    WarriorExcludeSteelCycloneProtection = 2118,
 
     #endregion
     // ====================================================================================
