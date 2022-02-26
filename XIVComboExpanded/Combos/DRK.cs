@@ -62,7 +62,53 @@ internal static class DRK
     }
 }
 
-internal class DarkSouleater : CustomCombo
+internal class DarkHardSlash : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DrkAny;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == DRK.HardSlash)
+        {
+            var gauge = GetJobGauge<DRKGauge>();
+
+            if ((comboTime <= 0) && IsEnabled(CustomComboPreset.DarkGaugeOvercapProtection) && IsEnabled(CustomComboPreset.DarkIncludeBloodWeaponProtection))
+            {
+                if (level >= DRK.Levels.Bloodspiller && gauge.Blood > 90 && HasEffect(DRK.Buffs.BloodWeapon))
+                return DRK.Bloodspiller;
+            }
+
+            return DRK.HardSlash;
+        }
+
+        return actionID;
+    }
+}
+
+internal class DarkSyphonStrike : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DrkAny;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == DRK.SyphonStrike)
+        {
+            var gauge = GetJobGauge<DRKGauge>();
+
+            if (lastComboMove == DRK.HardSlash && IsEnabled(CustomComboPreset.DarkGaugeOvercapProtection) && IsEnabled(CustomComboPreset.DarkIncludeBloodWeaponProtection))
+            {
+                if (gauge.Blood > 90 && HasEffect(DRK.Buffs.BloodWeapon))
+                return DRK.Bloodspiller;
+            }
+
+            return DRK.SyphonStrike;
+        }
+
+        return actionID;
+    }
+}
+
+internal class DarkSouleater : CustomCombo 
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DrkAny;
 
@@ -78,11 +124,17 @@ internal class DarkSouleater : CustomCombo
                     return DRK.Bloodspiller;
             }
 
+            if (lastComboMove == DRK.SyphonStrike && IsEnabled(CustomComboPreset.DarkGaugeOvercapProtection))
+            {
+                if (level >= DRK.Levels.Bloodspiller && (gauge.Blood > 80 || (gauge.Blood > 70 && HasEffect(DRK.Buffs.BloodWeapon) && IsEnabled(CustomComboPreset.DarkIncludeBloodWeaponProtection))))
+                    return DRK.Bloodspiller;
+            }
+
             if (IsEnabled(CustomComboPreset.DarkSouleaterCombo))
             {
-                if (IsEnabled(CustomComboPreset.DarkSouleaterOvercapFeature))
+                if (IsEnabled(CustomComboPreset.DarkGaugeOvercapProtection))
                 {
-                    if (level >= DRK.Levels.Bloodspiller && gauge.Blood > 90 && HasEffect(DRK.Buffs.BloodWeapon))
+                    if (level >= DRK.Levels.Bloodspiller && gauge.Blood > 90 && HasEffect(DRK.Buffs.BloodWeapon) && IsEnabled(CustomComboPreset.DarkIncludeBloodWeaponProtection))
                         return DRK.Bloodspiller;
                 }
 
@@ -90,12 +142,6 @@ internal class DarkSouleater : CustomCombo
                 {
                     if (lastComboMove == DRK.SyphonStrike && level >= DRK.Levels.Souleater)
                     {
-                        if (IsEnabled(CustomComboPreset.DarkSouleaterOvercapFeature))
-                        {
-                            if (level >= DRK.Levels.Bloodspiller && (gauge.Blood > 80 || (gauge.Blood > 70 && HasEffect(DRK.Buffs.BloodWeapon))))
-                                return DRK.Bloodspiller;
-                        }
-
                         return DRK.Souleater;
                     }
 
@@ -127,11 +173,17 @@ internal class DarkStalwartSoul : CustomCombo
                     return DRK.Quietus;
             }
 
+            if (lastComboMove == DRK.Unleash && IsEnabled(CustomComboPreset.DarkGaugeOvercapProtection))
+            {
+                if (level >= DRK.Levels.Quietus && (gauge.Blood > 80 || (gauge.Blood > 70 && HasEffect(DRK.Buffs.BloodWeapon) && IsEnabled(CustomComboPreset.DarkIncludeBloodWeaponProtection))))
+                    return DRK.Quietus;
+            }
+
             if (IsEnabled(CustomComboPreset.DarkStalwartSoulCombo))
             {
-                if (IsEnabled(CustomComboPreset.DarkStalwartSoulOvercapFeature))
+                if (IsEnabled(CustomComboPreset.DarkGaugeOvercapProtection))
                 {
-                    if (level >= DRK.Levels.Quietus && gauge.Blood > 90 && HasEffect(DRK.Buffs.BloodWeapon))
+                    if (level >= DRK.Levels.Quietus && gauge.Blood > 90 && HasEffect(DRK.Buffs.BloodWeapon) && IsEnabled(CustomComboPreset.DarkIncludeBloodWeaponProtection))
                         return DRK.Quietus;
                 }
 
@@ -139,12 +191,6 @@ internal class DarkStalwartSoul : CustomCombo
                 {
                     if (lastComboMove == DRK.Unleash && level >= DRK.Levels.StalwartSoul)
                     {
-                        if (IsEnabled(CustomComboPreset.DarkStalwartSoulOvercapFeature))
-                        {
-                            if (level >= DRK.Levels.Quietus && (gauge.Blood > 80 || (gauge.Blood > 70 && HasEffect(DRK.Buffs.BloodWeapon))))
-                                return DRK.Quietus;
-                        }
-
                         return DRK.StalwartSoul;
                     }
                 }
