@@ -987,7 +987,7 @@ public enum CustomComboPreset
     [CustomComboInfo("Primal Release Feature", "Replace Inner Release with Primal Rend when available", WAR.JobID)]
     WarriorPrimalReleaseFeature = 2108,
 
-    [CustomComboInfo("Warrior Overcap Protection", "Replace Gauge increasing moves with Gauge spending moves when about to overcap", WAR.JobID)]
+    [CustomComboInfo("Gauge Overcap Protection", "Replace Gauge increasing moves with Gauge spending moves when about to overcap", WAR.JobID)]
     WarriorOvercapProtection = 2114,
 
     [ParentCombo(WarriorOvercapProtection)]
