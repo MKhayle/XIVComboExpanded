@@ -104,7 +104,7 @@ internal class SageDosis : CustomCombo
             if (IsEnabled(CustomComboPreset.SageDosisKardia))
             {
                 if (HasEffect(SGE.Buffs.Kardion))
-                    return actionID;
+                    return SGE.Dosis;
 
                 return SGE.Kardia;
             }
