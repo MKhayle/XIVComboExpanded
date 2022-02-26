@@ -794,6 +794,10 @@ public enum CustomComboPreset
 
     [CustomComboInfo("Phlegma into Dyskrasia", "Replace Phlegma with Dyskrasia when no charges remain or have no target.", SGE.JobID)]
     SagePhlegmaDyskrasia = 4008,
+    
+    [ParentCombo(SageTaurocholeDruocholeFeature)]
+    [CustomComboInfo("Reverse Swapped Ability", "Replace Druochole with Taurochole when on cooldown", SGE.JobID)]
+    SageDruocholeTaurocholeFeature = 4010,
 
     [CustomComboInfo("Kardia Reminder Feature", "Replace Dosis with Kardia when missing Kardion to remind you to use Kardia.", SGE.JobID)]
     SageDosisKardia = 4011,
@@ -950,9 +954,9 @@ public enum CustomComboPreset
     [CustomComboInfo("Storms Path Combo", "Replace Storms Path with its combo chain.", WAR.JobID)]
     WarriorStormsPathCombo = 2101,
 
-    [ParentCombo(WarriorStormsPathCombo)]
+    /*[ParentCombo(WarriorStormsPathCombo)]
     [CustomComboInfo("Storms Path Overcap Feature", "Replace Storms Path with Fell Cleave when the next combo action would cause the Beast Gauge to overcap.", WAR.JobID)]
-    WarriorStormsPathOvercapFeature = 2104,
+    WarriorStormsPathOvercapFeature = 2104,*/
 
     [ParentCombo(WarriorStormsPathCombo)]
     [CustomComboInfo("Storms Path Inner Release Feature", "Replace Storms Path with Fell Cleave when Inner Release is active.", WAR.JobID)]
@@ -967,9 +971,9 @@ public enum CustomComboPreset
     [CustomComboInfo("Mythril Tempest Target Option", "Replace Mythril Tempest only when you have a target.", WAR.JobID)]
     WarriorMythrilTempestTargetOption = 2113,
 
-    [ParentCombo(WarriorMythrilTempestCombo)]
+    /*[ParentCombo(WarriorMythrilTempestCombo)]
     [CustomComboInfo("Mythril Tempest Overcap Feature", "Replace Mythril Tempest with Decimate the next combo action would cause the Beast Gauge to overcap.", WAR.JobID)]
-    WarriorMythrilTempestOvercapFeature = 2105,
+    WarriorMythrilTempestOvercapFeature = 2105,*/
 
     [ParentCombo(WarriorMythrilTempestCombo)]
     [CustomComboInfo("Mythril Tempest Inner Release Feature", "Replace Mythril Tempest with Decimate when Inner Release is active.", WAR.JobID)]
@@ -989,6 +993,25 @@ public enum CustomComboPreset
 
     [CustomComboInfo("Primal Release Feature", "Replace Inner Release with Primal Rend when available", WAR.JobID)]
     WarriorPrimalReleaseFeature = 2108,
+
+    [CustomComboInfo("Gauge Overcap Protection", "Replace Gauge increasing moves with Gauge spending moves when about to overcap", WAR.JobID)]
+    WarriorOvercapProtection = 2114,
+
+    [ParentCombo(WarriorOvercapProtection)]
+    [CustomComboInfo("Exclude Maim", "Replace Gauge increasing moves with Gauge spending moves when about to overcap", WAR.JobID)]
+    WarriorExcludeMaimProtection = 2115,
+
+    [ParentCombo(WarriorOvercapProtection)]
+    [CustomComboInfo("Exclude Storm's Path", "Replace Gauge increasing moves with Gauge spending moves when about to overcap", WAR.JobID)]
+    WarriorExcludeStormsPathProtection = 2116,
+
+    [ParentCombo(WarriorOvercapProtection)]
+    [CustomComboInfo("Exclude Storm's Eye", "Replace Gauge increasing moves with Gauge spending moves when about to overcap", WAR.JobID)]
+    WarriorExcludeStormsEyeProtection = 2117,
+
+    [ParentCombo(WarriorOvercapProtection)]
+    [CustomComboInfo("Exclude Steel Cyclone", "Replace Gauge increasing moves with Gauge spending moves when about to overcap.", WAR.JobID)]
+    WarriorExcludeSteelCycloneProtection = 2118,
 
     #endregion
     // ====================================================================================
