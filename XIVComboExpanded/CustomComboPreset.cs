@@ -795,6 +795,10 @@ public enum CustomComboPreset
     [CustomComboInfo("Phlegma into Dyskrasia", "Replace Phlegma with Dyskrasia when no charges remain or have no target.", SGE.JobID)]
     SagePhlegmaDyskrasia = 4008,
 
+    [ParentCombo(SageTaurocholeDruocholeFeature)]
+    [CustomComboInfo("Reverse Swapped Ability", "Replace Druochole with Taurochole when on cooldown", SGE.JobID)]
+    SageDruocholeTaurocholeFeature = 4010,
+
     #endregion
     // ====================================================================================
     #region SAMURAI
