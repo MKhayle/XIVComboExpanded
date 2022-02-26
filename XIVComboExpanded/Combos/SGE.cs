@@ -201,7 +201,7 @@ internal class SagePhlegma : CustomCombo
                     return OriginalHook(SGE.Dyskrasia);
             }
 
-            if (IsEnabled(CustomComboPreset.SagePhlegmaToxicon))
+            if (IsEnabled(CustomComboPreset.SagePhlegmaToxicon) && !IsEnabled(CustomComboPreset.SageToxiconPhlegma))
             {
                 var phlegma =
                     level >= SGE.Levels.Phlegma3 ? SGE.Phlegma3 :
@@ -249,4 +249,3 @@ internal class SageToxikon : CustomCombo
         return actionID;
     }
 }
-
