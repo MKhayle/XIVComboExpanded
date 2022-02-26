@@ -227,3 +227,26 @@ internal class SagePhlegma : CustomCombo
         return actionID;
     }
 }
+
+internal class SageToxikon : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SgeAny;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == SGE.Toxikon)
+        {
+            if (IsEnabled(CustomComboPreset.SageToxiconPhlegma))
+            {
+                var phlegma =
+                    level >= SGE.Levels.Phlegma3 ? SGE.Phlegma3 :
+                    level >= SGE.Levels.Phlegma2 ? SGE.Phlegma2 :
+                    level >= SGE.Levels.Phlegma ? SGE.Phlegma : 0;
+                if (phlegma != 0 && GetCooldown(phlegma).CooldownRemaining < 45)
+                    return OriginalHook(SGE.Phlegma);
+            }
+        }
+        return actionID;
+    }
+}
+
