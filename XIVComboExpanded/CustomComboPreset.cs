@@ -795,6 +795,9 @@ public enum CustomComboPreset
     [CustomComboInfo("Phlegma into Dyskrasia", "Replace Phlegma with Dyskrasia when no charges remain or have no target.", SGE.JobID)]
     SagePhlegmaDyskrasia = 4008,
 
+    [CustomComboInfo("Toxikon into Phlegma", "Replace Toxikon with Phlegma when you have charges of Phlemga available.", SGE.JobID)]
+    SageToxiconPhlegma = 4009,
+
     #endregion
     // ====================================================================================
     #region SAMURAI
