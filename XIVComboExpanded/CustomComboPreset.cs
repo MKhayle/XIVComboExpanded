@@ -795,6 +795,9 @@ public enum CustomComboPreset
     [CustomComboInfo("Phlegma into Dyskrasia", "Replace Phlegma with Dyskrasia when no charges remain or have no target.", SGE.JobID)]
     SagePhlegmaDyskrasia = 4008,
 
+    [CustomComboInfo("Kardia Reminder Feature", "Replace Dosis with Kardia when missing Kardion to remind you to use Kardia.", SGE.JobID)]
+    SageDosisKardia = 4011,
+
     #endregion
     // ====================================================================================
     #region SAMURAI
