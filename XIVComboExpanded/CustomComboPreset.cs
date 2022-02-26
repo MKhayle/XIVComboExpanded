@@ -947,9 +947,9 @@ public enum CustomComboPreset
     [CustomComboInfo("Storms Path Combo", "Replace Storms Path with its combo chain.", WAR.JobID)]
     WarriorStormsPathCombo = 2101,
 
-    [ParentCombo(WarriorStormsPathCombo)]
+    /*[ParentCombo(WarriorStormsPathCombo)]
     [CustomComboInfo("Storms Path Overcap Feature", "Replace Storms Path with Fell Cleave when the next combo action would cause the Beast Gauge to overcap.", WAR.JobID)]
-    WarriorStormsPathOvercapFeature = 2104,
+    WarriorStormsPathOvercapFeature = 2104,*/
 
     [ParentCombo(WarriorStormsPathCombo)]
     [CustomComboInfo("Storms Path Inner Release Feature", "Replace Storms Path with Fell Cleave when Inner Release is active.", WAR.JobID)]
@@ -964,9 +964,9 @@ public enum CustomComboPreset
     [CustomComboInfo("Mythril Tempest Target Option", "Replace Mythril Tempest only when you have a target.", WAR.JobID)]
     WarriorMythrilTempestTargetOption = 2113,
 
-    [ParentCombo(WarriorMythrilTempestCombo)]
+    /*[ParentCombo(WarriorMythrilTempestCombo)]
     [CustomComboInfo("Mythril Tempest Overcap Feature", "Replace Mythril Tempest with Decimate the next combo action would cause the Beast Gauge to overcap.", WAR.JobID)]
-    WarriorMythrilTempestOvercapFeature = 2105,
+    WarriorMythrilTempestOvercapFeature = 2105,*/
 
     [ParentCombo(WarriorMythrilTempestCombo)]
     [CustomComboInfo("Mythril Tempest Inner Release Feature", "Replace Mythril Tempest with Decimate when Inner Release is active.", WAR.JobID)]
@@ -986,6 +986,9 @@ public enum CustomComboPreset
 
     [CustomComboInfo("Primal Release Feature", "Replace Inner Release with Primal Rend when available", WAR.JobID)]
     WarriorPrimalReleaseFeature = 2108,
+
+    [CustomComboInfo("Warrior Overcap Protection", "Replace Gauge increasing moves with Gauge spending moves when about to overcap", WAR.JobID)]
+    WarriorOvercapProtection = 2114,
 
     #endregion
     // ====================================================================================
