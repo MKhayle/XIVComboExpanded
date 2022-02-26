@@ -77,7 +77,7 @@ internal class WarriorStormsPath : CustomCombo
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
-        if (actionID == WAR.StormsPath)
+        if (actionID == WAR.StormsPath && !IsEnabled(CustomComboPreset.WarriorExcludeStormsPathProtection))
         {
             var gauge = GetJobGauge<WARGauge>();
 
@@ -117,7 +117,7 @@ internal class WarriorStormsEye : CustomCombo
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
-        if (actionID == WAR.StormsEye)
+        if (actionID == WAR.StormsEye && !IsEnabled(CustomComboPreset.WarriorExcludeStormsEyeProtection))
         {
             var gauge = GetJobGauge<WARGauge>();
 
@@ -157,7 +157,7 @@ internal class WarriorMaim : CustomCombo
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
-        if (actionID == WAR.Maim)
+        if (actionID == WAR.Maim && !IsEnabled(CustomComboPreset.WarriorExcludeMaimProtection))
         {
             var gauge = GetJobGauge<WARGauge>();
 
@@ -185,7 +185,7 @@ internal class WarriorMythrilTempest : CustomCombo
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
-        if (actionID == WAR.MythrilTempest && (level >= WAR.Levels.MythrilTempestTrait))
+        if (actionID == WAR.MythrilTempest && (level >= WAR.Levels.MythrilTempestTrait) && !IsEnabled(CustomComboPreset.WarriorExcludeSteelCycloneProtection))
         {
             var gauge = GetJobGauge<WARGauge>();
 
