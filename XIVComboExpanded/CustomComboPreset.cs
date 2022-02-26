@@ -1003,7 +1003,7 @@ public enum CustomComboPreset
     WarriorExcludeStormsEyeProtection = 2117,
 
     [ParentCombo(WarriorOvercapProtection)]
-    [CustomComboInfo("Exclude Steel Cyclone", "Replace Gauge increasing moves with Gauge spending moves when about to overcap", WAR.JobID)]
+    [CustomComboInfo("Exclude Steel Cyclone", "Replace Gauge increasing moves with Gauge spending moves when about to overcap.", WAR.JobID)]
     WarriorExcludeSteelCycloneProtection = 2118,
 
     #endregion
