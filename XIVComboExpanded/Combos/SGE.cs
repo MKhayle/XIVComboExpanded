@@ -93,6 +93,27 @@ internal class SageSoteria : CustomCombo
     }
 }
 
+internal class SageDosis : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SgeAny;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == SGE.Dosis)
+        {
+            if (IsEnabled(CustomComboPreset.SageDosisKardia))
+            {
+                if (HasEffect(SGE.Buffs.Kardion))
+                    return actionID;
+
+                return SGE.Kardia;
+            }
+        }
+
+        return actionID;
+    }
+}
+
 internal class SageTaurochole : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SgeAny;
