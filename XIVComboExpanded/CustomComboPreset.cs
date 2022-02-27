@@ -359,9 +359,9 @@ public enum CustomComboPreset
     [CustomComboInfo("Solid Barrel Combo", "Replace Solid Barrel with its combo chain.", GNB.JobID)]
     GunbreakerSolidBarrelCombo = 3701,
 
-    [ParentCombo(GunbreakerSolidBarrelCombo)]
+    /*[ParentCombo(GunbreakerSolidBarrelCombo)]
     [CustomComboInfo("Burst Strike Feature", "Replace Solid Barrel with Burst Strike when charges are full.", GNB.JobID)]
-    GunbreakerBurstStrikeFeature = 3710,
+    GunbreakerBurstStrikeFeature = 3710,*/
 
     [CustomComboInfo("Gnashing Fang Continuation", "Replace Gnashing Fang with Continuation moves when appropriate.", GNB.JobID)]
     GunbreakerGnashingFangCont = 3702,
@@ -376,9 +376,9 @@ public enum CustomComboPreset
     [CustomComboInfo("Demon Slaughter Combo", "Replace Demon Slaughter with its combo chain.", GNB.JobID)]
     GunbreakerDemonSlaughterCombo = 3705,
 
-    [ParentCombo(GunbreakerDemonSlaughterCombo)]
+    /*[ParentCombo(GunbreakerDemonSlaughterCombo)]
     [CustomComboInfo("Fated Circle Feature", "In addition to the Demon Slaughter combo, add Fated Circle when charges are full.", GNB.JobID)]
-    GunbreakerFatedCircleFeature = 3706,
+    GunbreakerFatedCircleFeature = 3706,*/
 
     [CustomComboInfo("Empty Bloodfest Feature", "Replace Burst Strike and Fated Circle with Bloodfest if the powder gauge is empty.", GNB.JobID)]
     GunbreakerEmptyBloodfestFeature = 3707,
@@ -397,6 +397,17 @@ public enum CustomComboPreset
     [SecretCustomCombo]
     [CustomComboInfo("Double Down Feature", "Replace Burst Strike and Fated Circle with Double Down when available.", GNB.JobID)]
     GunbreakerDoubleDownFeature = 3709,
+
+    [CustomComboInfo("Gauge Overcap Protection", "Replace Gauge increasing actions with Gauge spending actions when about to overcap.", GNB.JobID)]
+    GunbreakerGaugeOvercapProtection = 3714,
+
+    [ParentCombo(GunbreakerGaugeOvercapProtection)]
+    [CustomComboInfo("Exclude Solid Barrel", "Do not protect Solid Barrel from overcapping Gauge.", GNB.JobID)]
+    GunbreakerExcludeSolidBarrelProtection = 3715,
+
+    [ParentCombo(GunbreakerGaugeOvercapProtection)]
+    [CustomComboInfo("Exclude Demon Slaughter", "Do not protect Demon Slaughter from overcapping Gauge.", GNB.JobID)]
+    GunbreakerExcludeDemonSlaughterProtection = 3716,
 
     #endregion
     // ====================================================================================
