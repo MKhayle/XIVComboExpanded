@@ -313,7 +313,7 @@ public enum CustomComboPreset
     DarkGaugeOvercapProtection = 3210,
 
     [ParentCombo(DarkGaugeOvercapProtection)]
-    [CustomComboInfo("Consider Blood Weapon", "Will consider Blood Weapon when protecting from overcapping gauge.", DRK.JobID)]
+    [CustomComboInfo("Consider Blood Weapon for Gauge", "Will consider Blood Weapon when protecting from overcapping Gauge.", DRK.JobID)]
     DarkIncludeBloodWeaponProtection = 3211,
 
     [ParentCombo(DarkGaugeOvercapProtection)]
@@ -323,6 +323,13 @@ public enum CustomComboPreset
     [ParentCombo(DarkGaugeOvercapProtection)]
     [CustomComboInfo("Exclude Stalwart Soul", "Do not protect Stalwart Soul from overcapping gauge.", DRK.JobID)]
     DarkExcludeStalwartSoulProtection = 3213,
+
+    [CustomComboInfo("Mana Overcap Protection", "Replace Mana increasing actions with Mana spending actions when about to overcap.", DRK.JobID)]
+    DarkManaOvercapProtection = 3214,
+
+    [ParentCombo(DarkManaOvercapProtection)]
+    [CustomComboInfo("Consider Blood Weapon for Mana", "Will consider Blood Weapon when protecting from overcapping Mana.", DRK.JobID)]
+    DarkIncludeBloodWeaponManaProtection = 3215,
 
     #endregion
     // ====================================================================================
