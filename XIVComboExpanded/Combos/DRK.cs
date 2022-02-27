@@ -167,7 +167,7 @@ internal class DarkSouleater : CustomCombo
                     return DRK.Bloodspiller;
             }
 
-            if (lastComboMove == DRK.SyphonStrike && IsEnabled(CustomComboPreset.DarkGaugeOvercapProtection))
+            if (lastComboMove == DRK.SyphonStrike && IsEnabled(CustomComboPreset.DarkGaugeOvercapProtection) && !IsEnabled(CustomComboPreset.DarkExcludeSouleaterProtection))
             {
                 if (level >= DRK.Levels.Bloodspiller && (gauge.Blood > 80 || (gauge.Blood > 70 && HasEffect(DRK.Buffs.BloodWeapon) && IsEnabled(CustomComboPreset.DarkIncludeBloodWeaponProtection))))
                     return DRK.Bloodspiller;
@@ -175,7 +175,7 @@ internal class DarkSouleater : CustomCombo
 
             if (IsEnabled(CustomComboPreset.DarkSouleaterCombo))
             {
-                if (IsEnabled(CustomComboPreset.DarkGaugeOvercapProtection))
+                if (IsEnabled(CustomComboPreset.DarkGaugeOvercapProtection) && !IsEnabled(CustomComboPreset.DarkExcludeSouleaterProtection))
                 {
                     if (level >= DRK.Levels.Bloodspiller && gauge.Blood > 90 && HasEffect(DRK.Buffs.BloodWeapon) && IsEnabled(CustomComboPreset.DarkIncludeBloodWeaponProtection))
                         return DRK.Bloodspiller;
@@ -274,7 +274,15 @@ internal class DarkStalwartSoul : CustomCombo
 
             if (lastComboMove == DRK.Unleash && IsEnabled(CustomComboPreset.DarkManaOvercapProtection))
             {
-                if ((level >= DRK.Levels.FloodOfDarkness) && IsEnabled(CustomComboPreset.DarkIncludeBloodWeaponManaProtection) && LocalPlayer?.CurrentMp >= 9400)
+
+                if ((level >= DRK.Levels.FloodOfDarkness) && IsEnabled(CustomComboPreset.DarkManaOvercapProtection) && IsEnabled(CustomComboPreset.DarkIncludeBloodWeaponManaProtection) && HasEffect(DRK.Buffs.BloodWeapon) && LocalPlayer?.CurrentMp >= 9400)
+                {
+                    if (level >= DRK.Levels.Shadow)
+                        return DRK.FloodOfShadow;
+                    return DRK.FloodOfDarkness;
+                }
+
+                if ((level >= DRK.Levels.FloodOfDarkness) && LocalPlayer?.CurrentMp >= 9400)
                 {
                     if (level >= DRK.Levels.Shadow)
                         return DRK.FloodOfShadow;
@@ -288,16 +296,8 @@ internal class DarkStalwartSoul : CustomCombo
                     return DRK.Quietus;
             }
 
-            if (lastComboMove == DRK.Unleash && IsEnabled(CustomComboPreset.DarkGaugeOvercapProtection))
+            if (lastComboMove == DRK.Unleash && IsEnabled(CustomComboPreset.DarkGaugeOvercapProtection) && !IsEnabled(CustomComboPreset.DarkExcludeStalwartSoulProtection))
             {
-
-                if ((level >= DRK.Levels.FloodOfDarkness) && IsEnabled(CustomComboPreset.DarkManaOvercapProtection) && IsEnabled(CustomComboPreset.DarkIncludeBloodWeaponManaProtection) && HasEffect(DRK.Buffs.BloodWeapon) && LocalPlayer?.CurrentMp >= 9400)
-                {
-                    if (level >= DRK.Levels.Shadow)
-                        return DRK.FloodOfShadow;
-                    return DRK.FloodOfDarkness;
-                }
-
                 if (level >= DRK.Levels.Quietus && gauge.Blood > 90 && HasEffect(DRK.Buffs.BloodWeapon) && IsEnabled(CustomComboPreset.DarkIncludeBloodWeaponProtection))
                     return DRK.Quietus;
 
