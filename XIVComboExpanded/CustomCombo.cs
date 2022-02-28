@@ -3,6 +3,7 @@ using System.Linq;
 
 using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.JobGauge.Types;
+using Dalamud.Game.ClientState.Objects.Enums;
 using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.Game.ClientState.Statuses;
@@ -187,6 +188,24 @@ internal abstract partial class CustomCombo
     /// </summary>
     protected static GameObject? CurrentTarget
         => Service.TargetManager.Target;
+
+    /// <summary>
+    /// Gets the current target or null.
+    /// </summary>
+    /// <returns>Byte.</returns>
+    protected static byte CurrentTargetObjectKind()
+    {
+        return (byte)Service.TargetManager.Target!.ObjectKind;
+    }
+
+    /// <summary>
+    /// Gets the current target or null.
+    /// </summary>
+    /// <returns>Byte.</returns>
+    protected static byte CurrentTargetSubKind()
+    {
+        return (byte)Service.TargetManager.Target!.SubKind;
+    }
 
     /// <summary>
     /// Calls the original hook.
