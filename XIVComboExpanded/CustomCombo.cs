@@ -190,22 +190,29 @@ internal abstract partial class CustomCombo
         => Service.TargetManager.Target;
 
     /// <summary>
-    /// Gets the current target or null.
+    /// Gets the current target object kind.
     /// </summary>
-    /// <returns>Byte.</returns>
+    /// <returns>A byte value representing the target's object kind.</returns>
     protected static byte CurrentTargetObjectKind()
     {
         return (byte)Service.TargetManager.Target!.ObjectKind;
     }
 
     /// <summary>
-    /// Gets the current target or null.
+    /// Gets the current target sub kind.
     /// </summary>
-    /// <returns>Byte.</returns>
+    /// <returns>A byte value representing the target's sub kind.</returns>
     protected static byte CurrentTargetSubKind()
     {
         return (byte)Service.TargetManager.Target!.SubKind;
     }
+
+    /// <summary>
+    /// Find if the target is an enemy.
+    /// </summary>
+    /// <returns>A value indicating whether the target is an enemy.</returns>
+    protected static bool IsEnemy()
+        => CurrentTargetObjectKind() == 2 && CurrentTargetSubKind() == 5;
 
     /// <summary>
     /// Calls the original hook.
