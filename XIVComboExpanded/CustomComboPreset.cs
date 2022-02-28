@@ -994,7 +994,7 @@ public enum CustomComboPreset
     [CustomComboInfo("Solace into Misery", "Replace Afflatus Solace with Afflatus Misery when Misery is ready to be used.", WHM.JobID)]
     WhiteMageSolaceMiseryFeature = 2401,
 
-    [CustomComboInfo("Rapture into Misery", "Replace Afflatus Rapture with Afflatus Misery when Misery is ready to be used and you have a target.", WHM.JobID)]
+    [CustomComboInfo("Rapture into Misery", "Replace Afflatus Rapture with Afflatus Misery when Misery is ready to be used and you are targeting an enemy.", WHM.JobID)]
     WhiteMageRaptureMiseryFeature = 2402,
 
     [CustomComboInfo("Holy into Misery", "Replace Holy/Holy 3 with Afflatus Misery when Misery is ready to be used and you have a target.", WHM.JobID)]
@@ -1005,6 +1005,10 @@ public enum CustomComboPreset
 
     [CustomComboInfo("Afflatus Feature", "Replace Cure 2 with Afflatus Solace and Medica with Afflatus Rapture, when lilies are up.", WHM.JobID)]
     WhiteMageAfflatusFeature = 2404,
+
+    [ParentCombo(WhiteMageSolaceMiseryFeature)]
+    [CustomComboInfo("Only swap when targeting Hostile", "Only swap to Afflatus Misery when targeting an enemy.", WAR.JobID)]
+    WhiteMageSolaceTargetFeature = 2406,
 
     #endregion
     // ====================================================================================
