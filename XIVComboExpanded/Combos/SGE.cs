@@ -1,4 +1,4 @@
-﻿using Dalamud.Game.ClientState.JobGauge.Types;
+﻿﻿using Dalamud.Game.ClientState.JobGauge.Types;
 
 namespace XIVComboExpandedPlugin.Combos;
 
@@ -93,6 +93,27 @@ internal class SageSoteria : CustomCombo
     }
 }
 
+internal class SageDosis : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SgeAny;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == SGE.Dosis)
+        {
+            if (IsEnabled(CustomComboPreset.SageDosisKardia))
+            {
+                if (HasEffect(SGE.Buffs.Kardion))
+                    return SGE.Dosis;
+
+                return SGE.Kardia;
+            }
+        }
+
+        return actionID;
+    }
+}
+
 internal class SageTaurochole : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SgeAny;
@@ -109,7 +130,7 @@ internal class SageTaurochole : CustomCombo
                     return SGE.Rhizomata;
             }
 
-            if (IsEnabled(CustomComboPreset.SageTaurocholeDruocholeFeature))
+            if (IsEnabled(CustomComboPreset.SageTaurocholeDruocholeFeature) && !IsEnabled(CustomComboPreset.SageDruocholeTaurocholeFeature))
             {
                 if (level >= SGE.Levels.Taurochole && IsOffCooldown(SGE.Taurochole))
                     return SGE.Taurochole;
@@ -136,6 +157,14 @@ internal class SageDruochole : CustomCombo
             {
                 if (level >= SGE.Levels.Rhizomata && gauge.Addersgall == 0)
                     return SGE.Rhizomata;
+            }
+
+            if (IsEnabled(CustomComboPreset.SageDruocholeTaurocholeFeature))
+            {
+                if (level >= SGE.Levels.Taurochole && IsOffCooldown(SGE.Taurochole))
+                    return SGE.Taurochole;
+
+                return SGE.Druochole;
             }
         }
 
