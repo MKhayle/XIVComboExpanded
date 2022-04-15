@@ -21,6 +21,7 @@ internal static class BRD
         BattleVoice = 118,
         EmpyrealArrow = 3558,
         WanderersMinuet = 3559,
+        LegGraze = 7554,
         IronJaws = 3560,
         Sidewinder = 3562,
         PitchPerfect = 7404,
@@ -73,6 +74,25 @@ internal static class BRD
             Ladonsbite = 82,
             BlastShot = 86,
             RadiantFinale = 90;
+    }
+}
+
+internal class BardWanderersMinuet : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardWanderersPitchPerfectFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == BRD.LegGraze)
+        {
+            var gauge = GetJobGauge<BRDGauge>();
+
+            if (level >= BRD.Levels.PitchPerfect && gauge.Song == Song.WANDERER)
+                return BRD.PitchPerfect;
+            return BRD.WanderersMinuet;
+        }
+
+        return actionID;
     }
 }
 
