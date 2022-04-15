@@ -21,7 +21,7 @@ internal static class BRD
         BattleVoice = 118,
         EmpyrealArrow = 3558,
         WanderersMinuet = 3559,
-        LegGraze = 7554,
+        Peloton = 7557,
         IronJaws = 3560,
         Sidewinder = 3562,
         PitchPerfect = 7404,
@@ -83,7 +83,7 @@ internal class BardWanderersMinuet : CustomCombo
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
-        if (actionID == BRD.LegGraze)
+        if (actionID == BRD.Peloton && CurrentTarget is not null)
         {
             var gauge = GetJobGauge<BRDGauge>();
 

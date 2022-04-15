@@ -177,7 +177,7 @@ public enum CustomComboPreset
     // ====================================================================================
     #region BARD
 
-    [CustomComboInfo("Wanderer's Minuet Semi-Fix", "Turns Leg Graze into Wanderer's Minuet to Pitch Perfect, letting you use it regardless of whatever other bards are doing.", BRD.JobID)]
+    [CustomComboInfo("Wanderer's Minuet Semi-Fix", "Turns Peloton into Wanderer's Minuet to Pitch Perfect while you have a target, letting you use it regardless of whatever other bards are doing.", BRD.JobID)]
     BardWanderersPitchPerfectFeature = 2301,
 
     [CustomComboInfo("Heavy Shot into Straight Shot", "Replace Heavy Shot with Straight Shot/Refulgent Arrow when available.", BRD.JobID)]
