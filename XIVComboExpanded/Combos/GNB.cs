@@ -63,7 +63,7 @@ internal static class GNB
 
 internal class GunbreakerSolidBarrel : CustomCombo
 {
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GunbreakerSolidBarrelCombo;
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GnbAny;
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
@@ -73,7 +73,7 @@ internal class GunbreakerSolidBarrel : CustomCombo
             {
                 if (lastComboMove == GNB.BrutalShell && level >= GNB.Levels.SolidBarrel)
                 {
-                    if (IsEnabled(CustomComboPreset.GunbreakerBurstStrikeFeature))
+                    if (IsEnabled(CustomComboPreset.GunbreakerGaugeOvercapProtection) && !IsEnabled(CustomComboPreset.GunbreakerExcludeSolidBarrelProtection))
                     {
                         var gauge = GetJobGauge<GNBGauge>();
                         var maxAmmo = level >= GNB.Levels.CartridgeCharge2 ? 3 : 2;
@@ -90,12 +90,16 @@ internal class GunbreakerSolidBarrel : CustomCombo
 
                     return GNB.SolidBarrel;
                 }
-
-                if (lastComboMove == GNB.KeenEdge && level >= GNB.Levels.BrutalShell)
-                    return GNB.BrutalShell;
             }
 
-            return GNB.KeenEdge;
+            if (IsEnabled(CustomComboPreset.GunbreakerSolidBarrelCombo))
+            {
+                if (lastComboMove == GNB.KeenEdge && level >= GNB.Levels.BrutalShell)
+                    return GNB.BrutalShell;
+                return GNB.KeenEdge;
+            }
+
+            return GNB.SolidBarrel;
         }
 
         return actionID;
@@ -184,7 +188,7 @@ internal class GunbreakerBowShockSonicBreak : CustomCombo
 
 internal class GunbreakerDemonSlaughter : CustomCombo
 {
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GunbreakerDemonSlaughterCombo;
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GnbAny;
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
@@ -192,7 +196,7 @@ internal class GunbreakerDemonSlaughter : CustomCombo
         {
             if (comboTime > 0 && lastComboMove == GNB.DemonSlice && level >= GNB.Levels.DemonSlaughter)
             {
-                if (IsEnabled(CustomComboPreset.GunbreakerFatedCircleFeature))
+                if (IsEnabled(CustomComboPreset.GunbreakerGaugeOvercapProtection) && !IsEnabled(CustomComboPreset.GunbreakerExcludeDemonSlaughterProtection))
                 {
                     var gauge = GetJobGauge<GNBGauge>();
                     var maxAmmo = level >= GNB.Levels.CartridgeCharge2 ? 3 : 2;
@@ -200,11 +204,11 @@ internal class GunbreakerDemonSlaughter : CustomCombo
                     if (level >= GNB.Levels.FatedCircle && gauge.Ammo == maxAmmo)
                         return GNB.FatedCircle;
                 }
-
-                return GNB.DemonSlaughter;
             }
 
-            return GNB.DemonSlice;
+            if (IsEnabled(CustomComboPreset.GunbreakerDemonSlaughterCombo))
+                return GNB.DemonSlice;
+            return GNB.DemonSlaughter;
         }
 
         return actionID;
