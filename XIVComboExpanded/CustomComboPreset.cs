@@ -583,17 +583,9 @@ public enum CustomComboPreset
     // ====================================================================================
     #region PALADIN
 
-    [CustomComboInfo("Goring Blade Combo", "Replace Goring Blade with its combo chain.", PLD.JobID)]
-    PaladinGoringBladeCombo = 1901,
-
-    [ConflictingCombos(PaladinRoyalAuthorityAtonementFeature)]
-    [CustomComboInfo("Goring Blade Atonement Feature", "Replace Goring Blade with Atonement when under the effect of Sword Oath.", PLD.JobID)]
-    PaladinGoringBladeAtonementFeature = 1909,
-
     [CustomComboInfo("Royal Authority Combo", "Replace Royal Authority with its combo chain.", PLD.JobID)]
     PaladinRoyalAuthorityCombo = 1902,
 
-    [ConflictingCombos(PaladinGoringBladeAtonementFeature)]
     [CustomComboInfo("Royal Authority Atonement Feature", "Replace Royal Authority with Atonement when under the effect of Sword Oath.", PLD.JobID)]
     PaladinRoyalAuthorityAtonementFeature = 1903,
 
@@ -604,7 +596,7 @@ public enum CustomComboPreset
     PaladinRequiescatCombo = 1905,
 
     [SecretCustomCombo]
-    [CustomComboInfo("Confiteor Feature", "Replace Holy Spirit/Circle with Confiteor when Requiescat is up and MP is under 2000 or only one stack remains.", PLD.JobID)]
+    [CustomComboInfo("Confiteor Feature", "Replace Holy Spirit/Circle with Confiteor while under the effect of Requiescat.", PLD.JobID)]
     PaladinConfiteorFeature = 1907,
 
     [SecretCustomCombo]

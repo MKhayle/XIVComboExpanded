@@ -31,8 +31,7 @@ internal static class PLD
     {
         public const ushort
             Requiescat = 1368,
-            SwordOath = 1902,
-            BladeOfFaithReady = 3019;
+            SwordOath = 1902;
     }
 
     public static class Debuffs
@@ -59,39 +58,6 @@ internal static class PLD
             BladeOfFaith = 90,
             BladeOfTruth = 90,
             BladeOfValor = 90;
-    }
-}
-
-internal class PaladinGoringBlade : CustomCombo
-{
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PldAny;
-
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-    {
-        if (actionID == PLD.GoringBlade)
-        {
-            if (IsEnabled(CustomComboPreset.PaladinGoringBladeAtonementFeature))
-            {
-                if (level >= PLD.Levels.Atonement && HasEffect(PLD.Buffs.SwordOath) && lastComboMove != PLD.FastBlade && lastComboMove != PLD.RiotBlade)
-                    return PLD.Atonement;
-            }
-
-            if (IsEnabled(CustomComboPreset.PaladinGoringBladeCombo))
-            {
-                if (comboTime > 0)
-                {
-                    if (lastComboMove == PLD.RiotBlade && level >= PLD.Levels.GoringBlade)
-                        return PLD.GoringBlade;
-
-                    if (lastComboMove == PLD.FastBlade && level >= PLD.Levels.RiotBlade)
-                        return PLD.RiotBlade;
-                }
-
-                return PLD.FastBlade;
-            }
-        }
-
-        return actionID;
     }
 }
 
@@ -158,21 +124,8 @@ internal class PaladinHolySpiritHolyCircle : CustomCombo
     {
         if (actionID == PLD.HolySpirit || actionID == PLD.HolyCircle)
         {
-            if (lastComboMove == PLD.BladeOfTruth && level >= PLD.Levels.BladeOfValor)
-                return PLD.BladeOfValor;
-
-            if (lastComboMove == PLD.BladeOfFaith && level >= PLD.Levels.BladeOfTruth)
-                return PLD.BladeOfTruth;
-
-            if (level >= PLD.Levels.BladeOfFaith && HasEffect(PLD.Buffs.BladeOfFaithReady))
-                return PLD.BladeOfFaith;
-
-            if (level >= PLD.Levels.Confiteor)
-            {
-                var requiescat = FindEffect(PLD.Buffs.Requiescat);
-                if (requiescat != null && (requiescat.StackCount == 1 || LocalPlayer?.CurrentMp < 2000))
-                    return PLD.Confiteor;
-            }
+            if (level >= PLD.Levels.Confiteor && HasEffect(PLD.Buffs.Requiescat))
+                return OriginalHook(PLD.Confiteor);
         }
 
         return actionID;
@@ -187,21 +140,8 @@ internal class PaladinRequiescat : CustomCombo
     {
         if (actionID == PLD.Requiescat)
         {
-            if (lastComboMove == PLD.BladeOfTruth && level >= PLD.Levels.BladeOfValor)
-                return PLD.BladeOfValor;
-
-            if (lastComboMove == PLD.BladeOfFaith && level >= PLD.Levels.BladeOfTruth)
-                return PLD.BladeOfTruth;
-
-            if (level >= PLD.Levels.BladeOfFaith && HasEffect(PLD.Buffs.BladeOfFaithReady))
-                return PLD.BladeOfFaith;
-
-            if (level >= PLD.Levels.Confiteor)
-            {
-                var requiescat = FindEffect(PLD.Buffs.Requiescat);
-                if (requiescat != null)
-                    return PLD.Confiteor;
-            }
+            if (level >= PLD.Levels.Confiteor && HasEffect(PLD.Buffs.Requiescat))
+                return OriginalHook(PLD.Confiteor);
         }
 
         return actionID;
