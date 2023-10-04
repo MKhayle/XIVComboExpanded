@@ -5,6 +5,7 @@ using System.Reflection;
 
 using Dalamud.Hooking;
 using Dalamud.Logging;
+using Dalamud.Plugin.Services;
 using XIVComboExpandedPlugin.Combos;
 
 namespace XIVComboExpandedPlugin;
@@ -23,16 +24,16 @@ internal sealed partial class IconReplacer : IDisposable
     /// <summary>
     /// Initializes a new instance of the <see cref="IconReplacer"/> class.
     /// </summary>
-    public IconReplacer()
+    public IconReplacer(IGameInteropProvider gameInteropProvider)
     {
         this.customCombos = Assembly.GetAssembly(typeof(CustomCombo))!.GetTypes()
             .Where(t => !t.IsAbstract && IsDescendant(t, typeof(CustomCombo)))
-            .Select(t => Activator.CreateInstance(t))
+            .Select(Activator.CreateInstance)
             .Cast<CustomCombo>()
             .ToList();
 
-        this.getIconHook = Hook<GetIconDelegate>.FromAddress(Service.Address.GetAdjustedActionId, this.GetIconDetour);
-        this.isIconReplaceableHook = Hook<IsIconReplaceableDelegate>.FromAddress(Service.Address.IsActionIdReplaceable, this.IsIconReplaceableDetour);
+        this.getIconHook = gameInteropProvider.HookFromAddress<GetIconDelegate>(Service.Address.GetAdjustedActionId, this.GetIconDetour);
+        this.isIconReplaceableHook = gameInteropProvider.HookFromAddress<IsIconReplaceableDelegate>(Service.Address.IsActionIdReplaceable, this.IsIconReplaceableDetour);
 
         this.getIconHook.Enable();
         this.isIconReplaceableHook.Enable();

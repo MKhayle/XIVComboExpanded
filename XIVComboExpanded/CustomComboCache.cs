@@ -5,6 +5,7 @@ using Dalamud.Game;
 using Dalamud.Game.ClientState.JobGauge.Types;
 using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.Game.ClientState.Statuses;
+using Dalamud.Plugin.Services;
 
 namespace XIVComboExpandedPlugin;
 
@@ -139,7 +140,7 @@ internal partial class CustomComboCache : IDisposable
         return this.cooldownGroupCache[actionID] = row!.CooldownGroup;
     }
 
-    private unsafe void Framework_Update(Framework framework)
+    private unsafe void Framework_Update(IFramework framework)
     {
         this.statusCache.Clear();
         this.cooldownCache.Clear();

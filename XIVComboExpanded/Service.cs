@@ -9,6 +9,7 @@ using Dalamud.Game.Command;
 using Dalamud.Game.Gui;
 using Dalamud.IoC;
 using Dalamud.Plugin;
+using Dalamud.Plugin.Services;
 
 namespace XIVComboExpandedPlugin;
 
@@ -47,59 +48,59 @@ internal class Service
     /// Gets the Dalamud buddy list.
     /// </summary>
     [PluginService]
-    internal static BuddyList BuddyList { get; private set; } = null!;
+    internal static IBuddyList BuddyList { get; private set; } = null!;
 
     /// <summary>
     /// Gets the Dalamud chat gui.
     /// </summary>
     [PluginService]
-    internal static ChatGui ChatGui { get; private set; } = null!;
+    internal static IChatGui ChatGui { get; private set; } = null!;
 
     /// <summary>
     /// Gets the Dalamud client state.
     /// </summary>
     [PluginService]
-    internal static ClientState ClientState { get; private set; } = null!;
+    internal static IClientState ClientState { get; private set; } = null!;
 
     /// <summary>
     /// Gets the Dalamud command manager.
     /// </summary>
     [PluginService]
-    internal static CommandManager CommandManager { get; private set; } = null!;
+    internal static ICommandManager CommandManager { get; private set; } = null!;
 
     /// <summary>
     /// Gets the Dalamud condition.
     /// </summary>
     [PluginService]
-    internal static Condition Condition { get; private set; } = null!;
+    internal static ICondition Condition { get; private set; } = null!;
 
     /// <summary>
     /// Gets the Dalamud data manager.
     /// </summary>
     [PluginService]
-    internal static DataManager DataManager { get; private set; } = null!;
+    internal static IDataManager DataManager { get; private set; } = null!;
 
     /// <summary>
     /// Gets the Dalamud framework manager.
     /// </summary>
     [PluginService]
-    internal static Framework Framework { get; private set; } = null!;
+    internal static IFramework Framework { get; private set; } = null!;
 
     /// <summary>
     /// Gets the Dalamud job gauges.
     /// </summary>
     [PluginService]
-    internal static JobGauges JobGauges { get; private set; } = null!;
+    internal static IJobGauges JobGauges { get; private set; } = null!;
 
     /// <summary>
     /// Gets the Dalamud object table.
     /// </summary>
     [PluginService]
-    internal static ObjectTable ObjectTable { get; private set; } = null!;
+    internal static IObjectTable ObjectTable { get; private set; } = null!;
 
     /// <summary>
     /// Gets the Dalamud target manager.
     /// </summary>
     [PluginService]
-    internal static TargetManager TargetManager { get; private set; } = null!;
+    internal static ITargetManager TargetManager { get; private set; } = null!;
 }
