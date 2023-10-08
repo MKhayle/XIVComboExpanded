@@ -12,6 +12,7 @@ internal static class PLD
         FightOrFlight = 20,
         RageOfHalone = 21,
         CircleOfScorn = 23,
+        ShieldLob = 24,
         SpiritsWithin = 29,
         GoringBlade = 3538,
         RoyalAuthority = 3539,
@@ -213,6 +214,24 @@ internal class PaladinHolySpiritHolyCircle : PaladinCombo
 
                 if (HasEffect(PLD.Buffs.ConfiteorReady))
                     return PLD.Confiteor;
+            }
+        }
+
+        return actionID;
+    }
+}
+
+internal class PaladinHolySpirit : PaladinCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PaladinHolySpiritLevelSyncFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == PLD.HolySpirit)
+        {
+            if (level < PLD.Levels.HolySpirit)
+            {
+                return PLD.ShieldLob;
             }
         }
 

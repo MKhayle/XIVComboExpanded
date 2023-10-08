@@ -658,6 +658,9 @@ public enum CustomComboPreset
     [CustomComboInfo("Shields on your Feet Feature", "Replace Shield Bash with Low Blow when available.", PLD.JobID)]
     PaladinShieldBashFeature = 1910,
 
+    [CustomComboInfo("Holy Spirit Level Sync", "Replace Holy Spirit with Shield Lob when below level 64 in synced content.", PLD.JobID)]
+    PaladinHolySpiritLevelSyncFeature = 1916,
+
     #endregion
     // ====================================================================================
     #region REAPER
