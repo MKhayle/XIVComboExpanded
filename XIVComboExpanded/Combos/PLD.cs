@@ -227,14 +227,8 @@ internal class PaladinHolySpirit : PaladinCombo
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
-        if (actionID == PLD.HolySpirit)
-        {
-            if (level < PLD.Levels.HolySpirit)
-            {
-                return PLD.ShieldLob;
-            }
-        }
-
+        if (actionID == PLD.HolySpirit && level < PLD.Levels.HolySpirit)
+          return PLD.ShieldLob;
         return actionID;
     }
 }
