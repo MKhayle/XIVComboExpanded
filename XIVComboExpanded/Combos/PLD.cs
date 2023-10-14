@@ -301,13 +301,18 @@ internal class PaladinRequiescat : PaladinCombo
 
             if (IsEnabled(CustomComboPreset.PaladinRequiescatFightOrFlightFeature))
             {
-                // Prefer FoF if it is off cooldown, or if it will be ready sooner than Requiescat.  In practice, this
-                // means that Req should only be returned if FoF is on cooldown and Req is not, ie. immediately after
-                // FoF is cast.  This ensures that the button shows the action that will next be available for use in
-                // that hotbar slot, rather than swapping to FoF at the last instant when FoF comes off cooldown a
-                // a single weave slot earlier than Req.
                 if (level >= PLD.Levels.FightOrFlight)
+                {
+                    if (level < PLD.Levels.Requiescat)
+                        return PLD.FightOrFlight;
+
+                    // Prefer FoF if it is off cooldown, or if it will be ready sooner than Requiescat.  In practice, this
+                    // means that Req should only be returned if FoF is on cooldown and Req is not, ie. immediately after
+                    // FoF is cast.  This ensures that the button shows the action that will next be available for use in
+                    // that hotbar slot, rather than swapping to FoF at the last instant when FoF comes off cooldown a
+                    // a single weave slot earlier than Req.
                     return CalcBestAction(PLD.FightOrFlight, PLD.FightOrFlight, PLD.Requiescat);
+                }
             }
         }
 
