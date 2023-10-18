@@ -202,6 +202,7 @@ public enum CustomComboPreset
     BardIronJawsFeature = 2308,
 
     [SecretCustomCombo]
+    [ParentCombo(BardIronJawsFeature)]
     [CustomComboInfo("Pre Iron Jaws Feature", "Replace Iron Jaws with Caustic Bite/Stormbite depending on the duration when Iron Jaws is not available.", BRD.JobID)]
     BardPreIronJawsFeature = 2303,
 

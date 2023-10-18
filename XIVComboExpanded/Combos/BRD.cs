@@ -117,62 +117,46 @@ internal class BardHeavyShot : CustomCombo
 
 internal class BardIronJaws : CustomCombo
 {
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BrdAny;
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardIronJawsFeature;
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BRD.IronJaws)
         {
-            if (IsEnabled(CustomComboPreset.BardPreIronJawsFeature))
+            if (level < BRD.Levels.Windbite)
+                return BRD.VenomousBite;
+
+
+            ushort venomousDebuff, windbiteDebuff;
+            if (level < BRD.Levels.BiteUpgrade)
             {
-                if (level < BRD.Levels.Windbite)
-                    return BRD.VenomousBite;
-
-                if (level < BRD.Levels.IronJaws)
-                {
-                    var venomous = FindTargetEffect(BRD.Debuffs.VenomousBite);
-                    var windbite = FindTargetEffect(BRD.Debuffs.Windbite);
-
-                    if (venomous is null)
-                        return BRD.VenomousBite;
-
-                    if (windbite is null)
-                        return BRD.Windbite;
-
-                    if (venomous?.RemainingTime < windbite?.RemainingTime)
-                        return BRD.VenomousBite;
-
-                    return BRD.Windbite;
-                }
+                venomousDebuff = BRD.Debuffs.VenomousBite;
+                windbiteDebuff = BRD.Debuffs.Windbite;
+            }
+            else
+            {
+                venomousDebuff = BRD.Debuffs.CausticBite;
+                windbiteDebuff = BRD.Debuffs.Stormbite;
             }
 
-            if (IsEnabled(CustomComboPreset.BardIronJawsFeature))
+            var venomousStatus = FindTargetEffect(venomousDebuff);
+            var windbiteStatus = FindTargetEffect(windbiteDebuff);
+
+            if (windbiteStatus is null)
+                return OriginalHook(BRD.Windbite);
+
+            if (venomousStatus is null)
+                return OriginalHook(BRD.VenomousBite);
+
+            if (level < BRD.Levels.IronJaws && IsEnabled(CustomComboPreset.BardPreIronJawsFeature))
             {
-                if (level < BRD.Levels.BiteUpgrade)
-                {
-                    var venomous = TargetHasEffect(BRD.Debuffs.VenomousBite);
-                    var windbite = TargetHasEffect(BRD.Debuffs.Windbite);
-
-                    if (venomous && windbite)
-                        return BRD.IronJaws;
-
-                    if (windbite)
-                        return BRD.VenomousBite;
-
-                    return BRD.Windbite;
-                }
-
-                var caustic = TargetHasEffect(BRD.Debuffs.CausticBite);
-                var stormbite = TargetHasEffect(BRD.Debuffs.Stormbite);
-
-                if (caustic && stormbite)
-                    return BRD.IronJaws;
-
-                if (stormbite)
-                    return BRD.CausticBite;
-
-                return BRD.Stormbite;
+                if (windbiteStatus?.RemainingTime <= venomousStatus?.RemainingTime)
+                    return OriginalHook(BRD.Windbite);
+                else
+                    return OriginalHook(BRD.VenomousBite);
             }
+
+            return BRD.IronJaws;
         }
 
         return actionID;
