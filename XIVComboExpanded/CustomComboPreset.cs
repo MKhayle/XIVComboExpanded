@@ -1094,6 +1094,10 @@ public enum CustomComboPreset
     [CustomComboInfo("Auto Eukrasian Dosis", "Replace Dosis with Eukrasia when Eukrasian Dosis is about to run out.", SGE.JobID)]
     SageDoTFeature = 4012,
 
+    [ParentCombo(SageToxikonPhlegma)]
+    [CustomComboInfo("Psyche Combo", "Adds Psyche to Toxikon - Phlegma combo.", SGE.JobID)]
+    SageToxikonPhlegmaFeature = 4013,
+
     #endregion
     // ====================================================================================
     #region SAMURAI

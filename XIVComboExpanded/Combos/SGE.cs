@@ -34,8 +34,8 @@ internal static class SGE
         Panhaima = 24311,
         Phlegma3 = 24313,
         Krasis = 24317,
-        Pneuma = 24318;
-
+        Pneuma = 24318,
+        Psyche = 37033;
     public static class Buffs
     {
         public const ushort
@@ -76,7 +76,9 @@ internal static class SGE
             Phlegma3 = 82,
             Dosis3 = 82,
             Krasis = 86,
-            Pneuma = 90;
+            Pneuma = 90,
+            Psyche = 92;
+
     }
 }
 
@@ -130,6 +132,10 @@ internal class SageToxikon : CustomCombo
 
                 if (phlegma != 0 && IsCooldownUsable(phlegma))
                     return OriginalHook(SGE.Phlegma);
+
+                if (IsEnabled(CustomComboPreset.SageToxikonPhlegmaFeature))
+                        return OriginalHook(CalcBestAction(actionID, SGE.Psyche, SGE.Phlegma));
+               
             }
         }
 
