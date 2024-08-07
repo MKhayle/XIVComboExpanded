@@ -260,7 +260,7 @@ internal class ScholarRuin : CustomCombo
     {
         if (actionID == SCH.Ruin || actionID == SCH.Broil || actionID == SCH.Broil2 || actionID == SCH.Broil3 || actionID == SCH.Broil4)
         {
-            if (IsEnabled(CustomComboPreset.ScholarDoTFeature) && TargetIsEnemy())
+            if (IsEnabled(CustomComboPreset.ScholarDoTFeature) && InCombat() && TargetIsEnemy())
             {
                 var bio = FindTargetEffect(SCH.Debuffs.Bio);
                 var bio2 = FindTargetEffect(SCH.Debuffs.Bio2);

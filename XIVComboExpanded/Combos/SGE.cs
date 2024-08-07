@@ -92,10 +92,10 @@ internal class SageDosis : CustomCombo
         {
             if (IsEnabled(CustomComboPreset.SageDosisPsyche))
             {
-                if (level >= SGE.Levels.Psyche && IsCooldownUsable(SGE.Psyche) && HasTarget())
+                if (level >= SGE.Levels.Psyche && IsCooldownUsable(SGE.Psyche) && InCombat() && TargetIsEnemy())
                     return OriginalHook(SGE.Psyche);
             }
-            if (IsEnabled(CustomComboPreset.SageDoTFeature) && TargetIsEnemy())
+            if (IsEnabled(CustomComboPreset.SageDoTFeature) && InCombat() && TargetIsEnemy())
             {
                 var eurkasiandosis = FindTargetEffect(SGE.Debuffs.EukrasianDosis);
                 var eurkasiandosis2 = FindTargetEffect(SGE.Debuffs.EukrasianDosis2);

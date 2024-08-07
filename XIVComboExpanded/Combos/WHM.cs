@@ -203,7 +203,7 @@ internal class WhiteMageGlare4Feature : CustomCombo
     {
         if (actionID == WHM.Stone)
         {
-            if (IsEnabled(CustomComboPreset.WhiteMageDoTFeature) && TargetIsEnemy())
+            if (IsEnabled(CustomComboPreset.WhiteMageDoTFeature) && InCombat() && TargetIsEnemy())
             {
                 var aero = FindTargetEffect(WHM.Debuffs.Aero);
                 var aero2 = FindTargetEffect(WHM.Debuffs.Aero2);
