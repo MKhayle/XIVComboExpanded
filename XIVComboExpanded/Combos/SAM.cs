@@ -280,6 +280,20 @@ internal class SamuraiShinten : CustomCombo
         {
             var gauge = GetJobGauge<SAMGauge>();
 
+            if (IsEnabled(CustomComboPreset.SamuraiShintenIaijutsuFeature))
+            {
+                var original = OriginalHook(SAM.Iaijutsu);
+                if (original != SAM.Iaijutsu && IsCooldownUsable(original))
+                    return original;
+            }
+
+            if (IsEnabled(CustomComboPreset.SamuraiShintenTsubameGaeshiFeature))
+            {
+                var original = OriginalHook(SAM.TsubameGaeshi);
+                if (original != SAM.Iaijutsu && IsCooldownUsable(original))
+                    return original;
+            }
+
             if (IsEnabled(CustomComboPreset.SamuraiShintenZanshinFeature))
             {
                 if (level >= SAM.Levels.Zanshin && HasEffect(SAM.Buffs.ZanshinReady))
@@ -302,6 +316,15 @@ internal class SamuraiShinten : CustomCombo
                     if (level >= SAM.Levels.HissatsuGuren && level < SAM.Levels.HissatsuSenei && IsCooldownUsable(SAM.HissatsuGuren))
                         return SAM.HissatsuGuren;
                 }
+            }
+
+            if (IsEnabled(CustomComboPreset.SamuraiShintenOgaNamikiriFeature))
+            {
+                if (gauge.Kaeshi == Kaeshi.NAMIKIRI)
+                    return SAM.KaeshiNamikiri;
+
+                if (HasEffect(SAM.Buffs.OgiNamikiriReady))
+                    return SAM.OgiNamikiri;
             }
         }
 
@@ -338,6 +361,20 @@ internal class SamuraiKyuten : CustomCombo
         {
             var gauge = GetJobGauge<SAMGauge>();
 
+            if (IsEnabled(CustomComboPreset.SamuraiKyutenIaijutsuFeature))
+            {
+                var original = OriginalHook(SAM.Iaijutsu);
+                if (original != SAM.Iaijutsu && IsCooldownUsable(original))
+                    return original;
+            }
+
+            if (IsEnabled(CustomComboPreset.SamuraiKyutenTsubameGaeshiFeature))
+            {
+                var original = OriginalHook(SAM.TsubameGaeshi);
+                if (original != SAM.Iaijutsu && IsCooldownUsable(original))
+                    return original;
+            }
+
             if (IsEnabled(CustomComboPreset.SamuraiKyutenZanshinFeature))
             {
                 if (level >= SAM.Levels.Zanshin && HasEffect(SAM.Buffs.ZanshinReady))
@@ -354,6 +391,15 @@ internal class SamuraiKyuten : CustomCombo
             {
                 if (level >= SAM.Levels.HissatsuGuren && IsCooldownUsable(SAM.HissatsuGuren))
                     return SAM.HissatsuGuren;
+            }
+
+            if (IsEnabled(CustomComboPreset.SamuraiKyutenOgaNamikiriFeature))
+            {
+                if (gauge.Kaeshi == Kaeshi.NAMIKIRI)
+                    return SAM.KaeshiNamikiri;
+
+                if (HasEffect(SAM.Buffs.OgiNamikiriReady))
+                    return SAM.OgiNamikiri;
             }
         }
 

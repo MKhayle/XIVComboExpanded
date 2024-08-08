@@ -1171,6 +1171,15 @@ public enum CustomComboPreset
     [CustomComboInfo("Shinten to Senei", "Replace Hissatsu: Shinten with Senei when available.", SAM.JobID)]
     SamuraiShintenSeneiFeature = 3414,
 
+    [CustomComboInfo("Shinten to Iaijutsu", "Replace Hissatsu: Shinten with Iaijutsu when available.", SAM.JobID)]
+    SamuraiShintenIaijutsuFeature = 3422,
+
+    [CustomComboInfo("Shinten to Tsubame-gaeshi", "Replace Hissatsu: Shinten with Tsubame-gaeshi when available.", SAM.JobID)]
+    SamuraiShintenTsubameGaeshiFeature = 3423,
+
+    [CustomComboInfo("Shinten to Oga Namikiri", "Replace Hissatsu: Shinten with Oga Namikiri when available.", SAM.JobID)]
+    SamuraiShintenOgaNamikiriFeature = 3424,
+
     [CustomComboInfo("Senei to Guren Level Sync", "Replace Hissatsu: Senei with Guren when level synced below 72.", SAM.JobID)]
     SamuraiSeneiGurenFeature = 3418,
 
@@ -1182,6 +1191,15 @@ public enum CustomComboPreset
 
     [CustomComboInfo("Kyuten to Guren", "Replace Hissatsu: Kyuten with Guren when available.", SAM.JobID)]
     SamuraiKyutenGurenFeature = 3415,
+
+    [CustomComboInfo("Kyuten to Iaijutsu", "Replace Hissatsu: Kyuten with Iaijutsu when available.", SAM.JobID)]
+    SamuraiKyutenIaijutsuFeature = 3425,
+
+    [CustomComboInfo("Kyuten to Tsubame-gaeshi", "Replace Hissatsu: Kyuten with Tsubame-gaeshi when available.", SAM.JobID)]
+    SamuraiKyutenTsubameGaeshiFeature = 3426,
+
+    [CustomComboInfo("Kyuten to Oga Namikiri", "Replace Hissatsu: Kyuten with Oga Namikiri when available.", SAM.JobID)]
+    SamuraiKyutenOgaNamikiriFeature = 3427,
 
     [CustomComboInfo("Ikishoten Namikiri Feature", "Replace Ikishoten with Ogi Namikiri and then Kaeshi Namikiri when available.", SAM.JobID)]
     SamuraiIkishotenNamikiriFeature = 3411,
