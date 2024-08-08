@@ -1336,38 +1336,36 @@ public enum CustomComboPreset
     [CustomComboInfo("Merge Serpent's Tail onto Twinfang/Twinblood Feature", "Merge all Serpent's Tail abilities onto Twinfang/Twinblood.", VPR.JobID)]
     ViperMergeTwinsSerpentFeature = 4112,
 
-    // [SecretCustomCombo]
-    // [ConflictingCombos(ViperSteelTailFeature)]
-    // [CustomComboInfo("Viper PvP Style Main Combo", "Condenses the main combo to a single button, like PvP.\nThe combo detects buffs and debuffs to prioritize skills.\nThe default combo ender is Hindsbane Fang, configurable below.", VPR.JobID)]
-    // ViperPvPMainComboFeature = 4113,
+    [SecretCustomCombo]
+    [CustomComboInfo("Viper PvP Style Main Combo", "Condenses the main combo to a single button, like PvP.\nThe combo detects buffs to prioritize skills.\nThe default combo ender is Hindsting Strike, configurable below.", VPR.JobID)]
+    ViperPvPMainComboFeature = 4113,
 
-    // [SecretCustomCombo]
-    // [ConflictingCombos(ViperPvPMainComboStartFlankstingFeature, ViperPvPMainComboStartHindstingFeature)]
-    // [ParentCombo(ViperPvPMainComboFeature)]
-    // [CustomComboInfo("PvP Combo Start Flanksbane Fang", "With no buffs, end first combo with Flanksbane Fang.", VPR.JobID)]
-    // ViperPvPMainComboStartFlanksbaneFeature = 4114,
+    [SecretCustomCombo]
+    [ConflictingCombos(ViperPvPMainComboStartFlankstingFeature, ViperPvPMainComboStartHindsbaneFeature)]
+    [ParentCombo(ViperPvPMainComboFeature)]
+    [CustomComboInfo("PvP Combo Start Flanksbane Fang", "With no buffs, end first combo with Flanksbane Fang.", VPR.JobID)]
+    ViperPvPMainComboStartFlanksbaneFeature = 4114,
 
-    // [SecretCustomCombo]
-    // [ConflictingCombos(ViperPvPMainComboStartFlanksbaneFeature, ViperPvPMainComboStartHindstingFeature)]
-    // [ParentCombo(ViperPvPMainComboFeature)]
-    // [CustomComboInfo("PvP Combo Start Flanksting Strike", "With no buffs, end first combo with Flanksting Strike.", VPR.JobID)]
-    // ViperPvPMainComboStartFlankstingFeature = 4115,
+    [SecretCustomCombo]
+    [ConflictingCombos(ViperPvPMainComboStartFlanksbaneFeature, ViperPvPMainComboStartHindsbaneFeature)]
+    [ParentCombo(ViperPvPMainComboFeature)]
+    [CustomComboInfo("PvP Combo Start Flanksting Strike", "With no buffs, end first combo with Flanksting Strike.", VPR.JobID)]
+    ViperPvPMainComboStartFlankstingFeature = 4115,
 
-    // [SecretCustomCombo]
-    // [ConflictingCombos(ViperPvPMainComboStartFlanksbaneFeature, ViperPvPMainComboStartFlankstingFeature)]
-    // [ParentCombo(ViperPvPMainComboFeature)]
-    // [CustomComboInfo("PvP Combo Start Hindsting Strike", "With no buffs, end first combo with Hindsting Strike.", VPR.JobID)]
-    // ViperPvPMainComboStartHindstingFeature = 4116,
+    [SecretCustomCombo]
+    [ConflictingCombos(ViperPvPMainComboStartFlanksbaneFeature, ViperPvPMainComboStartFlankstingFeature)]
+    [ParentCombo(ViperPvPMainComboFeature)]
+    [CustomComboInfo("PvP Combo Start Hindsbane Fang", "With no buffs, end first combo with Hindsbane Fang.", VPR.JobID)]
+    ViperPvPMainComboStartHindsbaneFeature = 4116,
 
-    // [SecretCustomCombo]
-    // [ConflictingCombos(ViperSteelTailAoEFeature)]
-    // [CustomComboInfo("Viper PvP Style AoE Combo", "Condenses the main combo to a single button, like PvP.\nThe combo can only detect debuffs on the current target.\nStarts with Jagged Maw by default, configurable below.", VPR.JobID)]
-    // ViperPvPMainComboAoEFeature = 4117,
+    [SecretCustomCombo]
+    [CustomComboInfo("Viper PvP Style AoE Combo", "Condenses the main combo to a single button, like PvP.\nThe combo can only detect debuffs on the current target.\nStarts with Reaving Maw by default, configurable below.", VPR.JobID)]
+    ViperPvPAoEFeature = 4117,
 
-    // [SecretCustomCombo]
-    // [ParentCombo(ViperPvPMainComboAoEFeature)]
-    // [CustomComboInfo("PvP AoE Combo Start Bloodied Maw", "With no buffs, end first combo with Bloodied Maw.", VPR.JobID)]
-    // ViperPvPMainComboAoEStartBloodiedFeature = 4118,
+    [SecretCustomCombo]
+    [ParentCombo(ViperPvPAoEFeature)]
+    [CustomComboInfo("PvP AoE Combo Start Bloodied Maw", "With no buffs, end first combo with Bloodied Maw.", VPR.JobID)]
+    ViperPvPMainComboAoEStartBloodiedFeature = 4118,
 
     [SecretCustomCombo]
     [ConflictingCombos(ViperAutoViceSTFeature)]
