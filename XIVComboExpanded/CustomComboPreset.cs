@@ -2364,7 +2364,7 @@ public enum CustomComboPreset
     [SectionCombo("Single Target")]
     [IconsCombo([WAR.StormsPath, UTL.ArrowLeft, WAR.StormsEye, UTL.Blank, WAR.Buffs.SurgingTempest, UTL.Idea])]
     [AccessibilityCustomCombo]
-    [CustomComboInfo("Automatic Surging Tempest", "Replace Storm's Path with Storm's Eye whenever Surging Tempest is below 30 seconds.", WAR.JobID)]
+    [CustomComboInfo("Automatic Surging Tempest", "Replace Storm's Path with Storm's Eye whenever Surging Tempest is below 15 seconds.", WAR.JobID)]
     WarriorAutoSurgingTempestFeature = 2113,
 
     [SectionCombo("Single Target")]

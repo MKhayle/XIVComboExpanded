@@ -114,7 +114,7 @@ internal class WarriorStormsPathCombo : CustomCombo
                         return WAR.StormsEye;
 
                     if (!IsEnabled(CustomComboPreset.WarriorOptimizeSurgingTempestFeature) &&
-                        surgingTempest.RemainingTime < 30)
+                        surgingTempest.RemainingTime < 15)
                         return WAR.StormsEye;
 
                     // Medicated + Opener
