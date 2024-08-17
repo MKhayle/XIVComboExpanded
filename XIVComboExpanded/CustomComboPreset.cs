@@ -2023,6 +2023,24 @@ public enum CustomComboPreset
     [CustomComboInfo("Kyuten to Zanshin", "Replace Hissatsu: Kyuten with Zanshin when available.", SAM.JobID)]
     SamuraiKyutenZanshinFeature = 3421,
 
+    [IconsCombo([SAM.HissatsuKyuten, UTL.ArrowLeft, SAM.Iaijutsu])]
+    [SectionCombo("Kyuten")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Shinten to Iaijutsu", "Replace Hissatsu: Shinten with Iaijutsu when available.", SAM.JobID)]
+    SamuraiShintenIaijutsuFeature = 3428,
+
+    [IconsCombo([SAM.HissatsuKyuten, UTL.ArrowLeft, SAM.TsubameGaeshi])]
+    [SectionCombo("Kyuten")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Shinten to Tsubame-gaeshi", "Replace Hissatsu: Shinten with Tsubame-gaeshi when available.", SAM.JobID)]
+    SamuraiShintenTsubameGaeshiFeature = 3423,
+
+    [IconsCombo([SAM.HissatsuKyuten, UTL.ArrowLeft, SAM.OgiNamikiri])]
+    [SectionCombo("Kyuten")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Shinten to Oga Namikiri", "Replace Hissatsu: Shinten with Oga Namikiri when available.", SAM.JobID)]
+    SamuraiShintenOgaNamikiriFeature = 3424,
+
     [IconsCombo([SAM.HissatsuKyuten, UTL.ArrowLeft, SAM.Shoha, UTL.Blank, SAM.Shoha, UTL.Checkmark])]
     [SectionCombo("Kyuten")]
     [ExpandedCustomCombo]
@@ -2034,6 +2052,24 @@ public enum CustomComboPreset
     [ExpandedCustomCombo]
     [CustomComboInfo("Kyuten to Guren", "Replace Hissatsu: Kyuten with Guren when available.", SAM.JobID)]
     SamuraiKyutenGurenFeature = 3415,
+
+    [IconsCombo([SAM.HissatsuShinten, UTL.ArrowLeft, SAM.Iaijutsu])]
+    [SectionCombo("Kyuten")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Kyuten to Iaijutsu", "Replace Hissatsu: Kyuten with Iaijutsu when available.", SAM.JobID)]
+    SamuraiKyutenIaijutsuFeature = 3425,
+
+    [IconsCombo([SAM.HissatsuShinten, UTL.ArrowLeft, SAM.TsubameGaeshi])]
+    [SectionCombo("Kyuten")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Kyuten to Tsubame-gaeshi", "Replace Hissatsu: Kyuten with Tsubame-gaeshi when available.", SAM.JobID)]
+    SamuraiKyutenTsubameGaeshiFeature = 3426,
+
+    [IconsCombo([SAM.HissatsuShinten, UTL.ArrowLeft, SAM.OgiNamikiri])]
+    [SectionCombo("Kyuten")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Kyuten to Oga Namikiri", "Replace Hissatsu: Kyuten with Oga Namikiri when available.", SAM.JobID)]
+    SamuraiKyutenOgaNamikiriFeature = 3427,
 
     [IconsCombo([SAM.Ikishoten, UTL.ArrowLeft, SAM.OgiNamikiri, SAM.KaeshiNamikiri, UTL.Blank, SAM.OgiNamikiri, SAM.KaeshiNamikiri, UTL.Checkmark])]
     [SectionCombo("Ikishoten")]
