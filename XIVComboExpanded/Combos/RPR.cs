@@ -796,6 +796,12 @@ internal class ReaperHarpe : CustomCombo
     {
         if (actionID == RPR.Harpe)
         {
+            if (IsEnabled(CustomComboPreset.ReaperHarpeSacrificiumFeature))
+            {
+                if (level >= RPR.Levels.Sacrificium && HasEffect(RPR.Buffs.Oblatio))
+                    return RPR.Sacrificium;
+            }
+
             if (IsEnabled(CustomComboPreset.ReaperHarpeHarvestSoulsowFeature))
             {
                 if (level >= RPR.Levels.Soulsow && !HasEffect(RPR.Buffs.Soulsow) && (!InCombat() || !TargetIsEnemy()))

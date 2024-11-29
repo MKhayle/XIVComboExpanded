@@ -1709,6 +1709,12 @@ public enum CustomComboPreset
     [CustomComboInfo("Sacrificium 3rd weave", "Only replace Lemure's Slice/Scythe with Sacrificium when you have used 3 of the 5 Lemure's Shroud charges (ie. after the third Void/Cross Reaping).\n\nNOTE: This can be superior for certain cooldown windows, due to the first weave window often occurring before raid buffs are active during a double Enshroud sequence.", RPR.JobID)]
     ReaperSacrificiumAdvancedFeature = 3947,
 
+    [IconsCombo([RPR.Harpe, UTL.ArrowLeft, RPR.Sacrificium, UTL.Blank, RPR.Buffs.Oblatio, UTL.Checkmark])]
+    [SectionCombo("Enshroud")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Harpe Sacrificium Feature", "Replace Harpe with Sacrificium when available.", RPR.JobID)]
+    ReaperHarpeSacrificiumFeature = 3953,
+
     [IconsCombo([RPR.Enshroud, UTL.ArrowLeft, RPR.Communio, UTL.Blank, RPR.Buffs.Enshrouded, UTL.Checkmark])]
     [SectionCombo("Enshroud")]
     [CustomComboInfo("Enshroud Communio Feature", "Replace Enshroud with Communio when Enshrouded.", RPR.JobID)]
