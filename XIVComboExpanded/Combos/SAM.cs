@@ -348,6 +348,33 @@ internal class SamuraiKyuten : CustomCombo
     }
 }
 
+internal class SamuraiGuren : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamAny;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == SAM.HissatsuGuren)
+        {
+            var gauge = GetJobGauge<SAMGauge>();
+
+            if (IsEnabled(CustomComboPreset.SamuraiGurenZanshinFeature))
+            {
+                if (level >= SAM.Levels.Zanshin && HasEffect(SAM.Buffs.ZanshinReady))
+                    return SAM.Zanshin;
+            }
+
+            if (IsEnabled(CustomComboPreset.SamuraiGurenShohaFeature))
+            {
+                if (level >= SAM.Levels.Shoha && gauge.MeditationStacks >= 3)
+                    return SAM.Shoha;
+            }
+        }
+
+        return actionID;
+    }
+}
+
 internal class SamuraiIkishoten : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiIkishotenNamikiriFeature;

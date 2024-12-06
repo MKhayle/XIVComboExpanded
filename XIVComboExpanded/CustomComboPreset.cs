@@ -2149,11 +2149,23 @@ public enum CustomComboPreset
     [CustomComboInfo("Kyuten to Shoha", "Replace Hissatsu: Kyuten with Shoha when Meditation is full.", SAM.JobID)]
     SamuraiKyutenShohaFeature = 3412,
 
-    [IconsCombo([SAM.HissatsuShinten, UTL.ArrowLeft, SAM.HissatsuGuren, UTL.Blank, SAM.HissatsuGuren, UTL.Checkmark])]
+    [IconsCombo([SAM.HissatsuKyuten, UTL.ArrowLeft, SAM.HissatsuGuren, UTL.Blank, SAM.HissatsuGuren, UTL.Checkmark])]
     [SectionCombo("Kyuten")]
     [ExpandedCustomCombo]
     [CustomComboInfo("Kyuten to Guren", "Replace Hissatsu: Kyuten with Guren when available.", SAM.JobID)]
     SamuraiKyutenGurenFeature = 3415,
+
+    [IconsCombo([SAM.HissatsuGuren, UTL.ArrowLeft, SAM.Zanshin, UTL.Blank, SAM.Zanshin, UTL.Checkmark])]
+    [SectionCombo("Guren")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Guren to Zanshin", "Replace Hissatsu: Guren with Zanshin when available.", SAM.JobID)]
+    SamuraiGurenZanshinFeature = 3426,
+
+    [IconsCombo([SAM.HissatsuGuren, UTL.ArrowLeft, SAM.Shoha, UTL.Blank, SAM.Shoha, UTL.Checkmark])]
+    [SectionCombo("Guren")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Guren to Shoha", "Replace Hissatsu: Guren with Shoha when Meditation is full.", SAM.JobID)]
+    SamuraiGurenShohaFeature = 3427,
 
     [IconsCombo([SAM.Ikishoten, UTL.ArrowLeft, SAM.OgiNamikiri, SAM.KaeshiNamikiri, UTL.Blank, SAM.OgiNamikiri, SAM.KaeshiNamikiri, UTL.Checkmark])]
     [SectionCombo("Ikishoten")]
