@@ -260,23 +260,37 @@ internal class DragoonStardiver : CustomCombo
         {
             var gauge = GetJobGauge<DRGGauge>();
 
-            if (HasEffect(DRG.Buffs.StarcrossReady))
-                return DRG.Starcross;
-
+            // Always prefer Geirskogul over everything else, if it's enabled, since the Geirskogul cooldown is the
+            // primary rotational timing cooldown for DRG, and anything else we'd want to use, we'd rather use inside
+            // Life of the Dragon anyway, if it's available.
             if (IsEnabled(CustomComboPreset.DragoonStardiverNastrondFeature))
             {
-                if (level >= DRG.Levels.Geirskogul && (!gauge.IsLOTDActive || IsCooldownUsable(DRG.Nastrond) || !IsCooldownUsable(DRG.Stardiver)))
-                    // Nastrond
-                    return OriginalHook(DRG.Geirskogul);
+                if (level >= DRG.Levels.Geirskogul && IsCooldownUsable(DRG.Geirskogul))
+                    return DRG.Geirskogul;
             }
 
-            if (IsEnabled(CustomComboPreset.DragoonStardiverDragonfireDiveFeature))
-            {
-                if (IsEnabled(CustomComboPreset.DragoonStardiverDragonfireDiveFeature) && HasEffect(DRG.Buffs.Dragonsflight))
-                    return DRG.RiseOfTheDragon;
+            var canUseStardiver = (CanUseAction(DRG.Stardiver) && IsCooldownUsable(DRG.Stardiver)) ||
+                OriginalHook(DRG.Stardiver) != DRG.Stardiver;
 
-                if (level < DRG.Levels.Stardiver || !gauge.IsLOTDActive || !IsCooldownUsable(DRG.Stardiver) || (IsCooldownUsable(DRG.DragonfireDive) && gauge.LOTDTimer > 7.5))
-                    return DRG.DragonfireDive;
+            // Dragonfire is prioritized over Nastrond, because it actually has a cooldown where drift can cause issues.
+            if (IsEnabled(CustomComboPreset.DragoonStardiverDragonfireDiveFeature) &&
+                level >= DRG.Levels.DragonfireDive)
+            {
+                var canUseDragonfire = IsCooldownUsable(DRG.DragonfireDive) ||
+                     OriginalHook(DRG.DragonfireDive) != DRG.DragonfireDive;
+
+                if (canUseDragonfire && (level < DRG.Levels.Stardiver || !gauge.IsLOTDActive || !canUseStardiver ||
+                    (gauge.LOTDTimer > 7.5 && !IsEnabled(CustomComboPreset.DragoonStardiverBeforeDragonfire))))
+                    return OriginalHook(DRG.DragonfireDive);
+            }
+
+            if (IsEnabled(CustomComboPreset.DragoonStardiverNastrondFeature) && level >= DRG.Levels.LifeOfTheDragon)
+            {
+                var canUseNastrond = HasEffect(DRG.Buffs.NastrondReady);
+
+                if (canUseNastrond && (!canUseStardiver ||
+                    !IsEnabled(CustomComboPreset.DragoonStardiverBeforeNastrond)))
+                    return DRG.Nastrond;
             }
         }
 

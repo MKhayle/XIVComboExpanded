@@ -839,27 +839,39 @@ public enum CustomComboPreset
     [IconsCombo([DRG.Geirskogul, UTL.ArrowLeft, DRG.WyrmwindThrust, UTL.Blank, DRG.Geirskogul, UTL.Clock])]
     [SectionCombo("Ability features")]
     [ExpandedCustomCombo]
-    [CustomComboInfo("Geirskogul to Wyrmwind Thrust", "Replace Geirskogul with Wyrmwind Thrust when the latter is available and the former is on cooldown.\n\nNOTE: This intentionally prioritizes Wyrmwind Thrust over Nastrond when in Life of the Dragon.  Nastrond has no real cooldown, instead being limited to 3 uses per LotD, so Wyrmwind Thrust is more likely to be wasted than Nastrond, and thus is prioritized higher.", DRG.JobID)]
+    [CustomComboInfo("Geirskogul to Wyrmwind Thrust", "Replace Geirskogul with Wyrmwind Thrust when the latter is available and the former is on cooldown.\n\nNOTE: This intentionally prioritizes Wyrmwind Thrust over Nastrond when in Life of the Dragon.  Nastrond has no real cooldown, instead being limited to a single use anywhere during LotD, so Wyrmwind Thrust is more likely to be wasted than Nastrond, and thus is prioritized higher.", DRG.JobID)]
     DragoonGeirskogulWyrmwindFeature = 2212,
 
     [IconsCombo([DRG.Stardiver, UTL.ArrowLeft, DRG.Nastrond, DRG.Geirskogul, UTL.Blank, DRG.Nastrond, UTL.Clock])]
     [SectionCombo("Ability features")]
-    [ConflictingCombos(DragoonStardiverDragonfireDiveFeature)]
-    [ExpandedCustomCombo]
-    [CustomComboInfo("Stardiver to Nastrond", "Replace Stardiver with Nastrond when Nastrond is off-cooldown, and Geirskogul outside of Life of the Dragon.", DRG.JobID)]
+    [AccessibilityCustomCombo]
+    [CustomComboInfo("Stardiver to Nastrond", "Replace Stardiver with Nastrond when Nastrond is available, and with Geirskogul outside of Life of the Dragon. If enabled with Stardiver to Dragonfire Dive, then Dragonfire Dive has priority over Nastrond.", DRG.JobID)]
     DragoonStardiverNastrondFeature = 2206,
+
+    [IconsCombo([DRG.Stardiver, UTL.ArrowUp, DRG.Nastrond])]
+    [SectionCombo("Ability features")]
+    [ParentCombo(DragoonStardiverNastrondFeature)]
+    [AccessibilityCustomCombo]
+    [CustomComboInfo("Stardiver before Nastrond", "If both Stardiver and Nastrond are usable, prioritize Stardiver over Nastrond.  Also includes Starcross if enabled via the Action Change Settings in the base game.\n\nNOTE: This isn't usually recommended, as Nastrond can be double-weaved, while Stardiver should not be.  The standard opener and cooldown window for Dragoon (via The Balance Discord) double-weaves Nastrond with Dragonfire Dive, a GCD before Stardiver.", DRG.JobID)]
+    DragoonStardiverBeforeNastrond = 2218,
 
     [IconsCombo([DRG.Stardiver, UTL.ArrowLeft, DRG.DragonfireDive, UTL.Blank, DRG.DragonfireDive, UTL.Clock])]
     [SectionCombo("Ability features")]
-    [ConflictingCombos(DragoonStardiverNastrondFeature)]
-    [SecretCustomCombo]
-    [CustomComboInfo("Stardiver to Dragonfire Dive", "Replace Stardiver with Dragonfire Dive when the latter is off cooldown (and you have more than 7.5s of LotD left), or outside of Life of the Dragon.", DRG.JobID)]
+    [AccessibilityCustomCombo]
+    [CustomComboInfo("Stardiver to Dragonfire Dive", "Replace Stardiver with Dragonfire Dive when the latter is off cooldown and you either have more than 7.5s of LotD left, or are outside of Life of the Dragon and Geirskogul is on cooldown.  Also includes Rise of the Dragon if enabled via the Action Change Settings in the base game. If enabled with Stardiver to Nastrond, then Dragonfire Dive has priority over Nastrond.", DRG.JobID)]
     DragoonStardiverDragonfireDiveFeature = 2208,
+
+    [IconsCombo([DRG.Stardiver, UTL.ArrowUp, DRG.DragonfireDive])]
+    [SectionCombo("Ability features")]
+    [ParentCombo(DragoonStardiverDragonfireDiveFeature)]
+    [AccessibilityCustomCombo]
+    [CustomComboInfo("Stardiver before Dragonfire Dive", "If both Stardiver and Dragonfire Dive are available, prioritize Stardiver over Dragonfire Dive.  Also includes Starcross if enabled via the Action Change settings in the base game.\n\nNOTE: This is not recommended, as Dragonfire Dive has a 120s cooldown that should not be drifted, while Stardiver's cooldown is already less than the interval between Life of the Dragon windows and thus does not have drift issues if delayed.", DRG.JobID)]
+    DragoonStardiverBeforeDragonfire = 2219,
 
     [IconsCombo([DRG.BattleLitany, UTL.ArrowLeft, DRG.LanceCharge, UTL.Blank, DRG.LanceCharge, UTL.Clock])]
     [SectionCombo("Buffs")]
     [AccessibilityCustomCombo]
-    [CustomComboInfo("Lance Charge to Battle Litany", "Replace Lance Charge with Battle Litany when available and Lance Charge is on cooldown.", DRG.JobID)]
+    [CustomComboInfo("Lance Charge to Battle Litany", "Replace Lance Charge with Battle Litany when the latter is available and the former is on cooldown.", DRG.JobID)]
     DragoonLanceChargeFeature = 2213,
 
     #endregion
