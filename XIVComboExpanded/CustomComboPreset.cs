@@ -2330,9 +2330,15 @@ public enum CustomComboPreset
 
     [IconsCombo([SMN.SummonBahamut, SMN.SummonPhoenix, SMN.SummonSolarBahamut, UTL.ArrowLeft, SMN.SearingLight, UTL.Blank, SMN.Buffs.RubysGlimmer, UTL.Checkmark, UTL.Plus, SMN.SummonBahamut, SMN.SummonPhoenix, SMN.SummonSolarBahamut, UTL.Clock])]
     [SectionCombo("Summons features")]
-    [SecretCustomCombo]
-    [CustomComboInfo("Searing Demi Flash Feature", "Replace Summon Bahamut, Summon Phoenix and Summon Solar Bahamut with Searing Light when Ruby's Glimmer is available, Searing Light is off cooldown, Summon Demi is on cooldown, and you are in combat.", SMN.JobID)]
+    [AccessibilityCustomCombo]
+    [CustomComboInfo("Searing Demi Flash Feature", "Replace Summon Bahamut, Summon Phoenix and Summon Solar Bahamut with Searing Light when Ruby's Glimmer is available or Searing Light is off cooldown, and Summon Demi is on cooldown and you are in combat.", SMN.JobID)]
     SummonerSearingDemiFlashFeature = 2719,
+
+    [IconsCombo([SMN.SummonIfrit, SMN.SummonGaruda, SMN.SummonTitan, UTL.ArrowLeft, SMN.AstralFlow, UTL.Blank, SMN.Buffs.IfritsFavor, SMN.Buffs.GarudasFavor, SMN.Buffs.TitansFavor, UTL.Checkmark])]
+    [SectionCombo("Summons features")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Primal Favor Feature", "Replace Summon Ifrit, Summon Garuda, and Summon Titan with their respective Astral Flow action when their respective Favor buff is active.", SMN.JobID)]
+    SummonerPrimalFavorFeature = 2720,
 
     [IconsCombo([SMN.Gemshine, SMN.PreciousBrilliance, UTL.ArrowLeft, SMN.MountainBuster, UTL.Blank, SMN.Buffs.TitansFavor, UTL.Checkmark])]
     [SectionCombo("Gems features")]

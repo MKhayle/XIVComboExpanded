@@ -64,7 +64,8 @@ internal static class SMN
             GarudasFavor = 2725,
             TitansFavor = 2853,
             RubysGlimmer = 3873,
-            LuxSolarisReady = 3874;
+            LuxSolarisReady = 3874,
+            CrimsonStrikeReady = 4403;
     }
 
     public static class Debuffs
@@ -319,6 +320,34 @@ internal class SummonerLuxSolarisFeature : CustomCombo
         {
             if (HasEffect(SMN.Buffs.LuxSolarisReady))
                 return SMN.LuxSolaris;
+        }
+
+        return actionID;
+    }
+}
+
+internal class SummonerPrimalSummons : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SummonerPrimalFavorFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == SMN.SummonRuby || actionID == SMN.SummonIfrit || actionID == SMN.SummonIfrit2)
+        {
+            if (HasEffect(SMN.Buffs.IfritsFavor) || HasEffect(SMN.Buffs.CrimsonStrikeReady))
+                return OriginalHook(SMN.AstralFlow);
+        }
+
+        if (actionID == SMN.SummonEmerald || actionID == SMN.SummonGaruda || actionID == SMN.SummonGaruda2)
+        {
+            if (HasEffect(SMN.Buffs.GarudasFavor))
+                return OriginalHook(SMN.AstralFlow);
+        }
+
+        if (actionID == SMN.SummonTopaz || actionID == SMN.SummonTitan || actionID == SMN.SummonTitan2)
+        {
+            if (HasEffect(SMN.Buffs.TitansFavor))
+                return OriginalHook(SMN.AstralFlow);
         }
 
         return actionID;
