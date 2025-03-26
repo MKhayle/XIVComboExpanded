@@ -40,7 +40,7 @@
       $(AssemblySearchPaths);
       $(DalamudLibPath);
     </AssemblySearchPaths>
-    <AssemblyName>FFIXV_WAKEUP_CNT</AssemblyName>
+    <AssemblyName>XIVComboExpanded</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
