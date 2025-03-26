@@ -466,7 +466,7 @@ internal class SamuraiIkishoten : CustomCombo
                         return SAM.Shoha;
                 }
 
-                if (gauge.Kaeshi == Kaeshi.NAMIKIRI)
+                if (gauge.Kaeshi == Kaeshi.Namikiri)
                     return SAM.KaeshiNamikiri;
 
                 if (HasEffect(SAM.Buffs.OgiNamikiriReady))

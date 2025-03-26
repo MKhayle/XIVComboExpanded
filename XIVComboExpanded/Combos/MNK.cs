@@ -116,7 +116,7 @@ internal class MonkOpoCombo : CustomCombo
 
             if (IsEnabled(CustomComboPreset.MonkSTBalanceFeature))
             {
-                if (!gauge.BeastChakra.Contains(BeastChakra.NONE) && level >= MNK.Levels.MasterfulBlitz)
+                if (!gauge.BeastChakra.Contains(BeastChakra.None) && level >= MNK.Levels.MasterfulBlitz)
                     // Chakra actions
                     return OriginalHook(MNK.MasterfulBlitz);
             }
@@ -141,7 +141,7 @@ internal class MonkRaptorCombo : CustomCombo
 
             if (IsEnabled(CustomComboPreset.MonkSTBalanceFeature))
             {
-                if (!gauge.BeastChakra.Contains(BeastChakra.NONE) && level >= MNK.Levels.MasterfulBlitz)
+                if (!gauge.BeastChakra.Contains(BeastChakra.None) && level >= MNK.Levels.MasterfulBlitz)
                     // Chakra actions
                     return OriginalHook(MNK.MasterfulBlitz);
             }
@@ -166,12 +166,12 @@ internal class MonkCoeurlCombo : CustomCombo
 
             if (IsEnabled(CustomComboPreset.MonkSTBalanceFeature))
             {
-                if (!gauge.BeastChakra.Contains(BeastChakra.NONE) && level >= MNK.Levels.MasterfulBlitz)
+                if (!gauge.BeastChakra.Contains(BeastChakra.None) && level >= MNK.Levels.MasterfulBlitz)
                     // Chakra actions
                     return OriginalHook(MNK.MasterfulBlitz);
             }
 
-            if (gauge.CoeurlFury == 0 && level > MNK.Levels.Demolish)
+            if (gauge.CoeurlFury == 0 && level >= MNK.Levels.Demolish)
                 return MNK.Demolish;
         }
 
@@ -199,7 +199,7 @@ internal class MonkMonkeyMode : CustomCombo
             // Masterful Blitz
             if (IsEnabled(CustomComboPreset.MonkSTBalanceFeature))
             {
-                if (level >= MNK.Levels.MasterfulBlitz && !gauge.BeastChakra.Contains(BeastChakra.NONE))
+                if (level >= MNK.Levels.MasterfulBlitz && !gauge.BeastChakra.Contains(BeastChakra.None))
                     return OriginalHook(MNK.MasterfulBlitz);
             }
 
@@ -213,18 +213,18 @@ internal class MonkMonkeyMode : CustomCombo
                 // sequence can be aligned with raid buffs.  But this is monke mode, we're not exactly hyper-concerned
                 // with raid optimization.
                 if (level < MNK.Levels.EnhancedPerfectBalance ||
-                    gauge.Nadi.HasFlag(Nadi.SOLAR) || (!gauge.Nadi.HasFlag(Nadi.LUNAR) &&
+                    gauge.Nadi.HasFlag(Nadi.Solar) || (!gauge.Nadi.HasFlag(Nadi.Lunar) &&
                     (level < MNK.Levels.Brotherhood || HasEffect(MNK.Buffs.Brotherhood))))
                     return gauge.OpoOpoFury == 0 ? OriginalHook(MNK.DragonKick) : OriginalHook(MNK.Bootshine);
 
                 // Solar Nadi
-                if (!gauge.BeastChakra.Contains(BeastChakra.OPOOPO))
+                if (!gauge.BeastChakra.Contains(BeastChakra.OpoOpo))
                     return gauge.OpoOpoFury == 0 ? OriginalHook(MNK.DragonKick) : OriginalHook(MNK.Bootshine);
 
-                if (!gauge.BeastChakra.Contains(BeastChakra.RAPTOR))
+                if (!gauge.BeastChakra.Contains(BeastChakra.Raptor))
                     return gauge.RaptorFury == 0 ? OriginalHook(MNK.TwinSnakes) : OriginalHook(MNK.TrueStrike);
 
-                if (!gauge.BeastChakra.Contains(BeastChakra.COEURL))
+                if (!gauge.BeastChakra.Contains(BeastChakra.Coeurl))
                     return gauge.CoeurlFury == 0 ? OriginalHook(MNK.Demolish) : OriginalHook(MNK.SnapPunch);
             }
 
@@ -285,7 +285,7 @@ internal class MonkAoECombo : CustomCombo
             }
 
             // Blitz
-            if (level >= MNK.Levels.MasterfulBlitz && !gauge.BeastChakra.Contains(BeastChakra.NONE))
+            if (level >= MNK.Levels.MasterfulBlitz && !gauge.BeastChakra.Contains(BeastChakra.None))
                 return OriginalHook(MNK.MasterfulBlitz);
 
             if (level >= MNK.Levels.PerfectBalance && HasEffect(MNK.Buffs.PerfectBalance))
@@ -298,18 +298,18 @@ internal class MonkAoECombo : CustomCombo
                 // sequence can be aligned with raid buffs.  But this is monke mode, we're not exactly hyper-concerned
                 // with raid optimization.
                 if (level < MNK.Levels.EnhancedPerfectBalance ||
-                    gauge.Nadi.HasFlag(Nadi.SOLAR) || (!gauge.Nadi.HasFlag(Nadi.LUNAR) &&
+                    gauge.Nadi.HasFlag(Nadi.Solar) || (!gauge.Nadi.HasFlag(Nadi.Lunar) &&
                     (level < MNK.Levels.Brotherhood || HasEffect(MNK.Buffs.Brotherhood))))
                     return level >= MNK.Levels.ShadowOfTheDestroyer ? MNK.ShadowOfTheDestroyer : MNK.Rockbreaker;
 
                 // Solar Nadi
-                if (!gauge.BeastChakra.Contains(BeastChakra.OPOOPO))
+                if (!gauge.BeastChakra.Contains(BeastChakra.OpoOpo))
                     return OriginalHook(MNK.ArmOfTheDestroyer);
 
-                if (!gauge.BeastChakra.Contains(BeastChakra.RAPTOR))
+                if (!gauge.BeastChakra.Contains(BeastChakra.Raptor))
                     return OriginalHook(MNK.FourPointFury);
 
-                if (!gauge.BeastChakra.Contains(BeastChakra.COEURL))
+                if (!gauge.BeastChakra.Contains(BeastChakra.Coeurl))
                     return OriginalHook(MNK.Rockbreaker);
             }
 
@@ -350,7 +350,7 @@ internal class MonkPerfectBalance : CustomCombo
         {
             var gauge = GetJobGauge<MNKGauge>();
 
-            if (!gauge.BeastChakra.Contains(BeastChakra.NONE) && level >= MNK.Levels.MasterfulBlitz)
+            if (!gauge.BeastChakra.Contains(BeastChakra.None) && level >= MNK.Levels.MasterfulBlitz)
                 // Chakra actions
                 return OriginalHook(MNK.MasterfulBlitz);
         }

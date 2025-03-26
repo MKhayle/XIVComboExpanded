@@ -265,7 +265,7 @@ internal class BardBloodletter : CustomCombo
 
             if (IsEnabled(CustomComboPreset.BardExpiringPerfectBloodletterFeature))
             {
-                if (level >= BRD.Levels.PitchPerfect && gauge.Song == Song.WANDERER && gauge.Repertoire >= 1)
+                if (level >= BRD.Levels.PitchPerfect && gauge.Song == Song.Wanderer && gauge.Repertoire >= 1)
                 {
                     if (gauge.SongTimer <= 2500)
                         return BRD.PitchPerfect;
@@ -274,7 +274,7 @@ internal class BardBloodletter : CustomCombo
 
             if (IsEnabled(CustomComboPreset.BardPerfectBloodletterFeature))
             {
-                if (level >= BRD.Levels.PitchPerfect && gauge.Song == Song.WANDERER && gauge.Repertoire == 3)
+                if (level >= BRD.Levels.PitchPerfect && gauge.Song == Song.Wanderer && gauge.Repertoire == 3)
                     return BRD.PitchPerfect;
             }
 
@@ -319,7 +319,7 @@ internal class BardRainOfDeath : CustomCombo
 
             if (IsEnabled(CustomComboPreset.BardExpiringPerfectRainOfDeathFeature))
             {
-                if (level >= BRD.Levels.PitchPerfect && gauge.Song == Song.WANDERER && gauge.Repertoire >= 1)
+                if (level >= BRD.Levels.PitchPerfect && gauge.Song == Song.Wanderer && gauge.Repertoire >= 1)
                 {
                     if (gauge.SongTimer <= 2500)
                         return BRD.PitchPerfect;
@@ -328,7 +328,7 @@ internal class BardRainOfDeath : CustomCombo
 
             if (IsEnabled(CustomComboPreset.BardPerfectRainOfDeathFeature))
             {
-                if (level >= BRD.Levels.PitchPerfect && gauge.Song == Song.WANDERER && gauge.Repertoire == 3)
+                if (level >= BRD.Levels.PitchPerfect && gauge.Song == Song.Wanderer && gauge.Repertoire == 3)
                     return BRD.PitchPerfect;
             }
 
@@ -501,7 +501,7 @@ internal class BardMagesBallad : CustomCombo
 
             if (level >= BRD.Levels.WanderersMinuet)
             {
-                if (gauge.Song == Song.WANDERER && gauge.SongTimer >= remaining)
+                if (gauge.Song == Song.Wanderer && gauge.SongTimer >= remaining)
                     return BRD.WanderersMinuet;
 
                 if (IsCooldownUsable(BRD.WanderersMinuet))
@@ -510,7 +510,7 @@ internal class BardMagesBallad : CustomCombo
 
             if (level >= BRD.Levels.MagesBallad)
             {
-                if (gauge.Song == Song.MAGE && gauge.SongTimer >= remaining)
+                if (gauge.Song == Song.Mage && gauge.SongTimer >= remaining)
                     return BRD.MagesBallad;
 
                 if (IsCooldownUsable(BRD.MagesBallad))
@@ -519,7 +519,7 @@ internal class BardMagesBallad : CustomCombo
 
             if (level >= BRD.Levels.ArmysPaeon)
             {
-                if (gauge.Song == Song.ARMY && gauge.SongTimer >= remaining)
+                if (gauge.Song == Song.Army && gauge.SongTimer >= remaining)
                     return BRD.ArmysPaeon;
 
                 if (IsCooldownUsable(BRD.ArmysPaeon))

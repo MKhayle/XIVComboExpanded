@@ -167,7 +167,7 @@ internal class SummonerRuin : CustomCombo
 
             if (IsEnabled(CustomComboPreset.SummonerFurtherRuinFeature))
             {
-                if (level >= SMN.Levels.Ruin4 && gauge.SummonTimerRemaining == 0 && gauge.AttunmentTimerRemaining == 0 && HasEffect(SMN.Buffs.FurtherRuin))
+                if (level >= SMN.Levels.Ruin4 && gauge.SummonTimerRemaining == 0 && gauge.AttunementTimerRemaining == 0 && HasEffect(SMN.Buffs.FurtherRuin))
                     return SMN.Ruin4;
             }
         }
@@ -203,7 +203,7 @@ internal class SummonerOutburstTriDisaster : CustomCombo
 
             if (IsEnabled(CustomComboPreset.SummonerFurtherOutburstFeature))
             {
-                if (level >= SMN.Levels.Ruin4 && gauge.SummonTimerRemaining == 0 && gauge.AttunmentTimerRemaining == 0 && HasEffect(SMN.Buffs.FurtherRuin))
+                if (level >= SMN.Levels.Ruin4 && gauge.SummonTimerRemaining == 0 && gauge.AttunementTimerRemaining == 0 && HasEffect(SMN.Buffs.FurtherRuin))
                     return SMN.Ruin4;
             }
         }
@@ -230,14 +230,14 @@ internal class SummonerGemshinePreciousBrilliance : CustomCombo
 
             if (IsEnabled(CustomComboPreset.SummonerShinyEnkindleFeature))
             {
-                if (level >= SMN.Levels.EnkindleBahamut && gauge.SummonTimerRemaining > 0 && gauge.AttunmentTimerRemaining == 0)
+                if (level >= SMN.Levels.EnkindleBahamut && gauge.SummonTimerRemaining > 0 && gauge.AttunementTimerRemaining == 0)
                     // Rekindle
                     return OriginalHook(SMN.EnkindleBahamut);
             }
 
             if (IsEnabled(CustomComboPreset.SummonerFurtherShinyFeature))
             {
-                if (level >= SMN.Levels.Ruin4 && gauge.SummonTimerRemaining == 0 && gauge.AttunmentTimerRemaining == 0 && HasEffect(SMN.Buffs.FurtherRuin))
+                if (level >= SMN.Levels.Ruin4 && gauge.SummonTimerRemaining == 0 && gauge.AttunementTimerRemaining == 0 && HasEffect(SMN.Buffs.FurtherRuin))
                     return SMN.Ruin4;
             }
         }

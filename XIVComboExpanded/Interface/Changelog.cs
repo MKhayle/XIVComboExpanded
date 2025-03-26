@@ -13,6 +13,12 @@ namespace XIVComboExpanded.Interface
             return new Dictionary<string, string[]>()
                 {
                     {
+                        "v2.0.3.0",
+                        [
+                            "API 12 update.",
+                        ]
+                    },
+                    {
                         "v2.0.2.3",
                         [
                             "Fixed the theme failing imgui assertion when clicked repeatedly and crashing the game.",
