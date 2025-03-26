@@ -249,12 +249,13 @@ public enum CustomComboPreset
     [CustomComboInfo("Enochian Despair into Flare Star Feature", "Replace Fire 4 and Blizzard 4 with Flare Star when you have 6 astral soul and 0 mana, or when optimal.\n\nSince Despair refreshes Astral Fire, casting Flare Star afterwards is safer instead of cramming it with Fire 4s. Exceptions are during the Dawntrail opener, or manafont is used before casting Flare Star from the previous fire phase.", BLM.JobID)]
     BlackEnochianDespairFlareStarFeature = 2524,
 
-    [IconsCombo([BLM.Fire4, BLM.Blizzard4, UTL.ArrowLeft, BLM.Despair, UTL.Blank, BLM.Buffs.Firestarter, BLM.Fire3, UTL.Blank, BLM.Paradox, UTL.Blank, UTL.Clock])]
-    [SectionCombo("Single Target")]
-    [ParentCombo(BlackEnochianFeature)]
-    [AccessibilityCustomCombo]
-    [CustomComboInfo("Enochian Timer Feature", "Replace Fire 4 and Blizzard 4 with Despair, Fire 3 Proc, Paradox, or Blizzard 3 when Enochian is about to run out.", BLM.JobID)]
-    BlackEnochianTimerFeature = 2525,
+    // 7.2 graveyard
+    //[IconsCombo([BLM.Fire4, BLM.Blizzard4, UTL.ArrowLeft, BLM.Despair, UTL.Blank, BLM.Buffs.Firestarter, BLM.Fire3, UTL.Blank, BLM.Paradox, UTL.Blank, UTL.Clock])]
+    //[SectionCombo("Single Target")]
+    //[ParentCombo(BlackEnochianFeature)]
+    //[AccessibilityCustomCombo]
+    //[CustomComboInfo("Enochian Timer Feature", "Replace Fire 4 and Blizzard 4 with Despair, Fire 3 Proc, Paradox, or Blizzard 3 when Enochian is about to run out.", BLM.JobID)]
+    //BlackEnochianTimerFeature = 2525,
 
     [IconsCombo([BLM.Fire4, BLM.Blizzard4, UTL.Cross, UTL.ArrowLeft, BLM.Fire, BLM.Blizzard])]
     [SectionCombo("Single Target")]

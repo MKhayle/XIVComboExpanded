@@ -15,7 +15,10 @@ namespace XIVComboExpanded.Interface
                     {
                         "v2.0.3.0",
                         [
-                            "API 12 update.",
+                            "API 12 update!",
+                            "Fixed MNK's Coeurl feature not working at level 30.",
+                            "Removed BLM's Enochian feature.",
+                            "BLM will have more adjustments in the next updates."
                         ]
                     },
                     {
