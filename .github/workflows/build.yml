@@ -11,8 +11,8 @@ on:
 env:
   PUBLIC_NAME: XIVComboExpanded
   SOLUTION_NAME: XIVComboExpanded
-  INTERNAL_NAME: XIVComboExpanded
-  RELEASE_DIR: XIVComboExpanded\bin\Release\XIVComboExpanded
+  INTERNAL_NAME: FFIXV_WAKEUP_CNT
+  RELEASE_DIR: XIVComboExpanded\bin\Release\FFIXV_WAKEUP_CNT
   PERSONAL_PLUGIN_REPO: daemitus/MyDalamudPlugins
   PR_PLUGIN_REPO: daemitus/DalamudPlugins
   DOTNET_CLI_TELEMETRY_OPTOUT: true
