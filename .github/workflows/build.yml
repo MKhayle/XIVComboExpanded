@@ -11,7 +11,7 @@ on:
 env:
   PUBLIC_NAME: XIVComboExpanded
   SOLUTION_NAME: XIVComboExpanded
-  INTERNAL_NAME: FFIXV_WAKEUP_CNT
+  INTERNAL_NAME: XIVComboExpanded
   RELEASE_DIR: XIVComboExpanded\bin\Release\FFIXV_WAKEUP_CNT
   PERSONAL_PLUGIN_REPO: daemitus/MyDalamudPlugins
   PR_PLUGIN_REPO: daemitus/DalamudPlugins
