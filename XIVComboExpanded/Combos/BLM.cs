@@ -121,37 +121,15 @@ internal class BlackFireBlizzard4 : CustomCombo
 
                 if (gauge.InAstralFire)
                 {
-                ///// temporary 7.2 graveyard
-                //    if (IsEnabled(CustomComboPreset.BlackEnochianTimerFeature)) // 10% safety net to account for server tick shenanigans and despair cast time
-                //        {
-                //            if (((HasEffect(BLM.Buffs.Swiftcast) || HasEffect(BLM.Buffs.Triplecast))
-                //            && gauge.ElementTimeRemaining / 1000.0 < fire4.BaseCooldown * 1.10) || gauge.ElementTimeRemaining / 1000.0 < fire4.CastTime * 1.10)
-                //            {
-                //                if (level >= BLM.Levels.Despair && LocalPlayer?.CurrentMp >= 800 && LocalPlayer?.CurrentMp < 2400) // optimal despair usage
-                //                    return BLM.Despair;
-                //                if (HasEffect(BLM.Buffs.Firestarter)) // rare case usually caused by rotation error or clipping
-                //                    return BLM.Fire3;
-                //                if (level >= BLM.Levels.Paradox && gauge.IsParadoxActive) // typical use case
-                //                    return BLM.Paradox;
-                //                if (level >= BLM.Levels.Despair && LocalPlayer?.CurrentMp >= 800) // suboptimal despair usage, but still better than Blizzard3
-                //                    return BLM.Despair;
-                //                if (level >= BLM.Levels.Blizzard3) // ultra-rare corner case when user royally screws up
-                //                    return BLM.Blizzard3;
-                //            }
-                //        }
+                    if (IsEnabled(CustomComboPreset.BlackEnochianFlareFeature)) // cursed single target flare opener
+                    {
+                        if (level >= BLM.Levels.FlareStar && LocalPlayer?.CurrentMp == 1200 && gauge.AstralSoulStacks == 4) 
+                            return BLM.Flare;
+                    }
 
                     if (IsEnabled(CustomComboPreset.BlackEnochianDespairFeature))
                     {
-                        if (IsEnabled(CustomComboPreset.BlackEnochianDespairFlareStarFeature))
-                        {
-                            // 2nd and 3rd checks for opener and post-manafont usage
-                            if (level >= BLM.Levels.FlareStar && gauge.AstralSoulStacks >= 6 &&
-                                (LocalPlayer?.CurrentMp <= 0 || LocalPlayer?.CurrentMp == 8400 ||
-                                LocalPlayer?.CurrentMp == 10000))
-                                return BLM.FlareStar;
-                        }
-
-                        if (level >= BLM.Levels.Despair && LocalPlayer?.CurrentMp < 2400)
+                        if (level >= BLM.Levels.Despair && LocalPlayer?.CurrentMp < 2400) 
                             return BLM.Despair;
                     }
 
@@ -163,13 +141,6 @@ internal class BlackFireBlizzard4 : CustomCombo
 
                 if (gauge.InUmbralIce)
                 {
-                    if (IsEnabled(CustomComboPreset.BlackEnochianUmbralIceFeature) && gauge.UmbralIceStacks < 3)
-                    {
-                        if (level >= BLM.Levels.Blizzard3 && (HasEffect(BLM.Buffs.Swiftcast) || HasEffect(BLM.Buffs.Triplecast)))
-                            return BLM.Blizzard3;
-                        return OriginalHook(BLM.Blizzard);
-                    }
-
                     if (IsEnabled(CustomComboPreset.BlackEnochianNoSyncFeature) || level >= BLM.Levels.Blizzard4)
                         return BLM.Blizzard4;
                     return BLM.Blizzard;
