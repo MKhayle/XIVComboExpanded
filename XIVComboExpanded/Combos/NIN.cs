@@ -368,6 +368,10 @@ internal class NinjaDokumoriConsolidationCombo : CustomCombo
             {
                 return NIN.Meisui;
             }
+            else {
+                // Tenri Jindo
+                return OriginalHook(NIN.TenChiJin);
+            }
         }
 
         return actionID; // Default, don’t update LastActionID
