@@ -1,4 +1,3 @@
-using System;
 using Dalamud.Game.ClientState.JobGauge.Types;
 
 namespace XIVComboExpandedPlugin.Combos;
@@ -40,11 +39,7 @@ internal static class NIN
         Jin = 2263,
         TenMudra = 18805, // No-cooldown version that only appears during a Mudra cast, after the first symbol
         ChiMudra = 18806,
-        JinMudra = 18807,
-        TenChiJinFumaShuriken = 18873,
-        TenChiJinSuiton = 18877,
-        TenChiJinRaiton = 18875;
-
+        JinMudra = 18807;
     public static class Buffs
     {
         public const ushort
