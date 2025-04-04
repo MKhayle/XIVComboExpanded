@@ -1,3 +1,4 @@
+using System;
 using Dalamud.Game.ClientState.JobGauge.Types;
 
 namespace XIVComboExpandedPlugin.Combos;
@@ -40,9 +41,9 @@ internal static class NIN
         TenMudra = 18805, // No-cooldown version that only appears during a Mudra cast, after the first symbol
         ChiMudra = 18806,
         JinMudra = 18807,
-        FumaShuriken = 18873,
-        SuitonTen = 18877,
-        Raiton = 18875;
+        TenChiJinFumaShuriken = 18873,
+        TenChiJinSuiton = 18877,
+        TenChiJinRaiton = 18875;
 
     public static class Buffs
     {
@@ -325,58 +326,55 @@ internal class NinjaFrogLevelSync : CustomCombo
     }
 }
 
+internal class KassatsuTrickDream : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.NinjaDreamyTrickAttack;
+    protected override uint Invoke(uint actionID, uint lastComboActionID, float comboTime, byte level)
+    {
+        if (actionID == NIN.Kassatsu)
+        {
+            if (!IsCooldownUsable(NIN.Kassatsu) && HasEffect(NIN.Buffs.ShadowWalker))
+                return OriginalHook(NIN.TrickAttack);
+        }
+
+        if (actionID == NIN.Kassatsu && !IsCooldownUsable(NIN.Kassatsu) && !IsCooldownUsable(NIN.TrickAttack))
+            return NIN.DreamWithinADream;
+
+        return actionID;
+    }
+}
+
 internal class NinjaDokumoriConsolidationCombo : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.NinjaDokumoriConsolidationCombo;
-     uint count = 1; // Tracks Ten Chi Jin sequence: 1 = Fuma, 2 = Raiton, 3 = Suiton
-
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override uint Invoke(uint actionID, uint lastComboActionID, float comboTime, byte level)
     {
-        // Only trigger when Dokumori is on cooldown (forcing TCJ consolidation)
         if (actionID == NIN.Dokumori && !IsCooldownUsable(NIN.Dokumori))
         {
-            // If Ten Chi Jin is available and not yet active, use it
-            if (level >= NIN.Levels.TenChiJin && IsCooldownUsable(NIN.TenChiJin))
-            {
+            // Trigger Ten Chi Jin
+            if (level >= NIN.Levels.TenChiJin && IsCooldownUsable(NIN.TenChiJin) && !HasEffect(NIN.Buffs.TenChiJin))
                 return NIN.TenChiJin;
-            }
 
-            // If Ten Chi Jin buff is active, execute the ninjutsu sequence
-            if (level >= NIN.Levels.TenChiJin && HasEffect(NIN.Buffs.TenChiJin))
+            // TCJ sequence
+            // TODO - Find a way to get the mudra steps for ten chi jin consolidated also.
+            if (level >= NIN.Levels.TenChiJin && !IsCooldownUsable(NIN.TenChiJin) && HasEffect(NIN.Buffs.TenChiJin))
             {
-                if (IsCooldownUsable(NIN.FumaShuriken) && count == 1)
-                {
-                    count = 2; // Move to Raiton next
-                    return NIN.FumaShuriken;
-                }
-                if (IsCooldownUsable(NIN.Raiton) && count == 2)
-                {
-                    count = 3; // Move to Suiton next
-                    return NIN.Raiton;
-                }
-                if (IsCooldownUsable(NIN.SuitonTen) && count == 3)
-                {
-                    count = 1; // Reset after Suiton (sequence complete)
-                    return NIN.SuitonTen;
-                }
+               float tcj = FindEffect(NIN.Buffs.TenChiJin).RemainingTime;
+               if (tcj > 5)
+                return OriginalHook(NIN.Ten);
+               if (tcj > 4)
+                return OriginalHook(NIN.Chi);
+               if (tcj > 3)
+                return OriginalHook(NIN.Jin);
             }
 
-            // If Shadow Walker is up from Suiton, use Meisui
+            // Meisui
             if (IsCooldownUsable(NIN.Meisui) && HasEffect(NIN.Buffs.ShadowWalker))
             {
                 return NIN.Meisui;
             }
-
-            // Fallback to original TCJ if something goes wrong
-            return OriginalHook(NIN.TenChiJin);
         }
 
-        // Reset count only if the combo sequence breaks or Dokumori is usable again.
-        if (IsCooldownUsable(NIN.Dokumori))
-        {
-            count = 1; // Reset when Dokumori becomes usable again.
-        }
-
-        return actionID;
+        return actionID; // Default, don’t update LastActionID
     }
 }
