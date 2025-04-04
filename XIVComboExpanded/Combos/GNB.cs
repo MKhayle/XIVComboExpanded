@@ -313,6 +313,41 @@ internal class GunbreakerDemonSlaughter : CustomCombo
     }
 }
 
+internal class GunbreakerGnashingFangWithBlastingZone : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GunbreakerGnashingFangWithBlastingZoneCont;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == GNB.GnashingFang)
+        {
+            if (level >= GNB.Levels.Continuation)
+            {
+                if (HasEffect(GNB.Buffs.ReadyToGouge))
+                    return GNB.EyeGouge;
+
+                if (HasEffect(GNB.Buffs.ReadyToTear))
+                    return GNB.AbdomenTear;
+
+                if (HasEffect(GNB.Buffs.ReadyToRip))
+                {
+                    if (IsCooldownUsable(GNB.DangerZone))
+                    {
+                        return OriginalHook(GNB.DangerZone);
+                    }
+
+                    return GNB.JugularRip;
+                }
+            }
+
+            // Gnashing Fang > Savage Claw > Wicked Talon
+            return OriginalHook(GNB.GnashingFang);
+        }
+
+        return actionID;
+    }
+}
+
 internal class GunbreakerNoMercy : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GnbAny;

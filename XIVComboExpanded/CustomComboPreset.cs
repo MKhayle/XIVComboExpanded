@@ -910,7 +910,15 @@ public enum CustomComboPreset
     [SectionCombo("Single Target")]
     [IconsCombo([GNB.EyeGouge, UTL.ArrowLeft, GNB.WickedTalon, UTL.ArrowLeft, GNB.AbdomenTear, UTL.ArrowLeft, GNB.SavageClaw, UTL.ArrowLeft, GNB.JugularRip, UTL.ArrowLeft, GNB.GnashingFang])]
     [CustomComboInfo("Gnashing Fang Continuation", "Replace Gnashing Fang with Continuation moves when appropriate.", GNB.JobID)]
+    [ConflictingCombos(GunbreakerGnashingFangWithBlastingZoneCont)]
     GunbreakerGnashingFangCont = 3702,
+
+    [SectionCombo("Single Target")]
+    [IconsCombo([GNB.DangerZone, UTL.ArrowLeft, GNB.GnashingFang])]
+    [ExpandedCustomCombo]
+    [ConflictingCombos(GunbreakerGnashingFangCont)]
+    [CustomComboInfo("Gnashing Fang Continuation with Danger/Blasting Zone", "Replace Gnashing Fang with Continuation moves when appropriate like with Gnashing Fang Continuation, but allow for danger zone to be weaved in.", GNB.JobID)]
+    GunbreakerGnashingFangWithBlastingZoneCont = 3729,
 
     [SectionCombo("Single Target")]
     [IconsCombo([GNB.BurstStrike, UTL.ArrowLeft, GNB.GnashingFang])]
@@ -1239,6 +1247,11 @@ public enum CustomComboPreset
     #endregion
     // ====================================================================================
     #region NINJA
+
+    [IconsCombo([NIN.Dokumori, UTL.ArrowLeft, NIN.TenChiJin, UTL.ArrowLeft, NIN.Meisui])]
+    [SectionCombo("Ninjutsu features")]
+    [CustomComboInfo("Dokumori Consolidation Feature", "Reoka. 2", NIN.JobID)]
+    NinjaDokumoriConsolidationCombo = 3025,
 
     [IconsCombo([NIN.AeolianEdge, UTL.ArrowLeft, NIN.GustSlash, UTL.ArrowLeft, NIN.SpinningEdge])]
     [SectionCombo("Single Target")]
