@@ -13,6 +13,14 @@ namespace XIVComboExpanded.Interface
             return new Dictionary<string, string[]>()
                 {
                     {
+                        "v2.0.4.0",
+                        [
+                            "PCT: Several new combo features, especially around Rainbow Drip and Comet in Black.",
+                            "PCT: Reversed the order of the Automatic Subtractive features.  The parent combo now uses it as soon as available, the child combo only when it would overcap or would be free.  Check your enabled PCT combos.",
+                            "PCT: Automatic Subtractive and Rainbow Autocast now properly work with the AoE spell chains.",
+                        ]
+                    },
+                    {
                         "v2.0.3.0",
                         [
                             "API 12 update!",
