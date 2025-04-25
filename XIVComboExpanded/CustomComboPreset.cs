@@ -171,12 +171,12 @@ public enum CustomComboPreset
 
     [SectionCombo("Draw features")]
     [IconsCombo([AST.Play1, UTL.ArrowLeft, AST.AstralDraw, AST.UmbralDraw])]
-    [CustomComboInfo("Play I to Astral/Umbral Draw", "Replace Play I with Astral/Umbral Draw when no Balance/Spear is drawn and you can draw.", AST.JobID)]
+    [CustomComboInfo("Play I to Astral/Umbral Draw", "Replace Play I with Astral/Umbral Draw when no Balance/Spear is drawn.", AST.JobID)]
     AstrologianPlay1DrawFeature = 3329,
 
     [SectionCombo("Draw features")]
     [IconsCombo([AST.Play2, UTL.ArrowLeft, AST.AstralDraw, AST.UmbralDraw])]
-    [CustomComboInfo("Play II to Astral/Umbral Draw", "Replace Play II with Astral/Umbral Draw when no Arrow/Bole is drawn and you can draw.", AST.JobID)]
+    [CustomComboInfo("Play II to Astral/Umbral Draw", "Replace Play II with Astral/Umbral Draw when no Arrow/Bole is drawn.", AST.JobID)]
     AstrologianPlay2DrawFeature = 3330,
 
     [SectionCombo("Draw features")]
@@ -199,7 +199,7 @@ public enum CustomComboPreset
     [IconsCombo([AST.Malefic, UTL.ArrowLeft, AST.AstralDraw, AST.UmbralDraw, UTL.Blank, UTL.Clock, AST.Play1])]
     [ParentCombo(AstrologianMaleficDrawFeature)]
     [ExpandedCustomCombo]
-    [CustomComboInfo("Play 1 override", "Replace Malefic with Astral/Umbral when Play I isn't drawn yet, even if there are remaining other cards.", AST.JobID)]
+    [CustomComboInfo("Play 1 override", "Replace Malefic with Astral/Umbral Draw when Play I isn't drawn yet, even if there are remaining other cards.", AST.JobID)]
     AstrologianDraw1Feature = 3321,
 
     [SectionCombo("Draw features")]
