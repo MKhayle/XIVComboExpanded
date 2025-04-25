@@ -151,9 +151,9 @@ internal class AstrologianGravity : CustomCombo
     }
 }
 
-internal class AstrologianPlay : CustomCombo
+internal class AstrologianPlay1Draw : CustomCombo
 {
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstrologianPlayDrawFeature;
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstrologianPlay1DrawFeature;
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
@@ -162,11 +162,47 @@ internal class AstrologianPlay : CustomCombo
         if (OriginalHook(actionID) == AST.Play1 && IsOriginal(AST.Play1))
             return gauge.ActiveDraw == DrawType.Astral ? OriginalHook(AST.AstralDraw) : OriginalHook(AST.UmbralDraw);
 
+        return actionID;
+    }
+}
+
+internal class AstrologianPlay2Draw : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstrologianPlay2DrawFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        var gauge = GetJobGauge<ASTGauge>();
+
         if (OriginalHook(actionID) == AST.Play2 && IsOriginal(AST.Play2))
             return gauge.ActiveDraw == DrawType.Astral ? OriginalHook(AST.AstralDraw) : OriginalHook(AST.UmbralDraw);
 
+        return actionID;
+    }
+}
+
+internal class AstrologianPlay3Draw : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstrologianPlay3DrawFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        var gauge = GetJobGauge<ASTGauge>();
+
         if (OriginalHook(actionID) == AST.Play3 && IsOriginal(AST.Play3))
             return gauge.ActiveDraw == DrawType.Astral ? OriginalHook(AST.AstralDraw) : OriginalHook(AST.UmbralDraw);
+
+        return actionID;
+    }
+}
+
+internal class AstrologianMinorArcanaDraw : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstrologianMinorArcanaDrawFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        var gauge = GetJobGauge<ASTGauge>();
 
         if (OriginalHook(actionID) == AST.MinorArcanaDT && IsOriginal(AST.MinorArcanaDT))
             return gauge.ActiveDraw == DrawType.Astral ? OriginalHook(AST.AstralDraw) : OriginalHook(AST.UmbralDraw);
