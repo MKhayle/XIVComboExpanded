@@ -433,7 +433,7 @@ internal class RedMageEmbolden : CustomCombo
                     return RDM.Manafication;
                 if (HasEffect(RDM.Buffs.ThornedFlourish))
                     return RDM.ViceOfThorns;
-                if (HasEffect(RDM.Buffs.PrefulgenceReady) || HasEffect(RDM.Buffs.Manafication))
+                if (HasEffect(RDM.Buffs.PrefulgenceReady) || (level >= RDM.Levels.Prefulgence && HasEffect(RDM.Buffs.Manafication)))
                     return RDM.Prefulgence;
             }
         }
