@@ -1936,10 +1936,10 @@ public enum CustomComboPreset
     [CustomComboInfo("Contre Sixte / Fleche Feature", "Replace Contre Sixte and Fleche with whichever is available.", RDM.JobID)]
     RedMageContreFlecheFeature = 3508,
 
-    [IconsCombo([RDM.Embolden, UTL.ArrowLeft, RDM.Manafication, UTL.Blank, RDM.Embolden, UTL.Clock])]
+    [IconsCombo([RDM.Embolden, UTL.ArrowLeft, RDM.Manafication, UTL.ArrowLeft, RDM.ViceOfThorns, UTL.ArrowLeft, RDM.Prefulgence, UTL.Blank, RDM.Embolden, UTL.Clock])]
     [SectionCombo("Abilities features")]
     [ExpandedCustomCombo]
-    [CustomComboInfo("Embolden to Manafication", "Replace Embolden with Manafication if the former is on cooldown and the latter is not.", RDM.JobID)]
+    [CustomComboInfo("Embolden to Manafication", "Replace Embolden with Manafication if the former is on cooldown and the latter is not, then becomes Vice of Thorns and Prefulgence when readied or soon to be readied.", RDM.JobID)]
     RedMageEmboldenFeature = 3510,
 
     [IconsCombo([RDM.Acceleration, UTL.ArrowLeft, RDM.GrandImpact])]
