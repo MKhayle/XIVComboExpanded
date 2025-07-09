@@ -48,6 +48,7 @@ internal static class RDM
             VerfireReady = 1234,
             VerstoneReady = 1235,
             Acceleration = 1238,
+            Manafication = 1239,
             Dualcast = 1249,
             LostChainspell = 2560,
             ThornedFlourish = 3876,
@@ -426,8 +427,15 @@ internal class RedMageEmbolden : CustomCombo
     {
         if (actionID == RDM.Embolden)
         {
-            if (level >= RDM.Levels.Manafication && IsCooldownUsable(RDM.Manafication) && !IsCooldownUsable(RDM.Embolden))
-                return RDM.Manafication;
+            if (level >= RDM.Levels.Manafication && !IsCooldownUsable(RDM.Embolden))
+            {
+                if (IsCooldownUsable(RDM.Manafication))
+                    return RDM.Manafication;
+                if (HasEffect(RDM.Buffs.ThornedFlourish))
+                    return RDM.ViceOfThorns;
+                if (HasEffect(RDM.Buffs.PrefulgenceReady) || HasEffect(RDM.Buffs.Manafication))
+                    return RDM.Prefulgence;
+            }
         }
 
         return actionID;
