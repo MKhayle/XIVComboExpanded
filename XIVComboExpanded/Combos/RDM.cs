@@ -429,7 +429,7 @@ internal class RedMageEmbolden : CustomCombo
         {
             if (level >= RDM.Levels.Manafication && !IsCooldownUsable(RDM.Embolden))
             {
-                if (IsCooldownUsable(RDM.Manafication))
+                if (IsCooldownUsable(RDM.Manafication) && InCombat())
                     return RDM.Manafication;
                 if (HasEffect(RDM.Buffs.ThornedFlourish))
                     return RDM.ViceOfThorns;
