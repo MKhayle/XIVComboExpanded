@@ -1942,11 +1942,11 @@ public enum CustomComboPreset
     [CustomComboInfo("Embolden to Manafication", "Replace Embolden with Manafication if the former is on cooldown and the latter is not, then Vice of Thorns and Prefulgence when readied.", RDM.JobID)]
     RedMageEmboldenFeature = 3510,
 
-    [IconsCombo([RDM.ViceOfThorns, UTL.ArrowLeft, RDM.Prefulgence])]
+    [IconsCombo([RDM.Embolden, UTL.ArrowLeft, RDM.Prefulgence])]
     [SectionCombo("Abilities features")]
     [ParentCombo(RedMageEmboldenFeature)]
     [ExpandedCustomCombo]
-    [CustomComboInfo("Combo directly from Vice of Thorns to Prefulgence", "Combo directly from Vice of Thorns to Prefulgence while still consuming Manafication stacks. No functional difference, but prevents icon reverting back to Embolden when Prefulgence will be used next.", RDM.JobID)]
+    [CustomComboInfo("Combo directly from Vice of Thorns to Prefulgence", "Replace Embolden with Prefulgence even when it isn't yet usable, as long as Vice of Thorns has been used and Manafication is still active. No functional difference, but prevents icon reverting back to Embolden when Prefulgence will be used next.", RDM.JobID)]
     RedMageManaficationPrefulgenceOverride = 3524,
 
     [IconsCombo([RDM.Acceleration, UTL.ArrowLeft, RDM.GrandImpact])]
