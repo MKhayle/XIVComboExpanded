@@ -6,6 +6,6 @@
     "RepoUrl": "https://github.com/daemitus/XIVComboPlugin",
     "IconUrl": "https://raw.githubusercontent.com/daemitus/XIVComboPlugin/master/res/icon.png",
     "ImageUrls": [],
-    "DalamudApiLevel": 12,
+    "DalamudApiLevel": 13,
     "Tags": ["combo", "xivcombo", "expanded", "pcombo"]
 }
