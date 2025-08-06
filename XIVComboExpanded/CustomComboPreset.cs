@@ -1488,18 +1488,18 @@ public enum CustomComboPreset
     [CustomComboInfo("Subtractive AoE Combo", "Replace Blizzard II in Cyan and its combo chain with Fire II in Red and its combo chain when Subtractive Palette is not active.", PCT.JobID)]
     PictomancerSubtractiveAoECombo = 4202,
 
-    [IconsCombo([PCT.FireRedST, UTL.ArrowLeft, PCT.SubstractivePalette, UTL.Blank, UTL.Blank, UTL.Danger])]
+    [IconsCombo([PCT.FireRedST, UTL.ArrowLeft, PCT.SubstractivePalette, UTL.Blank, UTL.Blank, UTL.Idea])]
     [SectionCombo("Substractive")]
-    [ExpandedCustomCombo]
-    [CustomComboInfo("Don't overcap Subtractive", "Replace Fire in Red and Fire II in Red, and their combo chains, with Subtractive Palette if the next cast in the chain would overcap the Palette Gauge.", PCT.JobID)]
-    PictomancerSubtractiveAutoCombo = 4205,
+    [AccessibilityCustomCombo]
+    [CustomComboInfo("Subtractive Autocast", "Replace Fire in Red and Fire II in Red, and their combo chains, with Subtractive Palette whenever it is usable.", PCT.JobID)]
+    PictomancerSubtractiveAutoCombo = 4221,
 
     [IconsCombo([PCT.FireRedST, UTL.ArrowLeft, PCT.SubstractivePalette, UTL.Blank, PCT.Buffs.SubstractivePalette, UTL.Checkmark])]
     [SectionCombo("Substractive")]
-    [AccessibilityCustomCombo]
-    [ParentCombo(CustomComboPreset.PictomancerSubtractiveAutoCombo)]
-    [CustomComboInfo("Subtractive Early Autocast", "Do it as soon as you reach 50 Palette gauge or you are under the effect of Substractive Palette Ready instead.", PCT.JobID)]
-    PictomancerSubtractiveEarlyAutoCombo = 4221,
+    [ParentCombo(PictomancerSubtractiveAutoCombo)]
+    [SecretCustomCombo]
+    [CustomComboInfo("Subtractive Overcap-only", "Only replace with Subtractive Palette if the next cast in the chain would overcap the Palette Gauge or if you have Subtractive Palette Ready from Starry Muse.\n\nNOTE: This is intended to allow more flexibility for when Subtractive Pallet is used, due to the greater demand for stationary casting while it is active.  It is recommended to also have Subtractive Pallet seperately on your hotbars, and to use it manually whenever it makes sense, with this feature simply acting as a guard against Palette waste.", PCT.JobID)]
+    PictomancerSubtractiveOvercap = 4205,
 
     [IconsCombo([PCT.CreatureMotif, UTL.ArrowLeft, PCT.LivingMuse, UTL.Blank, PCT.PomMuse, PCT.WingedMuse, PCT.ClawedMuse, PCT.FangedMuse, UTL.Checkmark])]
     [SectionCombo("Muses & Motifs")]
@@ -1512,11 +1512,24 @@ public enum CustomComboPreset
     [CustomComboInfo("Creature Muse/Mog of the Ages Combo", "Also replace Creature Motifs with Mog of the Ages and Retribution of the Madeen when they are usable.", PCT.JobID)]
     PictomancerCreatureMogCombo = 4207,
 
+    [IconsCombo([PCT.MogOftheAges, PCT.Retribution, UTL.Blank, UTL.Danger])]
+    [SectionCombo("Muses & Motifs")]
+    [ParentCombo(PictomancerCreatureMogCombo)]
+    [CustomComboInfo("Muse/Mog of the Ages only for overcap", "Only replace Creature Motifs with Mog of the Ages and Retribution of the Madeen when your creature canvas is painted and your next Creature Muse cast would overwrite the Moogle or Madeen, rather than as soon as Moogle/Madeen is available, to allow better pooling for burst windows.", PCT.JobID)]
+    PictomancerCreatureMogOvercapCombo = 4223,
+
     [IconsCombo([PCT.FireRedST, PCT.FireRedAoE, UTL.ArrowLeft, PCT.MogOftheAges, PCT.Retribution, UTL.Blank, PCT.MogOftheAges, PCT.Retribution, UTL.Checkmark])]
     [SectionCombo("Muses & Motifs")]
     [AccessibilityCustomCombo]
-    [CustomComboInfo("Mog of the Ages Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Mog of the Ages and Retribution of the Madeen when they are usable.", PCT.JobID)]
+    [CustomComboInfo("Mog of the Ages Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Mog of the Ages and Retribution of the Madeen when they are usable.\n\nNOTE: This has a high chance of clipping your GCD.", PCT.JobID)]
     PictomancerAutoMogCombo = 4220,
+
+    [IconsCombo([PCT.MogOftheAges, PCT.Retribution, UTL.Blank, UTL.Danger])]
+    [SectionCombo("Muses & Motifs")]
+    [AccessibilityCustomCombo]
+    [ParentCombo(PictomancerAutoMogCombo)]
+    [CustomComboInfo("Mog of the Ages Autocast only for overcap", "Only the main spell combo chains with Mog of the Ages and Retribution of the Madeen when your creature canvas is painted and your next Creature Muse cast would overwrite the Moogle or Madeen, rather than as soon as Moogle/Madeen are available, to allow better pooling for burst windows, and reduces the likelihood that the autocast will clip your GCD.", PCT.JobID)]
+    PictomancerAutoMogOvercapCombo = 4229,
 
     [IconsCombo([PCT.WeaponMotif, UTL.ArrowLeft, PCT.StrikingMuse, UTL.Blank, PCT.HammerMotif, UTL.Checkmark])]
     [SectionCombo("Muses & Motifs")]
@@ -1539,47 +1552,78 @@ public enum CustomComboPreset
     PictomancerLandscapePrismCombo = 4211,
 
     [IconsCombo([PCT.FireRedST, UTL.ArrowLeft, PCT.StarryMuse, UTL.Blank, PCT.Buffs.StarPrismReady, UTL.Checkmark])]
-    [SectionCombo("Muses & Motifs")]
+    [SectionCombo("Miscellaneous")]
     [AccessibilityCustomCombo]
-    [CustomComboInfo("Star Prism Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Star Prism when you have Star Prism Ready.", PCT.JobID)]
+    [CustomComboInfo("Star Prism Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Star Prism when you have Star Prism Ready.  Has priority over Comet, if enabled along with the Automatic Comet feature.  Also has priority over the Subtractive Pallet combo by default.", PCT.JobID)]
     PictomancerStarPrismAutoCombo = 4214,
 
-    [IconsCombo([PCT.HolyWhite, UTL.ArrowLeft, PCT.CometBlack, UTL.Blank, PCT.CometBlack, UTL.Checkmark])]
-    [SectionCombo("Holy Comet")]
-    [CustomComboInfo("Holy Comet Combo", "Replace Holy in White with Comet in Black when usable.", PCT.JobID)]
-    PictomancerHolyCometCombo = 4203,
-
-    [IconsCombo([PCT.HolyWhite, UTL.ArrowLeft, PCT.RainbowDrip, UTL.Blank, PCT.Buffs.RainbowReady, UTL.Checkmark])]
-    [SectionCombo("Holy Comet")]
-    [ExpandedCustomCombo]
-    [ParentCombo(PictomancerHolyCometCombo)]
-    [CustomComboInfo("Rainbow Holy Combo", "Replace Holy in White with Rainbow Drip when under the effect of Rainbow Drip Ready (has priority over Comet in Black and Hammer Stamp, if applicable).", PCT.JobID)]
-    PictomancerRainbowHolyCombo = 4215,
-
-    [IconsCombo([PCT.FireRedST, PCT.BlizzardCyanST, UTL.ArrowLeft, PCT.HolyWhite, UTL.Blank, PCT.HolyWhite, UTL.Danger])]
-    [SectionCombo("Holy Comet")]
-    [AccessibilityCustomCombo]
-    [CustomComboInfo("Holy Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Holy or Comet if the next cast would overcap the Paint Gauge.", PCT.JobID)]
-    PictomancerHolyAutoCombo = 4204,
+    [IconsCombo([PCT.SubstractivePalette, UTL.ArrowUp, PCT.StarPrism])]
+    [SectionCombo("Miscellaneous")]
+    [SecretCustomCombo]
+    [ParentCombo(PictomancerStarPrismAutoCombo)]
+    [CustomComboInfo("Star Prism after Subtractive", "Use Star Prism only if Subtractive Pallet is not currently active.  If enabled with Automatic Comet, Star Prism will be used before Comet in Black.  If enabled with Subtractive Autocast, the free Subtractive Pallet from Starry Muse will be activated and consumed before Star Prism is used.\n\nNOTE: There is a small delay on buffs like Subtractive Spectrum registering.  If you're spamming your main combo spells immediately after using Starry Muse, there's a good chance you'll still cast Star Prism instead of Subtractive first.", PCT.JobID)]
+    PictomancerStarPrismAfterSubtractiveFeature = 4226,
 
     [IconsCombo([PCT.FireRedST, UTL.ArrowLeft, PCT.RainbowDrip, UTL.Blank, PCT.Buffs.RainbowReady, UTL.Checkmark])]
-    [SectionCombo("Rainbow Drip")]
+    [SectionCombo("Miscellaneous")]
     [AccessibilityCustomCombo]
     [CustomComboInfo("Rainbow Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Rainbow Drip when you have Rainbow Drip Ready.", PCT.JobID)]
     PictomancerRainbowAutoCombo = 4213,
 
-    [IconsCombo([PCT.FireRedST, UTL.ArrowLeft, PCT.RainbowDrip, UTL.Blank, PCT.RainbowDrip, UTL.OutOfBattle])]
-    [SectionCombo("Rainbow Drip")]
-    [SecretCustomCombo]
-    [CustomComboInfo("Rainbow Drip Starter", "Replace Fire in Red & Fire in Red II with Rainbow Drip when out of combat.", PCT.JobID)]
-    PictomancerRainbowStarter = 4216,
-
-    [IconsCombo([PCT.HolyWhite, UTL.ArrowLeft, PCT.HammerStamp, PCT.HammerBrush, PCT.PolishingHammer, UTL.Blank, PCT.Buffs.HammerReady, UTL.Checkmark])]
-    [SectionCombo("Holy Hammer")]
+    [IconsCombo([PCT.FireRedST, UTL.ArrowLeft, PCT.RainbowDrip, UTL.Blank, UTL.Blank, UTL.OutOfBattle])]
+    [SectionCombo("Miscellaneous")]
     [ExpandedCustomCombo]
-    [ParentCombo(PictomancerHolyCometCombo)]
-    [CustomComboInfo("Holy Hammer Combo", "Replace Holy in White with Hammer Brush and its combo chain when they are usable (has priority over Comet in Black).", PCT.JobID)]
+    [CustomComboInfo("Rainbow Drip Combo Starter", "Replace Fire in Red & Fire in Red II with Rainbow Drip when out of combat.\n\nThis is intended to allow a pre-pull Rainbow Drip cast, but can seriously interfere with initial casts if you are not given a pull timer, as you'll need to enter combo in some other way before you're able to use normal combo casts.  Generally, this is not recommended, even if you're using Rainbow Autocast above.", PCT.JobID)]
+    PictomancerRainbowStarterCombo = 4216,
+
+    [IconsCombo([PCT.HolyWhite, UTL.ArrowLeft, PCT.RainbowDrip, UTL.Blank, UTL.Blank, UTL.OutOfBattle])]
+    [SectionCombo("Miscellaneous")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Rainbow Drip Holy Starter", "Replace Holy with Rainbow Drip when out of combat and at 0 Paint charges.\n\nThis is an alternative to the Rainbow Drip Combo Starter that does not interfere with normal combo casts (if not given a pull timer or someone pulls early).  Since it only replaces Holy when at 0 Paint charges, this is more narrowly focused on a prepull cast prior to a boss in a trial or raid, and should interfere less with other circumstances where you're not yet in combat but should not be precasting Rainbow Drip.", PCT.JobID)]
+    PictomancerRainbowStarterHoly = 4227,
+
+    [IconsCombo([PCT.HolyWhite, UTL.ArrowLeft, PCT.CometBlack, UTL.Blank, PCT.CometBlack, UTL.Checkmark])]
+    [SectionCombo("Holy/Comet")]
+    [CustomComboInfo("Holy Comet Combo", "Replace Holy in White with Comet in Black when usable.", PCT.JobID)]
+    PictomancerHolyCometCombo = 4203,
+
+    [IconsCombo([PCT.HolyWhite, UTL.ArrowLeft, PCT.RainbowDrip, UTL.Blank, PCT.Buffs.RainbowReady, UTL.Checkmark])]
+    [SectionCombo("Holy/Comet")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Rainbow Holy Combo", "Replace Holy in White with Rainbow Drip when under the effect of Rainbow Bright.  Holy/Comet will be used first if Holy Autocast is enabled and you have 5 paint charges.", PCT.JobID)]
+    PictomancerRainbowHolyCombo = 4215,
+
+    [IconsCombo([PCT.HolyWhite, UTL.ArrowLeft, PCT.HammerStamp, UTL.Blank, PCT.Buffs.HammerReady, UTL.Checkmark])]
+    [SectionCombo("Holy/Comet")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Hammer Holy Combo", "Replace Holy in White with Hammer Brush and its combo chain when they are Hammer Ready is active.  If selected with Holy Comet Combo or Rainbow Holy Combo, the Hammer combo has priority due to dealing more average damage per GCD.  Note that this will not use Striking Muse automatically, it will only use the Hammer Combo if Striking Muse has already been activated.", PCT.JobID)]
     PictomancerHolyHammerCombo = 4217,
+
+    [IconsCombo([PCT.FireRedST, PCT.BlizzardCyanST, UTL.ArrowLeft, PCT.HolyWhite, UTL.Blank, UTL.Idea, UTL.Danger])]
+    [SectionCombo("Holy/Comet")]
+    [AccessibilityCustomCombo]
+    [CustomComboInfo("Holy Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Holy (or Comet) if the next cast would overcap the Paint Gauge.\nThis is not recommended, as Holy is a small DPS loss versus continuing to cast your normal combos, and should generally be saved for movement instead.", PCT.JobID)]
+    PictomancerAutoHolyCombo = 4204,
+
+    [IconsCombo([PCT.FireRedST, PCT.BlizzardCyanST, UTL.ArrowLeft, PCT.CometBlack, UTL.Blank, UTL.Blank, UTL.Idea])]
+    [SectionCombo("Holy/Comet")]
+    [AccessibilityCustomCombo]
+    [CustomComboInfo("Comet Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Comet whenever it is available.\n\nNOTE: This will ensure you do not lose usages of Comet by forgetting about it, but also prevents holding Comet for movement after using Subtractive Palette, which can be a small loss due to potentially having to use Holy to cover that movement instead.", PCT.JobID)]
+    PictomancerAutoCometFeature = 4222,
+
+    [IconsCombo([PCT.FireRedST, PCT.BlizzardCyanST, UTL.ArrowLeft, PCT.CometBlack, UTL.Blank, PCT.Buffs.SubstractivePalette, UTL.Cross])]
+    [SectionCombo("Holy/Comet")]
+    [ParentCombo(PictomancerAutoCometFeature)]
+    [SecretCustomCombo]
+    [CustomComboInfo("Auto-Comet after Subtractive", "Automatically use Comet only after using the 3 Subtractive charges from Subtractive Palette.\n\nNOTE: This allows Comet to be used manually to cover movement during the Subtractive combo, while still avoiding forgetting about it.  Note that since Subractive Palette can be used again as soon as the Subtractive combo has been completed, you CAN overwrite and waste Comet if you immediately use Subtractive Palette again after finishing the prior combo and before using the Comet from that prior combo.", PCT.JobID)]
+    PictomancerCometAfterSubtractive = 4224,
+
+    [IconsCombo([PCT.FireRedST, PCT.BlizzardCyanST, UTL.ArrowLeft, PCT.CometBlack, UTL.Blank, PCT.StarryMuse, UTL.Checkmark])]
+    [SectionCombo("Holy/Comet")]
+    [ParentCombo(PictomancerAutoCometFeature)]
+    [SecretCustomCombo]
+    [CustomComboInfo("Auto-Comet only during Starry", "Automatically use Comet only while Inspiration from Starry Muse is active\n\nNOTE: This prevents forgetting about Comet during the important Starry Muse cast sequence, while otherwise leaving it entirely up to the player to use or waste Comet.", PCT.JobID)]
+    PictomancerCometStarryOnly = 4228,
 
     #endregion
     // ====================================================================================
