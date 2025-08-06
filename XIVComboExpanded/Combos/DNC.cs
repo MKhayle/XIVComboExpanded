@@ -172,6 +172,18 @@ internal class DancerStandardStepTechnicalStep : CustomCombo
         {
             var gauge = GetJobGauge<DNCGauge>();
 
+            if (level >= DNC.Levels.StandardStep && gauge.IsDancing)
+            {
+                if (gauge.CompletedSteps < 2 && HasEffect(DNC.Buffs.StandardStep))
+                    return gauge.NextStep;
+
+                if (gauge.CompletedSteps < 4 && HasEffect(DNC.Buffs.TechnicalStep) &&
+                    IsEnabled(CustomComboPreset.DancerCombinedStandardStepTechnicalStep))
+                    return gauge.NextStep;
+
+                return OriginalHook(DNC.StandardStep);
+            }
+
             if (IsEnabled(CustomComboPreset.DancerPartnerFeature) && level >= DNC.Levels.ClosedPosition && (!HasEffect(DNC.Buffs.ClosedPosition)))
             {
                 if (IsEnabled(CustomComboPreset.DancerChocoboPartnerFeature) && HasCompanionPresent())
@@ -183,73 +195,44 @@ internal class DancerStandardStepTechnicalStep : CustomCombo
                     return DNC.ClosedPosition;
             }
 
-            if (level >= DNC.Levels.StandardStep && gauge.IsDancing && HasEffect(DNC.Buffs.StandardStep))
+            if (IsEnabled(CustomComboPreset.DancerLastDanceFeature) &&
+                level >= DNC.Levels.LastDance && HasEffect(DNC.Buffs.LastDanceReady))
             {
-                if (gauge.CompletedSteps < 2)
-                    return gauge.NextStep;
+                if (IsEnabled(CustomComboPreset.DancerFinishingMovePriorityFeature) &&
+                    HasEffect(DNC.Buffs.FinishingMoveReady) && level >= DNC.Levels.FinishingMove)
+                {
+                        return DNC.FinishingMove;
+                }
 
-                return OriginalHook(DNC.StandardStep);
+                return DNC.LastDance;
             }
-
-            return DNC.StandardStep;
         }
 
         if (actionID == DNC.TechnicalStep)
         {
             var gauge = GetJobGauge<DNCGauge>();
 
-            if (IsEnabled(CustomComboPreset.DancerPartnerFeature) && level >= DNC.Levels.ClosedPosition && (!HasEffect(DNC.Buffs.ClosedPosition)))
-            {
-                if (IsEnabled(CustomComboPreset.DancerChocoboPartnerFeature) && HasCompanionPresent())
-                {
-                    return DNC.ClosedPosition;
-                }
-
-                if (IsInParty() && IsInInstance())
-                    return DNC.ClosedPosition;
-            }
-
-            if (level >= DNC.Levels.TechnicalStep && gauge.IsDancing && HasEffect(DNC.Buffs.TechnicalStep))
-            {
-                if (gauge.CompletedSteps < 4)
-                    return gauge.NextStep;
-            }
-        }
-
-        return actionID;
-    }
-}
-
-internal class DancerCombinedStandardStepTechnicalStep : CustomCombo
-{
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DancerCombinedStandardStepTechnicalStep;
-
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-    {
-        if (actionID is DNC.StandardStep or DNC.TechnicalStep)
-        {
-            var gauge = GetJobGauge<DNCGauge>();
-
-            if (IsEnabled(CustomComboPreset.DancerPartnerFeature) && level >= DNC.Levels.ClosedPosition && (!HasEffect(DNC.Buffs.ClosedPosition)))
-            {
-                if (IsEnabled(CustomComboPreset.DancerChocoboPartnerFeature) && HasCompanionPresent())
-                {
-                    return DNC.ClosedPosition;
-                }
-
-                if (IsInParty() && IsInInstance())
-                    return DNC.ClosedPosition;
-            }
-
-            if (level >= DNC.Levels.StandardStep && gauge.IsDancing && (HasEffect(DNC.Buffs.StandardStep) || HasEffect(DNC.Buffs.TechnicalStep)))
+            if (level >= DNC.Levels.StandardStep && gauge.IsDancing)
             {
                 if (gauge.CompletedSteps < 4 && HasEffect(DNC.Buffs.TechnicalStep))
                     return gauge.NextStep;
-                else if (gauge.CompletedSteps < 2 && HasEffect(DNC.Buffs.StandardStep))
+
+                if (gauge.CompletedSteps < 2 && HasEffect(DNC.Buffs.StandardStep) &&
+                    IsEnabled(CustomComboPreset.DancerCombinedStandardStepTechnicalStep))
                     return gauge.NextStep;
 
-                if (HasEffect(DNC.Buffs.TechnicalStep)) return OriginalHook(DNC.TechnicalStep);
-                else return OriginalHook(DNC.StandardStep);
+                return OriginalHook(DNC.TechnicalStep);
+            }
+
+            if (IsEnabled(CustomComboPreset.DancerPartnerFeature) && level >= DNC.Levels.ClosedPosition && (!HasEffect(DNC.Buffs.ClosedPosition)))
+            {
+                if (IsEnabled(CustomComboPreset.DancerChocoboPartnerFeature) && HasCompanionPresent())
+                {
+                    return DNC.ClosedPosition;
+                }
+
+                if (IsInParty() && IsInInstance())
+                    return DNC.ClosedPosition;
             }
         }
 
@@ -442,30 +425,6 @@ internal class DancerTillanaOvercap : CustomCombo
 
             if (gauge.Esprit >= 50 && CanUseAction(DNC.Tillana))
                 return OriginalHook(DNC.SaberDance);
-        }
-
-        return actionID;
-    }
-}
-
-internal class DancerLastDanceFeature : CustomCombo
-{
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DancerLastDanceFeature;
-
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-    {
-        if (actionID == DNC.StandardStep)
-        {
-            if (level >= DNC.Levels.LastDance && HasEffect(DNC.Buffs.LastDanceReady))
-            {
-                if (IsEnabled(CustomComboPreset.DancerFinishingMovePriorityFeature) &&
-                    HasEffect(DNC.Buffs.FinishingMoveReady) && level >= DNC.Levels.FinishingMove)
-                {
-                        return DNC.FinishingMove;
-                }
-
-                return DNC.LastDance;
-            }
         }
 
         return actionID;
