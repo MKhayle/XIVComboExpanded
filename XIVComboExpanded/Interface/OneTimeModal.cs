@@ -1,10 +1,9 @@
 ﻿using System.Numerics;
-
+using Dalamud.Bindings.ImGui;
 using Dalamud.Interface;
 using Dalamud.Interface.Colors;
 using Dalamud.Interface.Style;
 using Dalamud.Interface.Windowing;
-using ImGuiNET;
 using XIVComboExpandedPlugin;
 
 namespace XIVComboExpanded.Interface

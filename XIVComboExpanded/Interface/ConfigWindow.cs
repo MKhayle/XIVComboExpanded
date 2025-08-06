@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
-
+using Dalamud.Bindings.ImGui;
 using Dalamud.Interface;
 using Dalamud.Interface.Colors;
 using Dalamud.Interface.Style;
@@ -11,7 +11,6 @@ using Dalamud.Interface.Textures;
 using Dalamud.Interface.Utility.Raii;
 using Dalamud.Interface.Windowing;
 using Dalamud.Utility;
-using ImGuiNET;
 using Lumina.Excel.Sheets;
 using XIVComboExpandedPlugin.Attributes;
 using XIVComboExpandedPlugin.Combos;
@@ -168,7 +167,7 @@ public class ConfigWindow : Window
 
                                                 if (image != null)
                                                 {
-                                                    if (ImGui.ImageButton(image.GetWrapOrEmpty().ImGuiHandle, new System.Numerics.Vector2(28f * scale, 28f * scale)))
+                                                    if (ImGui.ImageButton(image.GetWrapOrEmpty().Handle, new System.Numerics.Vector2(28f * scale, 28f * scale)))
                                                     {
                                                         Service.Configuration.CurrentJobTab = jobName;
                                                     }
@@ -203,7 +202,7 @@ public class ConfigWindow : Window
                             #region COMBOS TAB HEADER
                             var jobID = CustomComboInfoAttribute.NameToJobID(Service.Configuration.CurrentJobTab);
                             var image = GetJobIcon(jobID);
-                            ImGui.Image(image.GetWrapOrEmpty().ImGuiHandle, new System.Numerics.Vector2(36f, 36f));
+                            ImGui.Image(image.GetWrapOrEmpty().Handle, new System.Numerics.Vector2(36f, 36f));
                             ImGui.SameLine();
                             using (ImRaii.PushFont(UiBuilder.MonoFont))
                             using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.ParsedGold))
@@ -890,21 +889,21 @@ public class ConfigWindow : Window
                 if (isStatus)
                 {
                     ImGui.SetCursorPosY(ImGui.GetCursorPosY() - 4f);
-                    ImGui.Image(icon.GetWrapOrEmpty().ImGuiHandle, new System.Numerics.Vector2(24f * scale, 32f * scale));
+                    ImGui.Image(icon.GetWrapOrEmpty().Handle, new System.Numerics.Vector2(24f * scale, 32f * scale));
                     ImGui.SetCursorPosY(ImGui.GetCursorPosY() + 4f);
                     hoverName = GetStatusName(iconId);
                 }
                 else if (isUTL)
                 {
-                    ImGui.Image(GetIcon(IconsComboAttribute.Blank).GetWrapOrEmpty().ImGuiHandle, new System.Numerics.Vector2(2f * scale, 24f * scale));
+                    ImGui.Image(GetIcon(IconsComboAttribute.Blank).GetWrapOrEmpty().Handle, new System.Numerics.Vector2(2f * scale, 24f * scale));
                     ImGui.SameLine(0, 0);
                     ImGui.SetCursorPosY(ImGui.GetCursorPosY() + 3f);
-                    ImGui.Image(icon.GetWrapOrEmpty().ImGuiHandle, new System.Numerics.Vector2(20f * scale, 20f * scale));
+                    ImGui.Image(icon.GetWrapOrEmpty().Handle, new System.Numerics.Vector2(20f * scale, 20f * scale));
                     ImGui.SetCursorPosY(ImGui.GetCursorPosY() - 3f);
                 }
                 else
                 {
-                    ImGui.Image(icon.GetWrapOrEmpty().ImGuiHandle, new System.Numerics.Vector2(24f*scale, 24f*scale));
+                    ImGui.Image(icon.GetWrapOrEmpty().Handle, new System.Numerics.Vector2(24f*scale, 24f*scale));
                     hoverName = GetSkillName(iconId);
                 }
 
@@ -921,7 +920,7 @@ public class ConfigWindow : Window
                 if (isUTL)
                 {
                     ImGui.SameLine(0, 0);
-                    ImGui.Image(GetIcon(IconsComboAttribute.Blank).GetWrapOrEmpty().ImGuiHandle, new System.Numerics.Vector2(2f * scale, 24f * scale));
+                    ImGui.Image(GetIcon(IconsComboAttribute.Blank).GetWrapOrEmpty().Handle, new System.Numerics.Vector2(2f * scale, 24f * scale));
                 }
 
                 it++;
