@@ -411,7 +411,7 @@ internal class RedMageAcceleration : CustomCombo
                 return RDM.Acceleration;
             }
 
-            if (level >= ADV.Levels.Swiftcast)
+            if (level >= ADV.Levels.Swiftcast && IsEnabled(CustomComboPreset.RedMageAccelerationSwiftcastFeature))
                 return ADV.Swiftcast;
         }
 

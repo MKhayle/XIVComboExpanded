@@ -21,7 +21,8 @@ namespace XIVComboExpanded.Interface
                             "PCT: Several new combo features, especially around Rainbow Drip and Comet in Black by @kaedys.",
 							"PCT: Reversed the order of the Automatic Subtractive features. The parent combo now uses it as soon as available, \nthe child combo only when it would overcap or would be free. Check your enabled PCT combos by @kaedys.",
 							"PCT: Automatic Subtractive and Rainbow Autocast now properly work with the AoE spell chains by @kaedys.",
-							"RDM: Added an option for the Embolden to Manafication feature to skip Prefulgence by @Starlight-alt."
+							"RDM: Added an option for the Embolden to Manafication feature to skip Prefulgence by @Starlight-alt.",
+                            "RDM: Fixed Acceleration being replaced by Swiftcast without the feature being enabled."
 						]
                     },
                     {
