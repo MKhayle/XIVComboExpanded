@@ -1995,11 +1995,18 @@ public enum CustomComboPreset
     [CustomComboInfo("Contre Sixte / Fleche Feature", "Replace Contre Sixte and Fleche with whichever is available.", RDM.JobID)]
     RedMageContreFlecheFeature = 3508,
 
-    [IconsCombo([RDM.Embolden, UTL.ArrowLeft, RDM.Manafication, UTL.Blank, RDM.Embolden, UTL.Clock])]
+    [IconsCombo([RDM.Embolden, UTL.ArrowLeft, RDM.Manafication, UTL.ArrowLeft, RDM.ViceOfThorns, UTL.ArrowLeft, RDM.Embolden, UTL.ArrowLeft, RDM.Prefulgence, UTL.Blank, RDM.Embolden, UTL.Clock])]
     [SectionCombo("Abilities features")]
     [ExpandedCustomCombo]
-    [CustomComboInfo("Embolden to Manafication", "Replace Embolden with Manafication if the former is on cooldown and the latter is not.", RDM.JobID)]
+    [CustomComboInfo("Embolden to Manafication", "Replace Embolden with Manafication if the former is on cooldown and the latter is not, then Vice of Thorns and Prefulgence when readied.", RDM.JobID)]
     RedMageEmboldenFeature = 3510,
+
+    [IconsCombo([RDM.Embolden, UTL.ArrowLeft, RDM.Prefulgence])]
+    [SectionCombo("Abilities features")]
+    [ParentCombo(RedMageEmboldenFeature)]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Combo directly from Vice of Thorns to Prefulgence", "Replace Embolden with Prefulgence even when it isn't yet usable, as long as Vice of Thorns has been used and Manafication is still active. No functional difference, but prevents icon reverting back to Embolden when Prefulgence will be used next.", RDM.JobID)]
+    RedMageManaficationPrefulgenceOverride = 3524,
 
     [IconsCombo([RDM.Acceleration, UTL.ArrowLeft, RDM.GrandImpact])]
     [SectionCombo("Abilities features")]
