@@ -40,7 +40,6 @@ internal static class NIN
         TenMudra = 18805, // No-cooldown version that only appears during a Mudra cast, after the first symbol
         ChiMudra = 18806,
         JinMudra = 18807;
-
     public static class Buffs
     {
         public const ushort
@@ -51,7 +50,8 @@ internal static class NIN
             Bunshin = 1954,
             RaijuReady = 2690,
             ShadowWalker = 3848,
-            Higi = 3850;
+            Higi = 3850,
+            TenChiJin = 1186;
     }
 
     public static class Debuffs
@@ -318,5 +318,62 @@ internal class NinjaFrogLevelSync : CustomCombo
         }
 
         return actionID;
+    }
+}
+
+internal class KassatsuTrickDream : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.NinjaDreamyTrickAttack;
+    protected override uint Invoke(uint actionID, uint lastComboActionID, float comboTime, byte level)
+    {
+        if (actionID == NIN.Kassatsu)
+        {
+            if (!IsCooldownUsable(NIN.Kassatsu) && HasEffect(NIN.Buffs.ShadowWalker))
+                return OriginalHook(NIN.TrickAttack);
+        }
+
+        if (actionID == NIN.Kassatsu && !IsCooldownUsable(NIN.Kassatsu) && !IsCooldownUsable(NIN.TrickAttack))
+            return NIN.DreamWithinADream;
+
+        return actionID;
+    }
+}
+
+internal class NinjaDokumoriConsolidationCombo : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.NinjaDokumoriConsolidationCombo;
+    protected override uint Invoke(uint actionID, uint lastComboActionID, float comboTime, byte level)
+    {
+        if (actionID == NIN.Dokumori && !IsCooldownUsable(NIN.Dokumori))
+        {
+            // Trigger Ten Chi Jin
+            if (level >= NIN.Levels.TenChiJin && IsCooldownUsable(NIN.TenChiJin) && !HasEffect(NIN.Buffs.TenChiJin))
+                return NIN.TenChiJin;
+
+            // TCJ sequence
+            // TODO - Find a way to get the mudra steps for ten chi jin consolidated also.
+            if (level >= NIN.Levels.TenChiJin && !IsCooldownUsable(NIN.TenChiJin) && HasEffect(NIN.Buffs.TenChiJin))
+            {
+               float tcj = FindEffect(NIN.Buffs.TenChiJin).RemainingTime;
+               if (tcj > 5)
+                return OriginalHook(NIN.Ten);
+               if (tcj > 4)
+                return OriginalHook(NIN.Chi);
+               if (tcj > 3)
+                return OriginalHook(NIN.Jin);
+            }
+
+            // Meisui
+            if (IsCooldownUsable(NIN.Meisui) && HasEffect(NIN.Buffs.ShadowWalker))
+            {
+                return NIN.Meisui;
+            }
+            else {
+                // Tenri Jindo
+                return OriginalHook(NIN.TenChiJin);
+            }
+        }
+
+        return actionID; // Default, don’t update LastActionID
     }
 }
