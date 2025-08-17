@@ -13,6 +13,12 @@ namespace XIVComboExpanded.Interface
             return new Dictionary<string, string[]>()
                 {
                     {
+                        "v2.0.4.1",
+                        [
+							"DNC: Fixed an issue where Last Dance wasn't being properly combo'd under certain conditions by @Starlight-alt.",
+						]
+                    },
+                    {
                         "v2.0.4.0",
                         [
                             "API 13 update!",
