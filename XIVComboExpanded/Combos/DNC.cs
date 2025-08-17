@@ -164,7 +164,7 @@ internal class DancerFanDance12 : CustomCombo
 
 internal class DancerStandardStepTechnicalStep : CustomCombo
 {
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DancerDanceStepCombo;
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DncAny;
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
@@ -172,7 +172,7 @@ internal class DancerStandardStepTechnicalStep : CustomCombo
         {
             var gauge = GetJobGauge<DNCGauge>();
 
-            if (level >= DNC.Levels.StandardStep && gauge.IsDancing)
+            if (IsEnabled(CustomComboPreset.DancerDanceStepCombo) && level >= DNC.Levels.StandardStep && gauge.IsDancing)
             {
                 if (gauge.CompletedSteps < 2 && HasEffect(DNC.Buffs.StandardStep))
                     return gauge.NextStep;
