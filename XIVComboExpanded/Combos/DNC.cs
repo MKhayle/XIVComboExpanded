@@ -212,7 +212,7 @@ internal class DancerStandardStepTechnicalStep : CustomCombo
         {
             var gauge = GetJobGauge<DNCGauge>();
 
-            if (level >= DNC.Levels.StandardStep && gauge.IsDancing)
+            if (IsEnabled(CustomComboPreset.DancerDanceStepCombo) && level >= DNC.Levels.StandardStep && gauge.IsDancing)
             {
                 if (gauge.CompletedSteps < 4 && HasEffect(DNC.Buffs.TechnicalStep))
                     return gauge.NextStep;
