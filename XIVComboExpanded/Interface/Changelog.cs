@@ -13,7 +13,7 @@ namespace XIVComboExpanded.Interface
             return new Dictionary<string, string[]>()
                 {
                     {
-                        "v2.0.5",
+                        "v2.0.5.0",
                         [
                             "API 14 update!",
 							"VPR: Added the PvP Combo Reawaken Combo option.",
