@@ -1947,7 +1947,7 @@ public enum CustomComboPreset
     [CustomComboInfo("Verstone/Verfire Plus Opener Feature (Fire)", "Replace Verfire with Verthunder when out of combat.", RDM.JobID)]
     RedMageVerprocOpenerFireFeature = 3507,
 
-    [IconsCombo([RDM.Veraero2, RDM.Verthunder2, UTL.ArrowLeft, RDM.Impact, UTL.Blank, RDM.Buffs.Acceleration, ADV.Buffs.Swiftcast, UTL.Checkmark])]
+    [IconsCombo([RDM.Veraero2, RDM.Verthunder2, UTL.ArrowLeft, RDM.Impact, UTL.Blank, RDM.Buffs.Acceleration, ADV.Swiftcast, UTL.Checkmark])]
     [SectionCombo("Area of Effect")]
     [CustomComboInfo("AoE Combo", "Replace Veraero/Verthunder 2 with Impact when various instant-cast effects are active.", RDM.JobID)]
     RedMageAoEFeature = 3501,
@@ -2633,6 +2633,13 @@ public enum CustomComboPreset
     [ParentCombo(ViperPvPMainComboFeature)]
     [CustomComboInfo("PvP Combo Start Hindsbane Fang", "With no buffs, end first combo with Hindsbane Fang.", VPR.JobID)]
     ViperPvPMainComboStartHindsbaneFeature = 4116,
+
+    [SectionCombo("Alternative Playstyle")]
+    [SecretCustomCombo]
+	[IconsCombo([VPR.SteelFangs, UTL.ArrowLeft, VPR.FirstGeneration, VPR.FirstLegacy, VPR.SecondGeneration, VPR.SecondLegacy, VPR.ThirdGeneration, VPR.ThirdLegacy, VPR.FourthGeneration, VPR.FourthLegacy, VPR.Ouroboros])]    
+    [ParentCombo(ViperPvPMainComboFeature)]
+    [CustomComboInfo("PvP Combo Reawaken Combo", "All-in-one Reawakening combo on Steel Fangs.", VPR.JobID)]
+    ViperPvPMainComboReAwakenFeature = 4131,
 
     [SectionCombo("Alternative Playstyle")]
     [SecretCustomCombo]

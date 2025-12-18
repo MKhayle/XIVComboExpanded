@@ -17,7 +17,7 @@ internal partial class CustomComboCache : IDisposable
     private const uint InvalidObjectID = 0xE000_0000;
 
     // Invalidate these
-    private readonly Dictionary<(uint StatusID, uint? TargetID, uint? SourceID), Status?> statusCache = new();
+    private readonly Dictionary<(uint StatusID, uint? TargetID, uint? SourceID), IStatus?> statusCache = new();
     private readonly Dictionary<uint, CooldownData> cooldownCache = new();
 
     // Do not invalidate these
@@ -61,7 +61,7 @@ internal partial class CustomComboCache : IDisposable
     /// <param name="obj">Object to look for effects on.</param>
     /// <param name="sourceID">Source object ID.</param>
     /// <returns>Status object or null.</returns>
-    internal Status? GetStatus(uint statusID, IGameObject? obj, uint? sourceID)
+    internal IStatus? GetStatus(uint statusID, IGameObject? obj, uint? sourceID)
     {
         var key = (statusID, obj?.EntityId, sourceID);
         if (this.statusCache.TryGetValue(key, out var found))

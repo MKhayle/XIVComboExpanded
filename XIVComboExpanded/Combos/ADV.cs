@@ -52,7 +52,8 @@ internal class SwiftRaiseFeature : CustomCombo
         if ((actionID == AST.Ascend && level >= AST.Levels.Ascend) ||
             (actionID == SCH.Resurrection && level >= SCH.Levels.Resurrection) ||
             (actionID == SGE.Egeiro && level >= SGE.Levels.Egeiro) ||
-            (actionID == WHM.Raise && level >= WHM.Levels.Raise))
+            (actionID == WHM.Raise && level >= WHM.Levels.Raise) ||
+			(actionID == BLU.AngelWhisper))
         {
             if (level >= ADV.Levels.Swiftcast && CanUseAction(ADV.Swiftcast) && IsCooldownUsable(ADV.Swiftcast))
                 return ADV.Swiftcast;
@@ -87,7 +88,7 @@ internal class VariantRaiseFeature : CustomCombo
             (actionID == SGE.Egeiro && level >= SGE.Levels.Egeiro) ||
             (actionID == WHM.Raise && level >= WHM.Levels.Raise) ||
             (actionID == RDM.Verraise && level >= RDM.Levels.Verraise && !HasEffect(RDM.Buffs.Dualcast)) ||
-            (actionID == BLU.AngelWhisper && level >= BLU.Levels.AngelWhisper))
+            (actionID == BLU.AngelWhisper))
         {
             // Per Splatoon:
             // 1069: solo

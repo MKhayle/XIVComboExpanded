@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Dalamud.NET.Sdk/13.0.0">
+<Project Sdk="Dalamud.NET.Sdk/14.0.0">
   <PropertyGroup>
     <Authors>attick, daemitus, Khayle</Authors>
     <Company>-</Company>
-    <Version>2.0.4.1</Version>
+    <Version>2.0.5.0</Version>
     <Description>This plugin condenses combos and mutually exclusive abilities onto a single button.</Description>
     <Copyright>Copyleft attick 2020 baybeeee</Copyright>
     <PackageProjectUrl>https://github.com/daemitus/XIVComboPlugin</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>net9.0-windows</TargetFramework>
+    <TargetFramework>net10.0-windows</TargetFramework>
     <Platforms>x64</Platforms>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>

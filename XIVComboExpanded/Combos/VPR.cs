@@ -132,7 +132,31 @@ internal class ViperFangs : CustomCombo
             var gauge = GetJobGauge<VPRGauge>();
             var maxtribute = level >= VPR.Levels.Ouroboros ? 5 : 4;
 
-            if (IsEnabled(CustomComboPreset.ViperSteelAllOGCDsFeature))
+            if(IsEnabled(CustomComboPreset.ViperPvPMainComboReAwakenFeature) && HasEffect(VPR.Buffs.Reawakened))
+			{
+				if (level >= VPR.Levels.Legacies)
+				{
+					var original = OriginalHook(VPR.SerpentsTail);
+					if (original is VPR.FirstLegacy or
+									VPR.SecondLegacy or
+									VPR.ThirdLegacy or
+									VPR.FourthLegacy)
+						return original;
+				}
+
+				if (gauge.AnguineTribute == maxtribute)
+					return VPR.FirstGeneration;
+				if (gauge.AnguineTribute == maxtribute - 1)
+					return VPR.SecondGeneration;
+				if (gauge.AnguineTribute == maxtribute - 2)
+					return VPR.ThirdGeneration;
+				if (gauge.AnguineTribute == maxtribute - 3)
+					return VPR.FourthGeneration;
+				if (gauge.AnguineTribute == 1 && level >= VPR.Levels.Ouroboros)
+					return VPR.Ouroboros;
+			}
+
+			if (IsEnabled(CustomComboPreset.ViperSteelAllOGCDsFeature))
             {
                 var origTail = OriginalHook(VPR.SerpentsTail);
                 var origFang = OriginalHook(VPR.Twinfang);

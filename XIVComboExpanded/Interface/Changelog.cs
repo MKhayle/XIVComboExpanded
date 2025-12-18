@@ -13,6 +13,16 @@ namespace XIVComboExpanded.Interface
             return new Dictionary<string, string[]>()
                 {
                     {
+                        "v2.0.5",
+                        [
+                            "API 14 update!",
+							"VPR: Added the PvP Combo Reawaken Combo option.",
+							"DNC: Fixed an issue where Technical Step was being automatically combo'd even when the Dance Step Combo wasn't enabled by @Starlight-alt.",
+                            "RDM: Fixed an icon in the AoE Combo feature display to show Energy Drain instead of Swiftcast (thanks @RaphaelDDL for reporting it).",
+                            "ADV: Fixed Angel Whisper not being correctly replaced when the Swift Raise Feature was enabled (thanks @yoshisman8 for reporting it)."
+						]
+                    },
+                    {
                         "v2.0.4.1",
                         [
 							"DNC: Fixed an issue where Last Dance wasn't being properly combo'd under certain conditions by @Starlight-alt.",
