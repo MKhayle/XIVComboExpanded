@@ -83,7 +83,7 @@ internal class DarkSouleater : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DrkAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DRK.Souleater)
         {
@@ -146,7 +146,7 @@ internal class DarkStalwartSoul : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DrkAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DRK.StalwartSoul)
         {
@@ -206,7 +206,7 @@ internal class DarkCarveAndSpitAbyssalDrain : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DrkAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DRK.CarveAndSpit || actionID == DRK.AbyssalDrain)
         {
@@ -231,7 +231,7 @@ internal class DarkQuietusBloodspiller : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DrkAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DRK.Quietus || actionID == DRK.Bloodspiller)
         {
@@ -258,7 +258,7 @@ internal class DarkLivingShadow : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DrkAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DRK.LivingShadow)
         {

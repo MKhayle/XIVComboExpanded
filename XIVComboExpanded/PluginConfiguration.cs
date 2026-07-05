@@ -139,6 +139,32 @@ public class PluginConfiguration : IPluginConfiguration
     public bool BigComboIcons { get; set; } = false;
 
     /// <summary>
+    /// Gets or sets a value indicating whether to tint hotbar icons based on combo state.
+    /// </summary>
+    [JsonProperty("EnableIconRecoloring")]
+    public bool EnableIconRecoloring { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets the method used to apply combo tints to hotbar icons.
+    /// </summary>
+    [JsonProperty("IconColoringMethod")]
+    public IconColoringMethod ColoringMethod { get; set; } = IconColoringMethod.Vibrant;
+
+    /// <summary>
+    /// Gets or sets the per-combo hotbar icon tints, keyed by preset.
+    /// Colors are 0xAARRGGBB; the alpha component is the tint intensity (0 = disabled).
+    /// </summary>
+    [JsonProperty("ComboTintColors")]
+    public Dictionary<CustomComboPreset, uint> ComboTints { get; set; } = new();
+
+    /// <summary>
+    /// Gets or sets the per-combo coloring method overrides, keyed by preset.
+    /// Presets not in the dictionary use the global <see cref="ColoringMethod"/>.
+    /// </summary>
+    [JsonProperty("ComboTintMethods")]
+    public Dictionary<CustomComboPreset, IconColoringMethod> ComboTintMethods { get; set; } = new();
+
+    /// <summary>
     /// Gets or sets an array of 4 ability IDs to interact with the <see cref="CustomComboPreset.DancerDanceComboCompatibility"/> combo.
     /// </summary>
     public uint[] DancerDanceCompatActionIDs { get; set; } = new uint[]
@@ -205,4 +231,53 @@ public class PluginConfiguration : IPluginConfiguration
     /// <returns>The parent preset.</returns>
     public CustomComboPreset? GetParent(CustomComboPreset preset)
         => ParentCombos[preset];
+
+    /// <summary>
+    /// Gets the configured hotbar icon tint for a combo, or null when none is set.
+    /// </summary>
+    /// <param name="preset">Preset to check.</param>
+    /// <returns>The tint as 0xAARRGGBB (alpha = intensity), or null.</returns>
+    public uint? GetComboTint(CustomComboPreset preset)
+        => this.ComboTints.TryGetValue(preset, out var color) ? color : null;
+
+    /// <summary>
+    /// Sets the hotbar icon tint for a combo.
+    /// </summary>
+    /// <param name="preset">Preset to configure.</param>
+    /// <param name="color">The tint as 0xAARRGGBB (alpha = intensity).</param>
+    public void SetComboTint(CustomComboPreset preset, uint color)
+        => this.ComboTints[preset] = color;
+
+    /// <summary>
+    /// Resets the hotbar icon tint for a combo back to its default (no tint, global method).
+    /// </summary>
+    /// <param name="preset">Preset to reset.</param>
+    public void ResetComboTint(CustomComboPreset preset)
+    {
+        this.ComboTints.Remove(preset);
+        this.ComboTintMethods.Remove(preset);
+    }
+
+    /// <summary>
+    /// Gets the coloring method override for a combo, or null to use the global setting.
+    /// </summary>
+    /// <param name="preset">Preset to check.</param>
+    /// <returns>The method override, or null.</returns>
+    public IconColoringMethod? GetComboTintMethod(CustomComboPreset preset)
+        => this.ComboTintMethods.TryGetValue(preset, out var method) ? method : null;
+
+    /// <summary>
+    /// Sets the coloring method override for a combo.
+    /// </summary>
+    /// <param name="preset">Preset to configure.</param>
+    /// <param name="method">The method to use for this combo.</param>
+    public void SetComboTintMethod(CustomComboPreset preset, IconColoringMethod method)
+        => this.ComboTintMethods[preset] = method;
+
+    /// <summary>
+    /// Removes the coloring method override for a combo (back to the global setting).
+    /// </summary>
+    /// <param name="preset">Preset to reset.</param>
+    public void ResetComboTintMethod(CustomComboPreset preset)
+        => this.ComboTintMethods.Remove(preset);
 }

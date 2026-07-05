@@ -99,7 +99,7 @@ internal class BardHeavyShot : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BrdAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BRD.HeavyShot || actionID == BRD.BurstShot)
         {
@@ -154,7 +154,7 @@ internal class BardIronJaws : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BrdAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BRD.IronJaws)
         {
@@ -221,7 +221,7 @@ internal class BardQuickNock : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BrdAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BRD.QuickNock || actionID == BRD.Ladonsbite)
         {
@@ -257,7 +257,7 @@ internal class BardBloodletter : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BrdAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID is BRD.Bloodletter or BRD.HeartbreakShot)
         {
@@ -311,7 +311,7 @@ internal class BardRainOfDeath : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BrdAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BRD.RainOfDeath)
         {
@@ -353,7 +353,7 @@ internal class BardSidewinder : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardSidewinderFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BRD.Sidewinder)
         {
@@ -369,7 +369,7 @@ internal class BardApexArrow : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardAutoIronJawsApexFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BRD.ApexArrow || actionID == BRD.BlastArrow)
         {
@@ -403,7 +403,7 @@ internal class BardEmpyrealArrow : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardEmpyrealArrowFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BRD.EmpyrealArrow)
         {
@@ -419,7 +419,7 @@ internal class BardRagingStrikes : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardRagingBarrageFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BRD.RagingStrikes)
         {
@@ -435,7 +435,7 @@ internal class BardBattleVoice : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardBattleFinaleFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BRD.BattleVoice)
         {
@@ -455,7 +455,7 @@ internal class BardRadiantFinale : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BrdAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BRD.RadiantFinale)
         {
@@ -492,7 +492,7 @@ internal class BardMagesBallad : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardCyclingSongFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BRD.MagesBallad)
         {

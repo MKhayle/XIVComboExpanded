@@ -67,7 +67,7 @@ internal class WhiteMageAfflatusSolace : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WhiteMageSolaceMiseryFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == WHM.AfflatusSolace)
         {
@@ -88,7 +88,7 @@ internal class WhiteMageAfflatusRapture : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WhiteMageRaptureMiseryFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == WHM.AfflatusRapture)
         {
@@ -106,7 +106,7 @@ internal class WhiteMageHoly : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WhiteMageHolyMiseryFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == WHM.Holy || actionID == WHM.Holy3)
         {
@@ -124,7 +124,7 @@ internal class WhiteMageCure2 : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WhmAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == WHM.Cure2)
         {
@@ -160,7 +160,7 @@ internal class WhiteMageMedica : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WhmAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == WHM.Medica ||
             (IsEnabled(CustomComboPreset.WhiteMageAfflatusMedicaPlusFeature) &&
@@ -189,7 +189,7 @@ internal class WhiteMageGlare4Feature : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WhmAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == WHM.Stone || actionID == WHM.Stone2 || actionID == WHM.Stone3 ||
             actionID == WHM.Glare || actionID == WHM.Glare3)

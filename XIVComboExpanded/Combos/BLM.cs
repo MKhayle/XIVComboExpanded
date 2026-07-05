@@ -90,7 +90,7 @@ internal class BlackFireBlizzard4 : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlmAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BLM.Blizzard4)
         {
@@ -156,7 +156,7 @@ internal class BlackTranspose : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackTransposeUmbralSoulFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BLM.Transpose)
         {
@@ -173,7 +173,7 @@ internal class BlackUmbralSoul : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackUmbralSoulTransposeFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BLM.UmbralSoul)
         {
@@ -191,7 +191,7 @@ internal class BlackLeyLines : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackLeyLinesFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BLM.LeyLines)
         {
@@ -209,7 +209,7 @@ internal class BlackFire : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFireFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BLM.Fire)
         {
@@ -245,7 +245,7 @@ internal class BlackBlizzard : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlmAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BLM.Blizzard || actionID == BLM.Blizzard3)
         {
@@ -280,7 +280,7 @@ internal class BlackFreezeFlare : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlmAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BLM.Freeze)
         {
@@ -315,7 +315,7 @@ internal class BlackFire2 : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFire2Feature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BLM.Fire2 || actionID == BLM.HighFire2)
         {
@@ -354,7 +354,7 @@ internal class BlackBlizzard2 : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlmAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BLM.Blizzard2 || actionID == BLM.HighBlizzard2)
         {
@@ -387,7 +387,7 @@ internal class BlackScathe : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackScatheFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == BLM.Scathe)
         {

@@ -93,7 +93,7 @@ internal class MachinistCleanShot : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MachinistMainCombo;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == MCH.CleanShot || actionID == MCH.HeatedCleanShot)
         {
@@ -137,7 +137,7 @@ internal class MachinistGaussRoundRicochet : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MachinistGaussRoundRicochetFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID is MCH.GaussRound or MCH.Ricochet or MCH.Checkmate or MCH.DoubleCheck)
         {
@@ -163,7 +163,7 @@ internal class MachinistWildfire : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MachinistHyperfireFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == MCH.Hypercharge)
         {
@@ -182,7 +182,7 @@ internal class MachinistHeatBlastAutoCrossbow : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MachinistOverheatFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == MCH.HeatBlast || actionID == MCH.BlazingShot || actionID == MCH.AutoCrossbow)
         {
@@ -209,7 +209,7 @@ internal class MachinistSpreadShot : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MachinistSpreadShotFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == MCH.SpreadShot || actionID == MCH.Scattergun)
         {
@@ -227,7 +227,7 @@ internal class MachinistRookAutoturret : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MachinistOverdriveFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == MCH.RookAutoturret || actionID == MCH.AutomatonQueen)
         {
@@ -246,7 +246,7 @@ internal class MachinistDrillAirAnchorChainsaw : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MachinistHotShotDrillChainsawFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == MCH.HotShot || actionID == MCH.AirAnchor || actionID == MCH.Drill || actionID == MCH.Chainsaw || actionID == MCH.Excavator)
         {
@@ -273,7 +273,7 @@ internal class MachinistAirAnchorChainsaw : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MachinistHotShotChainsawFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == MCH.HotShot || actionID == MCH.AirAnchor || actionID == MCH.Chainsaw || actionID == MCH.Excavator)
         {
@@ -297,7 +297,7 @@ internal class MachinistBioblaster : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MachinistBioblasterChainsawFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == MCH.Bioblaster)
         {

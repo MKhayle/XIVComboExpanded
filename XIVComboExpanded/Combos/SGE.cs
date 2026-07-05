@@ -1,4 +1,4 @@
-﻿using Dalamud.Game.ClientState.JobGauge.Types;
+using Dalamud.Game.ClientState.JobGauge.Types;
 using System;
 
 namespace XIVComboExpandedPlugin.Combos;
@@ -95,7 +95,7 @@ internal class SageDosis : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SgeAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SGE.Dosis || actionID == SGE.Dosis2 || actionID == SGE.Dosis3)
         {
@@ -142,7 +142,7 @@ internal class SageToxikon : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SgeAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SGE.Toxikon)
         {
@@ -172,7 +172,7 @@ internal class SageSoteria : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SageSoteriaKardionFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SGE.Soteria)
         {
@@ -191,7 +191,7 @@ internal class SageTaurochole : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SgeAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SGE.Taurochole)
         {
@@ -220,7 +220,7 @@ internal class SageEukrasia : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SgeAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SGE.Eukrasia)
         {
@@ -258,7 +258,7 @@ internal class SageDruochole : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SgeAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SGE.Druochole)
         {
@@ -285,7 +285,7 @@ internal class SageIxochole : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SageIxocholeRhizomataFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SGE.Ixochole)
         {
@@ -306,7 +306,7 @@ internal class SageKerachole : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SageKeracholaRhizomataFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SGE.Kerachole)
         {
@@ -327,7 +327,7 @@ internal class SagePhlegma : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SgeAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SGE.Phlegma || actionID == SGE.Phlegma2 || actionID == SGE.Phlegma3)
         {

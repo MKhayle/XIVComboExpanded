@@ -96,7 +96,7 @@ internal class RedMageVeraeroVerthunder : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RdmAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RDM.Veraero || actionID == RDM.Veraero3 || actionID == RDM.Verthunder || actionID == RDM.Verthunder3)
         {
@@ -142,7 +142,7 @@ internal class RedMageVeraeroVerthunder2 : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RdmAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RDM.Veraero2 || actionID == RDM.Verthunder2)
         {
@@ -195,7 +195,7 @@ internal class RedMageRedoublementMoulinet : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RdmAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RDM.Redoublement || actionID == RDM.Moulinet)
         {
@@ -263,7 +263,7 @@ internal class RedMageVerstoneVerfire : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RdmAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RDM.Verstone)
         {
@@ -319,8 +319,8 @@ internal class RedMageVerstoneVerfire : CustomCombo
                 if (HasEffect(RDM.Buffs.VerstoneReady))
                     return RDM.Verstone;
 
-                // Jolt
-                return OriginalHook(RDM.Jolt2);
+                // Jolt — shown on both the Verstone and Verfire buttons, so tint it.
+                return (OriginalHook(RDM.Jolt2), GetTint(CustomComboPreset.RedMageVerprocFeature));
             }
         }
 
@@ -371,8 +371,11 @@ internal class RedMageVerstoneVerfire : CustomCombo
                 if (HasEffect(RDM.Buffs.VerfireReady))
                     return RDM.Verfire;
 
-                // Jolt
-                return OriginalHook(RDM.Jolt2);
+                // Jolt — shares the Verstone color unless the separate Verfire color is enabled.
+                var tint = IsEnabled(CustomComboPreset.RedMageVerprocVerfireTint)
+                    ? GetTint(CustomComboPreset.RedMageVerprocVerfireTint)
+                    : GetTint(CustomComboPreset.RedMageVerprocFeature);
+                return (OriginalHook(RDM.Jolt2), tint);
             }
         }
 
@@ -384,7 +387,7 @@ internal class RedMageAcceleration : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RdmAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RDM.Acceleration)
         {
@@ -423,7 +426,7 @@ internal class RedMageEmbolden : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RedMageEmboldenFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RDM.Embolden)
         {
@@ -446,7 +449,7 @@ internal class RedMageContreSixteFleche : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RedMageContreFlecheFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RDM.ContreSixte || actionID == RDM.Fleche)
         {

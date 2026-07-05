@@ -108,7 +108,7 @@ internal class DancerDanceComboCompatibility : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DancerDanceComboCompatibility;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         var actionIDs = Service.Configuration.DancerDanceCompatActionIDs;
 
@@ -140,7 +140,7 @@ internal class DancerFanDance12 : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DncAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DNC.FanDance1 || actionID == DNC.FanDance2)
         {
@@ -166,7 +166,7 @@ internal class DancerStandardStepTechnicalStep : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DncAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DNC.StandardStep)
         {
@@ -244,7 +244,7 @@ internal class DancerFlourish : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DncAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DNC.Flourish)
         {
@@ -269,7 +269,7 @@ internal class DancerCascadeFountain : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DncAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DNC.Cascade || actionID == DNC.Fountain ||
             actionID == DNC.ReverseCascade || actionID == DNC.Fountainfall)
@@ -331,7 +331,7 @@ internal class DancerWindmillBladeshower : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DncAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DNC.Windmill || actionID == DNC.Bladeshower ||
             actionID == DNC.RisingWindmill || actionID == DNC.Bloodshower)
@@ -393,7 +393,7 @@ internal class DancerDevilment : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DancerPartnerFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DNC.Devilment)
         {
@@ -417,7 +417,7 @@ internal class DancerTillanaOvercap : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DancerTillanaOvercap;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DNC.TechnicalStep || actionID == DNC.TechnicalFinish || actionID == DNC.Tillana)
         {

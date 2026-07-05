@@ -123,7 +123,7 @@ internal class PaladinRoyalAuthority : PaladinCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PldAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == PLD.RageOfHalone || actionID == PLD.RoyalAuthority)
         {
@@ -280,7 +280,7 @@ internal class PaladinProminence : PaladinCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PldAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == PLD.Prominence)
         {
@@ -340,7 +340,7 @@ internal class PaladinHolySpiritHolyCircle : PaladinCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PaladinHolyConfiteorFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == PLD.HolySpirit || actionID == PLD.HolyCircle)
         {
@@ -366,7 +366,7 @@ internal class PaladinHolySpirit : PaladinCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PaladinHolySpiritLevelSyncFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == PLD.HolySpirit && level < PLD.Levels.HolySpirit)
             return PLD.ShieldLob;
@@ -379,7 +379,7 @@ internal class PaladinShieldLobHolySpirit : PaladinCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PaladinShieldLobDivineMightFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == PLD.ShieldLob
             && level >= PLD.Levels.HolySpirit
@@ -395,7 +395,7 @@ internal class PaladinRequiescat : PaladinCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PldAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == PLD.Requiescat || actionID == PLD.Imperator)
         {
@@ -461,7 +461,7 @@ internal class PaladinSpiritsWithinCircleOfScorn : PaladinCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PaladinScornfulSpiritsFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == PLD.SpiritsWithin || actionID == PLD.Expiacion || actionID == PLD.CircleOfScorn)
         {
@@ -482,7 +482,7 @@ internal class PaladinShieldBash : PaladinCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PaladinShieldBashFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == PLD.ShieldBash)
         {

@@ -89,7 +89,7 @@ internal class MonkOpoCombo : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkOpoFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == MNK.Bootshine || actionID == MNK.LeapingOpo)
         {
@@ -133,7 +133,7 @@ internal class MonkRaptorCombo : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkRaptorFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == MNK.TrueStrike || actionID == MNK.RisingRaptor)
         {
@@ -158,7 +158,7 @@ internal class MonkCoeurlCombo : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkCoeurlFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == MNK.SnapPunch || actionID == MNK.PouncingCoeurl)
         {
@@ -183,7 +183,7 @@ internal class MonkMonkeyMode : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkMonkeyMode;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == MNK.Bootshine || actionID == MNK.LeapingOpo)
         {
@@ -259,7 +259,7 @@ internal class MonkAoECombo : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkAoECombo;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == MNK.MasterfulBlitz)
         {
@@ -344,7 +344,7 @@ internal class MonkPerfectBalance : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkPerfectBalanceFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == MNK.PerfectBalance)
         {
@@ -363,7 +363,7 @@ internal class MonkRiddleOfFire : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MnkAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == MNK.RiddleOfFire)
         {

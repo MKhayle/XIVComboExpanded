@@ -1,4 +1,4 @@
-﻿using Dalamud.Game.ClientState.Conditions;
+using Dalamud.Game.ClientState.Conditions;
 
 namespace XIVComboExpandedPlugin.Combos;
 
@@ -57,7 +57,7 @@ internal class MinerEurekaFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DolEurekaFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DOL.SolidReason)
         {
@@ -79,7 +79,7 @@ internal class FisherCast : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DolAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DOL.Cast)
         {

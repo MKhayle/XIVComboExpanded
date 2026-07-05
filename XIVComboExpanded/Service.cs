@@ -1,3 +1,4 @@
+using Dalamud.Game.Addon.Lifecycle;
 using Dalamud.Game.ClientState.Objects;
 using Dalamud.IoC;
 using Dalamud.Plugin;
@@ -95,6 +96,18 @@ internal class Service
     /// </summary>
     [PluginService]
     internal static IFramework Framework { get; private set; } = null!;
+
+    /// <summary>
+    /// Gets the Dalamud addon lifecycle service.
+    /// </summary>
+    [PluginService]
+    internal static IAddonLifecycle AddonLifecycle { get; private set; } = null!;
+
+    /// <summary>
+    /// Gets the Dalamud game GUI.
+    /// </summary>
+    [PluginService]
+    internal static IGameGui GameGui { get; private set; } = null!;
 
     /// <summary>
     /// Gets the Dalamud job gauges.

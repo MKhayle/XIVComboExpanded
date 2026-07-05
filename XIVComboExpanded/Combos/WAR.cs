@@ -86,7 +86,7 @@ internal class WarriorStormsPathCombo : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WarAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == WAR.StormsPath)
         {
@@ -132,6 +132,7 @@ internal class WarriorStormsPathCombo : CustomCombo
 
             if (IsEnabled(CustomComboPreset.WarriorStormsPathCombo))
             {
+                // Heavy Swing AND Maim are shared with the Storm's Eye combo — tint both steps.
                 if (lastComboMove == WAR.HeavySwing && level >= WAR.Levels.Maim)
                 {
                     if (IsEnabled(CustomComboPreset.WarriorSTGaugeOvercapProtection))
@@ -141,10 +142,10 @@ internal class WarriorStormsPathCombo : CustomCombo
                             return OriginalHook(WAR.InnerBeast);
                     }
 
-                    return WAR.Maim;
+                    return (WAR.Maim, GetTint(CustomComboPreset.WarriorStormsPathCombo));
                 }
 
-                return WAR.HeavySwing;
+                return (WAR.HeavySwing, GetTint(CustomComboPreset.WarriorStormsPathCombo));
             }
         }
 
@@ -156,7 +157,7 @@ internal class WarriorStormsEyeCombo : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WarAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == WAR.StormsEye)
         {
@@ -176,6 +177,7 @@ internal class WarriorStormsEyeCombo : CustomCombo
 
             if (IsEnabled(CustomComboPreset.WarriorStormsEyeCombo))
             {
+                // Heavy Swing AND Maim are shared with the Storm's Path combo — tint both steps.
                 if (lastComboMove == WAR.HeavySwing && level >= WAR.Levels.Maim)
                 {
                     if (IsEnabled(CustomComboPreset.WarriorSTGaugeOvercapProtection))
@@ -185,10 +187,10 @@ internal class WarriorStormsEyeCombo : CustomCombo
                             return OriginalHook(WAR.InnerBeast);
                     }
 
-                    return WAR.Maim;
+                    return (WAR.Maim, GetTint(CustomComboPreset.WarriorStormsEyeCombo));
                 }
 
-                return WAR.HeavySwing;
+                return (WAR.HeavySwing, GetTint(CustomComboPreset.WarriorStormsEyeCombo));
             }
         }
 
@@ -200,7 +202,7 @@ internal class WarriorMythrilTempestCombo : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WarAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == WAR.MythrilTempest)
         {
@@ -235,7 +237,7 @@ internal class WarriorFellCleaveDecimate : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WarAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == WAR.InnerBeast || actionID == WAR.FellCleave ||
             actionID == WAR.SteelCyclone || actionID == WAR.Decimate)
@@ -266,7 +268,7 @@ internal class WarriorBerserkInnerRelease : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WarriorPrimalReleaseFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == WAR.Berserk || actionID == WAR.InnerRelease)
         {
@@ -288,7 +290,7 @@ internal class WarriorNascentFlashFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WarriorNascentFlashSyncFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == WAR.NascentFlash)
         {
@@ -304,7 +306,7 @@ internal class WarriorBloodwhetting : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WarAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == WAR.Bloodwhetting || actionID == WAR.RawIntuition)
         {

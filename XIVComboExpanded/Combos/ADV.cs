@@ -1,4 +1,4 @@
-﻿using Lumina.Excel.Sheets;
+using Lumina.Excel.Sheets;
 
 namespace XIVComboExpandedPlugin.Combos;
 
@@ -47,7 +47,7 @@ internal class SwiftRaiseFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset => CustomComboPreset.AdvSwiftcastFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if ((actionID == AST.Ascend && level >= AST.Levels.Ascend) ||
             (actionID == SCH.Resurrection && level >= SCH.Levels.Resurrection) ||
@@ -81,7 +81,7 @@ internal class VariantRaiseFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset => CustomComboPreset.AdvVariantRaiseFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if ((actionID == AST.Ascend && level >= AST.Levels.Ascend) ||
             (actionID == SCH.Resurrection && level >= SCH.Levels.Resurrection) ||
@@ -106,7 +106,7 @@ internal class StanceProvokeFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset => CustomComboPreset.AdvStanceProvokeFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == ADV.Provoke)
         {
@@ -148,7 +148,7 @@ internal class ShirkStanceFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset => CustomComboPreset.AdvShirkStanceFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == ADV.Shirk && !IsCooldownUsable(ADV.Shirk))
         {
@@ -178,7 +178,7 @@ internal class HeadGrazePelotonFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset => CustomComboPreset.AdvPelotonSTFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == ADV.HeadGraze && ((int)LocalPlayer?.ClassJob.RowId == BRD.ClassID || (int)LocalPlayer?.ClassJob.RowId == BRD.JobID || (int)LocalPlayer?.ClassJob.RowId == MCH.JobID || (int)LocalPlayer?.ClassJob.RowId == DNC.JobID))
         {
@@ -197,7 +197,7 @@ internal class AdvAutoLucidDreamingFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset => CustomComboPreset.AdvAutoLucidDreamingFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (LocalPlayer?.CurrentMp < 5000 && CanUseAction(OriginalHook(ADV.LucidDreaming)) && IsCooldownUsable(ADV.LucidDreaming))
         {

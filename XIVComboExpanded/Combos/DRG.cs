@@ -101,7 +101,7 @@ internal class DragoonCoerthanTorment : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DrgAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DRG.CoerthanTorment)
         {
@@ -137,7 +137,7 @@ internal class DragoonSingleTargetThrust : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DrgAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DRG.ChaosThrust || actionID == DRG.ChaoticSpring ||
             actionID == DRG.FullThrust || actionID == DRG.HeavensThrust)
@@ -232,15 +232,16 @@ internal class DragoonSingleTargetThrust : CustomCombo
                     return OriginalHook(DRG.VorpalThrust);
             }
 
+            // True Thrust is shared between both thrust combos at neutral — tint them apart.
             if (IsEnabled(CustomComboPreset.DragoonFullThrustCombo) &&
                 !IsEnabled(CustomComboPreset.DragoonFullThrustComboOption) &&
                 (actionID == DRG.FullThrust || actionID == DRG.HeavensThrust))
-                return OriginalHook(DRG.TrueThrust);
+                return (OriginalHook(DRG.TrueThrust), GetTint(CustomComboPreset.DragoonFullThrustCombo));
 
             if (IsEnabled(CustomComboPreset.DragoonChaosThrustCombo) &&
                 !IsEnabled(CustomComboPreset.DragoonChaosThrustComboOption) &&
                 (actionID == DRG.ChaosThrust || actionID == DRG.ChaoticSpring))
-                return OriginalHook(DRG.TrueThrust);
+                return (OriginalHook(DRG.TrueThrust), GetTint(CustomComboPreset.DragoonChaosThrustCombo));
 
             if (IsEnabled(CustomComboPreset.DragoonAllInOneCombo))
                 return OriginalHook(DRG.TrueThrust);
@@ -254,7 +255,7 @@ internal class DragoonStardiver : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DrgAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DRG.Stardiver)
         {
@@ -302,7 +303,7 @@ internal class DragoonGierskogul : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DragoonGeirskogulWyrmwindFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DRG.Geirskogul)
         {
@@ -322,7 +323,7 @@ internal class DragoonLanceCharge : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DragoonLanceChargeFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == DRG.LanceCharge)
         {

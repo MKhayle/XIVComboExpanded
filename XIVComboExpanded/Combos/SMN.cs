@@ -102,7 +102,7 @@ internal class SummonerFester : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SummonerEDFesterFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SMN.Fester || actionID == SMN.Necrosis)
         {
@@ -120,7 +120,7 @@ internal class SummonerPainflare : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SummonerESPainflareFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SMN.Painflare)
         {
@@ -144,7 +144,7 @@ internal class SummonerRuin : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SmnAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SMN.Ruin || actionID == SMN.Ruin2 || actionID == SMN.Ruin3)
         {
@@ -180,7 +180,7 @@ internal class SummonerOutburstTriDisaster : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SmnAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SMN.Outburst || actionID == SMN.TriDisaster)
         {
@@ -216,7 +216,7 @@ internal class SummonerGemshinePreciousBrilliance : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SmnAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SMN.Gemshine || actionID == SMN.PreciousBrilliance)
         {
@@ -250,7 +250,7 @@ internal class SummonerDemiFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SmnAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SMN.Aethercharge || actionID == SMN.DreadwyrmTrance || actionID == SMN.SummonBahamut)
         {
@@ -290,7 +290,7 @@ internal class SummonerRadiantCarbuncleFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SmnAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SMN.RadiantAegis)
         {
@@ -314,7 +314,7 @@ internal class SummonerLuxSolarisFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SummonerSummonLuxSolarisFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SMN.SummonBahamut)
         {
@@ -330,7 +330,7 @@ internal class SummonerPrimalSummons : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SummonerPrimalFavorFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SMN.SummonRuby || actionID == SMN.SummonIfrit || actionID == SMN.SummonIfrit2)
         {

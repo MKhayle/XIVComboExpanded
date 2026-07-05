@@ -87,7 +87,7 @@ internal class GunbreakerSolidBarrel : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GunbreakerSolidBarrelCombo;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == GNB.SolidBarrel)
         {
@@ -119,11 +119,13 @@ internal class GunbreakerSolidBarrel : CustomCombo
                     return GNB.SolidBarrel;
                 }
 
+                // Brutal Shell here matches what the actual Brutal Shell button shows — tint it.
                 if (lastComboMove == GNB.KeenEdge && level >= GNB.Levels.BrutalShell)
-                    return GNB.BrutalShell;
+                    return (GNB.BrutalShell, this.Tint);
             }
 
-            return GNB.KeenEdge;
+            // Keen Edge is shared with the Brutal Shell combo at neutral — tint it.
+            return (GNB.KeenEdge, this.Tint);
         }
 
         return actionID;
@@ -134,11 +136,17 @@ internal class GunbreakerBrutalShell : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GunbreakerBrutalShellCombo;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
-        if (actionID == GNB.BrutalShell && lastComboMove != GNB.KeenEdge)
+        if (actionID == GNB.BrutalShell)
         {
-            return GNB.KeenEdge;
+            // Keen Edge is shared with the Solid Barrel combo at neutral — tint it.
+            if (lastComboMove != GNB.KeenEdge)
+                return (GNB.KeenEdge, this.Tint);
+
+            // After Keen Edge the button shows Brutal Shell, matching the Solid Barrel
+            // combo's second step — tint it too.
+            return (GNB.BrutalShell, this.Tint);
         }
 
         return actionID;
@@ -149,7 +157,7 @@ internal class GunbreakerGnashingFang : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GunbreakerGnashingFangCont;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == GNB.GnashingFang)
         {
@@ -177,7 +185,7 @@ internal class GunbreakerBurstStrikeFatedCircle : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GnbAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == GNB.BurstStrike)
         {
@@ -247,7 +255,7 @@ internal class GunbreakerBowShockSonicBreak : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GunbreakerBowShockSonicBreakFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == GNB.BowShock || actionID == GNB.SonicBreak)
         {
@@ -276,7 +284,7 @@ internal class GunbreakerDemonSlaughter : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GunbreakerDemonSlaughterCombo;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == GNB.DemonSlaughter)
         {
@@ -317,7 +325,7 @@ internal class GunbreakerNoMercy : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GnbAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == GNB.NoMercy)
         {
@@ -366,7 +374,7 @@ internal class GunbreakerExpandedContinuation : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GunbreakerExpandedContinuation;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == GNB.Continuation)
         {
@@ -419,7 +427,7 @@ internal class GunbreakerTrajectoryDowngradeFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.GunbreakerTrajectoryDowngradeFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == GNB.Trajectory)
         {

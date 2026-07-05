@@ -99,7 +99,7 @@ internal class SamuraiYukikaze : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiYukikazeCombo;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SAM.Yukikaze)
             {
@@ -109,7 +109,7 @@ internal class SamuraiYukikaze : CustomCombo
                 if ((lastComboMove == SAM.Hakaze || lastComboMove == SAM.Gyofu) && level >= SAM.Levels.Yukikaze)
                     return SAM.Yukikaze;
 
-                return OriginalHook(SAM.Hakaze);
+                return (OriginalHook(SAM.Hakaze), this.Tint);
         }
 
         return actionID;
@@ -120,7 +120,7 @@ internal class SamuraiGekko : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiGekkoCombo;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SAM.Gekko)
             {
@@ -136,7 +136,7 @@ internal class SamuraiGekko : CustomCombo
                 if (IsEnabled(CustomComboPreset.SamuraiGekkoOption))
                     return SAM.Jinpu;
 
-                return OriginalHook(SAM.Hakaze);
+                return (OriginalHook(SAM.Hakaze), this.Tint);
         }
 
         return actionID;
@@ -147,7 +147,7 @@ internal class SamuraiKasha : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiKashaCombo;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SAM.Kasha)
             {
@@ -163,7 +163,7 @@ internal class SamuraiKasha : CustomCombo
                 if (IsEnabled(CustomComboPreset.SamuraiKashaOption))
                     return SAM.Shifu;
 
-                return OriginalHook(SAM.Hakaze);
+                return (OriginalHook(SAM.Hakaze), this.Tint);
         }
 
         return actionID;
@@ -174,7 +174,7 @@ internal class SamuraiAutoAoE : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiAutoAoEFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SAM.Mangetsu || actionID == SAM.Oka)
         {
@@ -235,7 +235,7 @@ internal class SamuraiAoEGoken : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiAutoAoEFinaleFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SAM.Mangetsu || actionID == SAM.Oka)
         {
@@ -266,7 +266,7 @@ internal class SamuraiMangetsu : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiMangetsuCombo;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SAM.Mangetsu)
         {
@@ -275,8 +275,8 @@ internal class SamuraiMangetsu : CustomCombo
             if ((lastComboMove == SAM.Fuga || lastComboMove == SAM.Fuko) && level >= SAM.Levels.Mangetsu)
                 return SAM.Mangetsu;
 
-            // Fuko/Fuga
-            return OriginalHook(SAM.Fuga);
+            // Fuko/Fuga — shared with the Oka combo, so tint it.
+            return (OriginalHook(SAM.Fuga), this.Tint);
         }
 
         return actionID;
@@ -287,7 +287,7 @@ internal class SamuraiOka : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiOkaCombo;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SAM.Oka)
         {
@@ -296,8 +296,8 @@ internal class SamuraiOka : CustomCombo
             if ((lastComboMove == SAM.Fuga || lastComboMove == SAM.Fuko) && level >= SAM.Levels.Oka)
                 return SAM.Oka;
 
-            // Fuko/Fuga
-            return OriginalHook(SAM.Fuga);
+            // Fuko/Fuga — shared with the Mangetsu combo, so tint it.
+            return (OriginalHook(SAM.Fuga), this.Tint);
         }
 
         return actionID;
@@ -308,7 +308,7 @@ internal class SamuraiIaijutsu : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SAM.Iaijutsu)
         {
@@ -334,7 +334,7 @@ internal class SamuraiShinten : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SAM.HissatsuShinten)
         {
@@ -373,7 +373,7 @@ internal class SamuraiSenei : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SAM.HissatsuSenei)
         {
@@ -392,7 +392,7 @@ internal class SamuraiKyuten : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SAM.HissatsuKyuten)
         {
@@ -425,7 +425,7 @@ internal class SamuraiGuren : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SAM.HissatsuGuren)
         {
@@ -452,7 +452,7 @@ internal class SamuraiIkishoten : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SamuraiIkishotenNamikiriFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SAM.Ikishoten)
         {

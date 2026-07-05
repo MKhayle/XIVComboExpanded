@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using Dalamud.Game.ClientState.JobGauge.Enums;
 using Dalamud.Game.ClientState.JobGauge.Types;
 
@@ -125,7 +125,7 @@ internal class ViperFangs : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.VprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == VPR.SteelFangs || actionID == VPR.ReavingFangs)
         {
@@ -349,7 +349,7 @@ internal class ViperMaws : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.VprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == VPR.SteelMaw || actionID == VPR.ReavingMaw)
         {
@@ -519,7 +519,7 @@ internal class ViperCoils : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.VprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == VPR.HuntersCoil || actionID == VPR.SwiftskinsCoil)
         {
@@ -569,7 +569,7 @@ internal class ViperDens : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.VprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == VPR.HuntersDen || actionID == VPR.SwiftskinsDen)
         {
@@ -619,7 +619,7 @@ internal class ViperUncoiled : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.VprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == VPR.UncoiledFury)
         {
@@ -654,7 +654,7 @@ internal class ViperVicewinder : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.VprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == VPR.Vicewinder)
         {
@@ -700,7 +700,7 @@ internal class ViperVicepit : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.VprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == VPR.VicePit)
         {
@@ -746,7 +746,7 @@ internal class ViperReawaken : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.VprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == VPR.Reawaken)
         {
@@ -791,7 +791,7 @@ internal class ViperoGCDs : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.VprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == VPR.SerpentsTail)
         {

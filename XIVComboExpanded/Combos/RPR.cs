@@ -106,7 +106,7 @@ internal class ReaperSlice : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RPR.InfernalSlice)
         {
@@ -226,7 +226,7 @@ internal class ReaperScythe : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RPR.NightmareScythe)
         {
@@ -321,7 +321,7 @@ internal class ReaperShadowOfDeath : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RPR.ShadowOfDeath)
         {
@@ -397,7 +397,7 @@ internal class ReaperSoulSlice : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RPR.SoulSlice)
         {
@@ -484,7 +484,7 @@ internal class ReaperSoulScythe : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RPR.SoulScythe)
         {
@@ -543,7 +543,7 @@ internal class ReaperBloodStalk : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RPR.BloodStalk)
         {
@@ -578,7 +578,7 @@ internal class ReaperGrimSwathe : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RPR.GrimSwathe)
         {
@@ -613,7 +613,7 @@ internal class ReaperGibbetGallowsGuillotine : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RPR.Gibbet || actionID == RPR.Gallows)
         {
@@ -704,7 +704,7 @@ internal class ReaperEnshroud : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RPR.Enshroud)
         {
@@ -731,7 +731,7 @@ internal class ReaperArcaneCircle : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RPR.ArcaneCircle)
         {
@@ -754,7 +754,7 @@ internal class ReaperPlentifulHarvest : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RPR.PlentifulHarvest)
         {
@@ -771,7 +771,7 @@ internal class ReaperHellsIngressEgress : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RPR.HellsEgress || actionID == RPR.HellsIngress)
         {
@@ -792,7 +792,7 @@ internal class ReaperHarpe : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RprAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == RPR.Harpe)
         {

@@ -56,6 +56,14 @@ internal abstract partial class CustomCombo
     protected byte JobID { get; }
 
     /// <summary>
+    /// Gets the user-configured hotbar icon tint for this combo (color + optional coloring
+    /// method override), or null when none is set. Only presets marked
+    /// <see cref="Attributes.TintableComboAttribute"/> expose a picker in the config window.
+    /// </summary>
+    protected ComboTint? Tint
+        => GetTint(this.Preset);
+
+    /// <summary>
     /// Performs various checks then attempts to invoke the combo.
     /// </summary>
     /// <param name="actionID">Starting action ID.</param>
@@ -63,10 +71,12 @@ internal abstract partial class CustomCombo
     /// <param name="lastComboMove">Last combo action ID.</param>
     /// <param name="comboTime">Combo timer.</param>
     /// <param name="newActionID">Replacement action ID.</param>
+    /// <param name="tint">Optional hotbar icon tint when combo is active.</param>
     /// <returns>True if the action has changed, otherwise false.</returns>
-    public bool TryInvoke(uint actionID, byte level, uint lastComboMove, float comboTime, out uint newActionID)
+    public bool TryInvoke(uint actionID, byte level, uint lastComboMove, float comboTime, out uint newActionID, out ComboTint? tint)
     {
         newActionID = 0;
+        tint = null;
 
         if (!IsEnabled(this.Preset) || !Service.Configuration.EnablePlugin)
             return false;
@@ -83,12 +93,15 @@ internal abstract partial class CustomCombo
             this.JobID != classJobID && this.ClassID != classJobID)
             return false;
 
-        var resultingActionID = this.Invoke(actionID, lastComboMove, comboTime, level);
+        var result = this.Invoke(actionID, lastComboMove, comboTime, level);
 
-        if (resultingActionID == 0 || actionID == resultingActionID)
+        // An unchanged action ID normally means "no replacement", but a tinted result still
+        // counts so a combo can recolor a step of the chain that keeps the button's own action.
+        if (result.ActionID == 0 || (actionID == result.ActionID && result.Tint == null))
             return false;
 
-        newActionID = resultingActionID;
+        newActionID = result.ActionID;
+        tint = result.Tint;
         return true;
     }
 
@@ -144,8 +157,8 @@ internal abstract partial class CustomCombo
     /// <param name="lastComboActionID">Last combo action.</param>
     /// <param name="comboTime">Current combo time.</param>
     /// <param name="level">Current player level.</param>
-    /// <returns>The replacement action ID.</returns>
-    protected abstract uint Invoke(uint actionID, uint lastComboActionID, float comboTime, byte level);
+    /// <returns>A <see cref="ComboAction"/> with the replacement action ID and optional tint color.</returns>
+    protected abstract ComboAction Invoke(uint actionID, uint lastComboActionID, float comboTime, byte level);
 }
 
 /// <summary>
@@ -194,6 +207,21 @@ internal abstract partial class CustomCombo
     /// <returns>A value indicating whether the preset is enabled.</returns>
     protected static bool IsEnabled(CustomComboPreset preset)
         => (int)preset < 100 || Service.Configuration.IsEnabled(preset);
+
+    /// <summary>
+    /// Gets the user-configured hotbar icon tint for a preset, for combo classes that handle
+    /// several presets in one.
+    /// </summary>
+    /// <param name="preset">Preset to check.</param>
+    /// <returns>The tint (color + optional method override), or null when none is set.</returns>
+    protected static ComboTint? GetTint(CustomComboPreset preset)
+    {
+        var color = Service.Configuration.GetComboTint(preset);
+        if (color == null)
+            return null;
+
+        return new ComboTint(color.Value, Service.Configuration.GetComboTintMethod(preset));
+    }
 
     /// <summary>
     /// Gets bool determining if action is greyed out or not.

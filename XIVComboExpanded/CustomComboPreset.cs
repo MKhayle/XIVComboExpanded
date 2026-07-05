@@ -795,6 +795,7 @@ public enum CustomComboPreset
     [CustomComboInfo("All-In-One Combo", "Replace Full Thrust and Chaos Thrust with the entire 10-part combo chain, auto-selecting the Chaos Thrust combo as needed to refresh Power Surge or the bleed\n\nNOTE: This can cause you to miss positionals.", DRG.JobID)]
     DragoonAllInOneCombo = 2216,
 
+    [TintableCombo]
     [IconsCombo([DRG.RaidenThrust, UTL.ArrowLeft, DRG.Drakesbane, UTL.ArrowLeft, DRG.FangAndClaw, UTL.ArrowLeft, DRG.FullThrust, UTL.ArrowLeft, DRG.VorpalThrust, UTL.ArrowLeft, DRG.TrueThrust])]
     [ConflictingCombos(DragoonAllInOneCombo)]
     [SectionCombo("Single Target")]
@@ -814,6 +815,7 @@ public enum CustomComboPreset
     [CustomComboInfo("Double Chaos Thrust Option", "After using Disembowel, replicates the remainder of the Chaos Thrust combo on Full Thrust, starting at Chaos Thrust. Combined with the Double Full Thrust Option, this allows you to select which combo to use at the 2nd combo step, but the remainder of both combos will be on both buttons.", DRG.JobID)]
     DragoonDoubleChaosThrustComboOption = 2215,
 
+    [TintableCombo]
     [IconsCombo([DRG.RaidenThrust, UTL.ArrowLeft, DRG.Drakesbane, UTL.ArrowLeft, DRG.WheelingThrust, UTL.ArrowLeft, DRG.ChaosThrust, UTL.ArrowLeft, DRG.Disembowel, UTL.ArrowLeft, DRG.TrueThrust])]
     [SectionCombo("Single Target")]
     [ConflictingCombos(DragoonAllInOneCombo)]
@@ -893,6 +895,7 @@ public enum CustomComboPreset
     #region GUNBREAKER
 
     [SectionCombo("Single Target")]
+    [TintableCombo]
     [IconsCombo([GNB.SolidBarrel, UTL.ArrowLeft, GNB.BrutalShell, UTL.ArrowLeft, GNB.KeenEdge])]
     [CustomComboInfo("Solid Barrel Combo", "Replace Solid Barrel with its combo chain.", GNB.JobID)]
     GunbreakerSolidBarrelCombo = 3701,
@@ -905,6 +908,7 @@ public enum CustomComboPreset
     GunbreakerBurstStrikeFeature = 3710,
 
     [SectionCombo("Single Target")]
+    [TintableCombo]
     [IconsCombo([GNB.BrutalShell, UTL.ArrowLeft, GNB.KeenEdge])]
     [SecretCustomCombo]
     [CustomComboInfo("Brutal Shell Combo", "Replace Brutal Shell with Keen Edge but doesn't change to Solid Barrel, for sustaining purposes.", GNB.JobID)]
@@ -1255,11 +1259,13 @@ public enum CustomComboPreset
     // ====================================================================================
     #region NINJA
 
+    [TintableCombo]
     [IconsCombo([NIN.AeolianEdge, UTL.ArrowLeft, NIN.GustSlash, UTL.ArrowLeft, NIN.SpinningEdge])]
     [SectionCombo("Single Target")]
     [CustomComboInfo("Aeolian Edge Combo", "Replace Aeolian Edge with its combo chain.", NIN.JobID)]
     NinjaAeolianEdgeCombo = 3002,
 
+    [TintableCombo]
     [IconsCombo([NIN.ArmorCrush, UTL.ArrowLeft, NIN.GustSlash, UTL.ArrowLeft, NIN.SpinningEdge])]
     [SectionCombo("Single Target")]
     [CustomComboInfo("Armor Crush Combo", "Replace Armor Crush with its combo chain.", NIN.JobID)]
@@ -1878,10 +1884,17 @@ public enum CustomComboPreset
     #endregion
     // ====================================================================================
     #region RED MAGE
+    [TintableCombo]
     [IconsCombo([RDM.Verstone, RDM.Verfire, UTL.ArrowLeft, RDM.Jolt, UTL.Blank, RDM.Buffs.VerstoneReady, RDM.Buffs.VerfireReady, UTL.Cross])]
     [SectionCombo("Single Target")]
     [CustomComboInfo("Verstone/Verfire Feature", "Replace Verstone/Verfire with Jolt when no proc is available.", RDM.JobID)]
     RedMageVerprocFeature = 3504,
+
+    [TintableCombo]
+    [SectionCombo("Single Target")]
+    [ParentCombo(RedMageVerprocFeature)]
+    [CustomComboInfo("Separate Verfire Jolt Color", "Pick a distinct color for the Jolt shown on the Verfire button, instead of sharing the color above.", RDM.JobID)]
+    RedMageVerprocVerfireTint = 3525,
 
     [IconsCombo([RDM.Verstone, RDM.Verfire, UTL.ArrowLeft, RDM.GrandImpact, UTL.Cross, UTL.Blank, RDM.Buffs.VerstoneReady, RDM.Buffs.VerfireReady, UTL.Checkmark])]
     [SectionCombo("Single Target")]
@@ -2155,11 +2168,13 @@ public enum CustomComboPreset
     // ====================================================================================
     #region SAMURAI
 
+    [TintableCombo]
     [IconsCombo([SAM.Yukikaze, UTL.ArrowLeft, SAM.Hakaze])]
     [SectionCombo("Single Target")]
     [CustomComboInfo("Yukikaze Combo", "Replace Yukikaze with its combo chain.", SAM.JobID)]
     SamuraiYukikazeCombo = 3401,
 
+    [TintableCombo]
     [IconsCombo([SAM.Gekko, UTL.ArrowLeft, SAM.Jinpu, UTL.ArrowLeft, SAM.Hakaze])]
     [SectionCombo("Single Target")]
     [CustomComboInfo("Gekko Combo", "Replace Gekko with its combo chain.", SAM.JobID)]
@@ -2172,6 +2187,7 @@ public enum CustomComboPreset
     [CustomComboInfo("Gekko Combo Option", "Start the Gekko combo chain with Jinpu instead of Hakaze.", SAM.JobID)]
     SamuraiGekkoOption = 3416,
 
+    [TintableCombo]
     [IconsCombo([SAM.Kasha, UTL.ArrowLeft, SAM.Shifu, UTL.ArrowLeft, SAM.Hakaze])]
     [SectionCombo("Single Target")]
     [CustomComboInfo("Kasha Combo", "Replace Kasha with its combo chain.", SAM.JobID)]
@@ -2184,11 +2200,13 @@ public enum CustomComboPreset
     [CustomComboInfo("Kasha Combo Option", "Start the Kasha combo chain with Shifu instead of Hakaze.", SAM.JobID)]
     SamuraiKashaOption = 3417,
 
+    [TintableCombo]
     [IconsCombo([SAM.Mangetsu, UTL.ArrowLeft, SAM.Fuga, SAM.Fuko])]
     [SectionCombo("Area of Effect")]
     [CustomComboInfo("Mangetsu Combo", "Replace Mangetsu with its own combo chain.", SAM.JobID)]
     SamuraiMangetsuCombo = 3404,
 
+    [TintableCombo]
     [IconsCombo([SAM.Oka, UTL.ArrowLeft, SAM.Fuga, SAM.Fuko])]
     [SectionCombo("Area of Effect")]
     [CustomComboInfo("Oka Combo", "Replace Oka with its own combo chain.", SAM.JobID)]
@@ -2686,11 +2704,13 @@ public enum CustomComboPreset
     #region WARRIOR
 
     [SectionCombo("Single Target")]
+    [TintableCombo]
     [IconsCombo([WAR.StormsPath, UTL.ArrowLeft, WAR.Maim, UTL.ArrowLeft, WAR.HeavySwing])]
     [CustomComboInfo("Storm's Path Combo", "Replace Storm's Path with its combo chain.", WAR.JobID)]
     WarriorStormsPathCombo = 2101,
 
     [SectionCombo("Single Target")]
+    [TintableCombo]
     [IconsCombo([WAR.StormsEye, UTL.ArrowLeft, WAR.Maim, UTL.ArrowLeft, WAR.HeavySwing])]
     [CustomComboInfo("Storm's Eye Combo", "Replace Storms Eye with its combo chain.", WAR.JobID)]
     WarriorStormsEyeCombo = 2102,

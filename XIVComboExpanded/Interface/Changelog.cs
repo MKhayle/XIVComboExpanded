@@ -13,6 +13,13 @@ namespace XIVComboExpanded.Interface
             return new Dictionary<string, string[]>()
                 {
                     {
+                        "v2.0.6.1",
+                        [
+                            "Action tinting update",
+                            "I lied, and added a new feature in XIVCombo so I'm adding it here too for parity."
+						]
+                    },
+                    {
                         "v2.0.6.0",
                         [
                             "API 15 update.",

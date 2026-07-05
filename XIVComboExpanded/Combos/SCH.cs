@@ -75,7 +75,7 @@ internal class ScholarFeyBless : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ScholarSeraphConsolationFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SCH.FeyBless)
         {
@@ -93,7 +93,7 @@ internal class ScholarExcogitation : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SchAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SCH.Excogitation)
         {
@@ -118,7 +118,7 @@ internal class ScholarDissipation : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ScholarDissipationEnergyDrainAetherflowFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         var gauge = GetJobGauge<SCHGauge>();
 
@@ -140,7 +140,7 @@ internal class ScholarEnergyDrain : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ScholarEnergyDrainAetherflowFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SCH.EnergyDrain)
         {
@@ -158,7 +158,7 @@ internal class ScholarLustrate : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SchAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SCH.Lustrate)
         {
@@ -191,7 +191,7 @@ internal class ScholarIndomitability : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ScholarIndomAetherflowFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SCH.Indomitability)
         {
@@ -209,7 +209,7 @@ internal class ScholarSacredSoil : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ScholarSacredSoilAetherflowFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SCH.SacredSoil)
         {
@@ -227,7 +227,7 @@ internal class ScholarSummon : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ScholarSeraphFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SCH.SummonEos || actionID == SCH.SummonSelene)
         {
@@ -246,7 +246,7 @@ internal class ScholarSeraphism : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ScholarSeraphismFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SCH.Seraphism)
         {
@@ -262,7 +262,7 @@ internal class ScholarAdloquium : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ScholarAdloquiumSyncFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SCH.Adloquium)
         {
@@ -278,7 +278,7 @@ internal class ScholarRuin : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SchAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == SCH.Ruin || actionID == SCH.Broil || actionID == SCH.Broil2 || actionID == SCH.Broil3 || actionID == SCH.Broil4)
         {

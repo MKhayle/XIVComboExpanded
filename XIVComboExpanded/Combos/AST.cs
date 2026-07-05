@@ -87,7 +87,7 @@ internal class AstrologianMalefic : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == AST.Malefic || actionID == AST.Malefic2 || actionID == AST.Malefic3 || actionID == AST.Malefic4 || actionID == AST.FallMalefic)
         {
@@ -129,7 +129,7 @@ internal class AstrologianGravity : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == AST.Gravity || actionID == AST.Gravity2)
         {
@@ -155,7 +155,7 @@ internal class AstrologianPlay1Draw : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstrologianPlay1DrawFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         var gauge = GetJobGauge<ASTGauge>();
 
@@ -170,7 +170,7 @@ internal class AstrologianPlay2Draw : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstrologianPlay2DrawFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         var gauge = GetJobGauge<ASTGauge>();
 
@@ -185,7 +185,7 @@ internal class AstrologianPlay3Draw : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstrologianPlay3DrawFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         var gauge = GetJobGauge<ASTGauge>();
 
@@ -200,7 +200,7 @@ internal class AstrologianMinorArcanaDraw : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstrologianMinorArcanaDrawFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         var gauge = GetJobGauge<ASTGauge>();
 
@@ -215,7 +215,7 @@ internal class AstrologianBenefic2 : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstrologianBeneficSyncFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         if (actionID == AST.Benefic2)
         {
@@ -231,7 +231,7 @@ internal class AstrologianArcana : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
         var gauge = GetJobGauge<ASTGauge>();
 
