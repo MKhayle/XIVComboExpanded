@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Dalamud.Game;
+using Dalamud.Game.ClientState.Conditions;
 using Dalamud.Game.ClientState.JobGauge.Types;
 using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.Game.ClientState.Statuses;
@@ -24,6 +25,19 @@ internal partial class CustomComboCache : IDisposable
     private readonly Dictionary<uint, byte> cooldownGroupCache = new();
     private readonly Dictionary<Type, JobGaugeBase> jobGaugeCache = new();
     private readonly Dictionary<(uint ActionID, uint ClassJobID, byte Level), (ushort CurrentMax, ushort Max)> chargesCache = new();
+    private DateTime? combatStartedAt;
+    private bool wasInCombat;
+
+    /// <summary>
+    /// Gets the time elapsed since the player entered combat.
+    /// </summary>
+    internal TimeSpan CombatElapsed
+        => this.combatStartedAt.HasValue ? DateTime.UtcNow - this.combatStartedAt.Value : TimeSpan.Zero;
+
+    /// <summary>
+    /// Gets or sets a value indicating whether a recognized raid buff was seen during the current combat.
+    /// </summary>
+    internal bool RaidBuffDetectedThisCombat { get; set; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="CustomComboCache"/> class.
@@ -142,6 +156,19 @@ internal partial class CustomComboCache : IDisposable
 
     private unsafe void Framework_Update(IFramework framework)
     {
+        var inCombat = Service.Condition[ConditionFlag.InCombat];
+        if (inCombat && !this.wasInCombat)
+        {
+            this.combatStartedAt = DateTime.UtcNow;
+            this.RaidBuffDetectedThisCombat = false;
+        }
+        else if (!inCombat)
+        {
+            this.combatStartedAt = null;
+            this.RaidBuffDetectedThisCombat = false;
+        }
+
+        this.wasInCombat = inCombat;
         this.statusCache.Clear();
         this.cooldownCache.Clear();
     }

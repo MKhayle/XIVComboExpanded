@@ -59,6 +59,31 @@ internal static class SGE
             EukrasianDosis3 = 2616;
     }
 
+    public static class RaidBuffs
+    {
+        public static readonly ushort[] Player =
+        [
+            1878, // Divination
+            141,  // Battle Voice
+            2722, // Radiant Finale
+            1822, // Technical Finish
+            786,  // Battle Litany
+            1185, // Brotherhood
+            3685, // Starry Muse
+            1239, // Embolden (self)
+            1297, // Embolden (party members)
+            2599, // Arcane Circle
+            2703, // Searing Light
+        ];
+
+        public static readonly ushort[] Target =
+        [
+            638,  // Mug
+            3849, // Dokumori
+            1221, // Chain Stratagem
+        ];
+    }
+
     public static class Levels
     {
         public const ushort
@@ -103,6 +128,34 @@ internal class SageDosis : CustomCombo
             {
                 if (level >= SGE.Levels.Psyche && IsCooldownUsable(SGE.Psyche) && TargetIsEnemy() && InCombat())
                     return OriginalHook(SGE.Psyche);
+            }
+
+            if (IsEnabled(CustomComboPreset.SageDosisPhlegmaBurst) && TargetIsEnemy() && InCombat())
+            {
+                var phlegma =
+                    level >= SGE.Levels.Phlegma3 ? SGE.Phlegma3 :
+                    level >= SGE.Levels.Phlegma2 ? SGE.Phlegma2 :
+                    level >= SGE.Levels.Phlegma ? SGE.Phlegma : 0;
+
+                var raidBuffActive = Array.Exists(SGE.RaidBuffs.Player, HasEffectAny) ||
+                    Array.Exists(SGE.RaidBuffs.Target, TargetHasEffectAny);
+                if (raidBuffActive)
+                    Service.ComboCache.RaidBuffDetectedThisCombat = true;
+
+                var combatElapsed = Service.ComboCache.CombatElapsed.TotalSeconds;
+                var firstBurstFallback = !Service.ComboCache.RaidBuffDetectedThisCombat &&
+                    combatElapsed >= 10 && combatElapsed <= 20;
+
+                var psycheCooldown = GetCooldown(SGE.Psyche);
+                var spendToAvoidOvercap = level >= SGE.Levels.Psyche &&
+                    psycheCooldown.IsCooldown &&
+                    psycheCooldown.CooldownRemaining <= 30 &&
+                    GetRemainingCharges(phlegma) >= 2 &&
+                    CanUseAction(OriginalHook(SGE.Phlegma));
+
+                if (phlegma != 0 && IsCooldownUsable(phlegma) &&
+                    (raidBuffActive || firstBurstFallback || spendToAvoidOvercap))
+                    return OriginalHook(SGE.Phlegma);
             }
 
             if (IsEnabled(CustomComboPreset.SageDoTFeature) && TargetIsEnemy() && InCombat())
