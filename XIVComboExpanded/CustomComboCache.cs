@@ -26,6 +26,8 @@ internal partial class CustomComboCache : IDisposable
     private readonly Dictionary<Type, JobGaugeBase> jobGaugeCache = new();
     private readonly Dictionary<(uint ActionID, uint ClassJobID, byte Level), (ushort CurrentMax, ushort Max)> chargesCache = new();
     private DateTime? combatStartedAt;
+    private DateTime? raidBurstStartedAt;
+    private bool raidBurstWasActive;
     private bool wasInCombat;
 
     /// <summary>
@@ -38,6 +40,34 @@ internal partial class CustomComboCache : IDisposable
     /// Gets or sets a value indicating whether a recognized raid buff was seen during the current combat.
     /// </summary>
     internal bool RaidBuffDetectedThisCombat { get; set; }
+
+    /// <summary>
+    /// Gets the time remaining until the next tracked two-minute raid burst.
+    /// </summary>
+    internal TimeSpan? NextRaidBurstIn
+    {
+        get
+        {
+            if (!this.raidBurstStartedAt.HasValue)
+                return null;
+
+            var elapsed = (DateTime.UtcNow - this.raidBurstStartedAt.Value).TotalSeconds;
+            var remaining = Math.Max(0, 120 - elapsed);
+            return TimeSpan.FromSeconds(remaining);
+        }
+    }
+
+    /// <summary>
+    /// Updates the tracked raid-burst state and anchors a new cycle on its rising edge.
+    /// </summary>
+    /// <param name="active">Whether a recognized burst phase is currently active.</param>
+    internal void UpdateRaidBurst(bool active)
+    {
+        if (active && !this.raidBurstWasActive)
+            this.raidBurstStartedAt = DateTime.UtcNow;
+
+        this.raidBurstWasActive = active;
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="CustomComboCache"/> class.
@@ -160,11 +190,15 @@ internal partial class CustomComboCache : IDisposable
         if (inCombat && !this.wasInCombat)
         {
             this.combatStartedAt = DateTime.UtcNow;
+            this.raidBurstStartedAt = null;
+            this.raidBurstWasActive = false;
             this.RaidBuffDetectedThisCombat = false;
         }
         else if (!inCombat)
         {
             this.combatStartedAt = null;
+            this.raidBurstStartedAt = null;
+            this.raidBurstWasActive = false;
             this.RaidBuffDetectedThisCombat = false;
         }
 

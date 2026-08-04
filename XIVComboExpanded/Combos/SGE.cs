@@ -145,16 +145,17 @@ internal class SageDosis : CustomCombo
                 var combatElapsed = Service.ComboCache.CombatElapsed.TotalSeconds;
                 var firstBurstFallback = !Service.ComboCache.RaidBuffDetectedThisCombat &&
                     combatElapsed >= 10 && combatElapsed <= 20;
+                var burstPhaseActive = raidBuffActive || firstBurstFallback;
+                Service.ComboCache.UpdateRaidBurst(burstPhaseActive);
 
-                var psycheCooldown = GetCooldown(SGE.Psyche);
-                var spendToAvoidOvercap = level >= SGE.Levels.Psyche &&
-                    psycheCooldown.IsCooldown &&
-                    psycheCooldown.CooldownRemaining <= 30 &&
-                    GetRemainingCharges(phlegma) >= 2;
+                var nextBurstIn = Service.ComboCache.NextRaidBurstIn;
+                var spendToAvoidOvercap = !burstPhaseActive &&
+                    GetRemainingCharges(phlegma) >= 2 &&
+                    (!nextBurstIn.HasValue || nextBurstIn.Value.TotalSeconds > 20);
+                var inPhlegmaRange = CurrentTarget!.CurrentDistance <= 6;
 
                 if (phlegma != 0 && IsCooldownUsable(phlegma) &&
-                    CanUseAction(OriginalHook(SGE.Phlegma)) &&
-                    (raidBuffActive || firstBurstFallback || spendToAvoidOvercap))
+                    inPhlegmaRange && (burstPhaseActive || spendToAvoidOvercap))
                     return OriginalHook(SGE.Phlegma);
             }
 
