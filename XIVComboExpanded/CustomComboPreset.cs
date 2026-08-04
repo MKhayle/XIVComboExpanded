@@ -2059,7 +2059,7 @@ public enum CustomComboPreset
     [IconsCombo([SGE.Dosis, UTL.ArrowLeft, SGE.Phlegma, UTL.Blank, SGE.Phlegma, UTL.Checkmark])]
     [SectionCombo("Damage")]
     [ExpandedCustomCombo]
-    [CustomComboInfo("Dosis into Phlegma during raid buffs", "Replace Dosis with Phlegma when a recognized raid damage buff is active on you or a recognized raid damage debuff is active on your target. If none are detected, treat 10-20 seconds after entering combat as the first burst window. Also spend one Phlegma at two charges when the next Psyche burst is 30 seconds or less away and the target is in range.", SGE.JobID)]
+    [CustomComboInfo("Dosis into Phlegma during raid buffs", "Replace Dosis with Phlegma when the target is in Phlegma range and a recognized raid damage buff is active on you or a recognized raid damage debuff is active on your target. If none are detected, treat 10-20 seconds after entering combat as the first burst window. Also spend one Phlegma at two charges when the next Psyche burst is 30 seconds or less away.", SGE.JobID)]
     SageDosisPhlegmaBurst = 4021,
 
     [IconsCombo([SGE.Dyskrasia, UTL.ArrowLeft, SGE.Psyche, UTL.Blank, SGE.Psyche, UTL.Clock])]

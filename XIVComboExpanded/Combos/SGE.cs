@@ -150,10 +150,10 @@ internal class SageDosis : CustomCombo
                 var spendToAvoidOvercap = level >= SGE.Levels.Psyche &&
                     psycheCooldown.IsCooldown &&
                     psycheCooldown.CooldownRemaining <= 30 &&
-                    GetRemainingCharges(phlegma) >= 2 &&
-                    CanUseAction(OriginalHook(SGE.Phlegma));
+                    GetRemainingCharges(phlegma) >= 2;
 
                 if (phlegma != 0 && IsCooldownUsable(phlegma) &&
+                    CanUseAction(OriginalHook(SGE.Phlegma)) &&
                     (raidBuffActive || firstBurstFallback || spendToAvoidOvercap))
                     return OriginalHook(SGE.Phlegma);
             }
