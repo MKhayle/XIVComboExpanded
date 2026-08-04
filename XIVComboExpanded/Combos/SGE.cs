@@ -78,7 +78,7 @@ internal static class SGE
 
         public static readonly ushort[] Target =
         [
-            638,  // Mug
+            3183, // Mug
             3849, // Dokumori
             1221, // Chain Stratagem
         ];
