@@ -13,6 +13,12 @@ namespace XIVComboExpanded.Interface
             return new Dictionary<string, string[]>()
                 {
                     {
+                        "v2.0.6.2",
+                        [
+                            "Icon coloring is now available for cross hotbars. Sorry, I forgot controller players existed!",
+						]
+                    },
+                    {
                         "v2.0.6.1",
                         [
                             "Action tinting update",

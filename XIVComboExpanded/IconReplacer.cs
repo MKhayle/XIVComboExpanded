@@ -46,16 +46,29 @@ public enum IconColoringMethod
 /// </summary>
 internal sealed partial class IconReplacer : IDisposable
 {
+    /// <summary>
+    /// Every hotbar addon whose icons can be tinted: the ten regular hotbars, the cross hotbar,
+    /// and both halves of the double (WXHB) cross hotbar. They all derive from AddonActionBarBase.
+    /// </summary>
+    private static readonly string[] HotbarAddonNames =
+    [
+        .. Enumerable.Range(0, 10).Select(i => i == 0 ? "_ActionBar" : $"_ActionBar{i:D2}"),
+        "_ActionCross",
+        "_ActionDoubleCrossL",
+        "_ActionDoubleCrossR",
+    ];
+
     private readonly unsafe ActionManager* clientStructActionManager;
     private readonly List<CustomCombo> customCombos;
     private readonly Hook<IsIconReplaceableDelegate> isIconReplaceableHook;
     private readonly Hook<GetIconDelegate> getIconHook;
     private readonly Dictionary<uint, ComboTint> activeIconColors = new();
 
-    // Tracks currently tinted (barIndex, slotIndex) pairs. The game dims unusable actions by
+    // Tracks currently tinted (addonName, slotIndex) pairs — the addon name covers both the
+    // regular hotbars and the controller cross hotbars. The game dims unusable actions by
     // writing the icon image node's multiply channels itself, so for each slot we remember the
     // game's own multiply values and what was last written
-    private readonly Dictionary<(int bar, int slot), SlotTintState> tintedSlots = new();
+    private readonly Dictionary<(string addon, int slot), SlotTintState> tintedSlots = new();
 
     private IntPtr actionManager = IntPtr.Zero;
 
@@ -79,9 +92,7 @@ internal sealed partial class IconReplacer : IDisposable
         this.isIconReplaceableHook.Enable();
 
         // PreDraw so the game doesn't fuck up what we've done.
-        var actionBarNames = Enumerable.Range(0, 10)
-            .Select(i => i == 0 ? "_ActionBar" : $"_ActionBar{i:D2}");
-        Service.AddonLifecycle.RegisterListener(AddonEvent.PreDraw, actionBarNames, this.OnActionBarPreDraw);
+        Service.AddonLifecycle.RegisterListener(AddonEvent.PreDraw, HotbarAddonNames, this.OnActionBarPreDraw);
     }
 
     private struct SlotTintState
@@ -188,10 +199,8 @@ internal sealed partial class IconReplacer : IDisposable
 
         try
         {
-            var addon = (AddonActionBar*)args.Addon.Address;
-            var name = args.AddonName;
-            var barIdx = name == "_ActionBar" ? 0 : int.Parse(name["_ActionBar".Length..]);
-            this.ApplyColorsToAddon(addon, barIdx);
+            var addon = (AddonActionBarBase*)args.Addon.Address;
+            this.ApplyColorsToAddon(addon, args.AddonName);
         }
         catch (Exception ex)
         {
@@ -199,7 +208,7 @@ internal sealed partial class IconReplacer : IDisposable
         }
     }
 
-    private unsafe void ApplyColorsToAddon(AddonActionBar* addon, int barIdx)
+    private unsafe void ApplyColorsToAddon(AddonActionBarBase* addon, string addonName)
     {
         var hotbarModule = RaptureHotbarModule.Instance();
         if (hotbarModule == null) return;
@@ -215,7 +224,7 @@ internal sealed partial class IconReplacer : IDisposable
             var imageNode = GetIconImageNode(addon, si);
             if (imageNode == null) continue;
 
-            var slotKey = (barIdx, si);
+            var slotKey = (addonName, si);
             var hotbarSlot = hotbarModule->GetSlotById(hotbarId, (uint)si);
 
             if (hotbarSlot != null
@@ -273,7 +282,7 @@ internal sealed partial class IconReplacer : IDisposable
         }
     }
 
-    private static unsafe AtkImageNode* GetIconImageNode(AddonActionBar* addon, int si)
+    private static unsafe AtkImageNode* GetIconImageNode(AddonActionBarBase* addon, int si)
     {
         var dragDrop = addon->ActionBarSlotVector[si].ComponentDragDrop;
         if (dragDrop == null) return null;
@@ -286,13 +295,12 @@ internal sealed partial class IconReplacer : IDisposable
 
     private unsafe void RestoreAllColors()
     {
-        foreach (var ((barIdx, si), st) in this.tintedSlots)
+        foreach (var ((addonName, si), st) in this.tintedSlots)
         {
-            var addonName = barIdx == 0 ? "_ActionBar" : $"_ActionBar{barIdx:D2}";
             var addonWrapper = Service.GameGui.GetAddonByName(addonName);
             if (addonWrapper.IsNull) continue;
 
-            var addon = (AddonActionBar*)addonWrapper.Address;
+            var addon = (AddonActionBarBase*)addonWrapper.Address;
             if (si >= addon->SlotCount) continue;
 
             var imageNode = GetIconImageNode(addon, si);
