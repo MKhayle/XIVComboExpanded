@@ -2876,6 +2876,24 @@ public enum CustomComboPreset
     DolCastGigFeature = 51003,
 
     [SectionCombo("Disciple of the Ocean")]
+    [IconsCombo([DOL.Hook, UTL.ArrowLeft, DOL.Cast])]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Hook / Cast Feature", "Replaces Hook with Cast when not fishing.", DOL.JobID)]
+    DolHookCastFeature = 51009,
+
+    [SectionCombo("Disciple of the Ocean")]
+    [IconsCombo([DOL.Hook, UTL.ArrowLeft, DOL.Mooch])]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Hook / Mooch Feature", "Replaces Hook with Mooch when available.", DOL.JobID)]
+    DolHookMoochFeature = 51010,
+
+    [SectionCombo("Disciple of the Ocean")]
+    [IconsCombo([DOL.Hook, UTL.ArrowLeft, DOL.Gig])]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Hook / Gig Feature", "Replaces Hook with Gig when underwater.", DOL.JobID)]
+    DolHookGigFeature = 51011,
+
+    [SectionCombo("Disciple of the Ocean")]
     [IconsCombo([DOL.SurfaceSlap, UTL.ArrowLeft, DOL.VeteranTrade])]
     [ExpandedCustomCombo]
     [CustomComboInfo("Surface Slap / Veteran Trade Feature", "Replace Surface Slap with Veteran Trade when underwater.", DOL.JobID)]
