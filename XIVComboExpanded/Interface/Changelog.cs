@@ -13,6 +13,13 @@ namespace XIVComboExpanded.Interface
             return new Dictionary<string, string[]>()
                 {
                     {
+                        "v2.0.6.3",
+                        [
+                            "BST: Added the Shieldsplitter Combo option by @Rakibei.",
+                            "BST: Added the Parting Blow Feature option.",
+						]
+                    },
+                    {
                         "v2.0.6.2",
                         [
                             "Icon coloring is now available for cross hotbars. Sorry, I forgot controller players existed!",

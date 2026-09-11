@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using XIVComboExpandedPlugin.Attributes;
 using XIVComboExpandedPlugin.Combos;
 
@@ -2855,6 +2855,30 @@ public enum CustomComboPreset
     [IconsCombo([BST.Shieldsplitter, UTL.ArrowLeft, BST.AxebladeBite, UTL.ArrowLeft, BST.SmashAxe])]
     [CustomComboInfo("Shieldsplitter Combo", "Replace Shieldsplitter with its combo chain.", BST.JobID)]
     BeastmasterShieldsplitterCombo = 4301,
+
+    [SectionCombo("Familiar")]
+    [IconsCombo([BST.PartingBlow, UTL.ArrowLeft, BST.FirstBattlehorn, BST.SecondBattlehorn, BST.ThirdBattlehorn, UTL.Blank, UTL.Clock, UTL.Cross])]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Parting Blow Feature", "Replace your summoning horns with Parting Blow while your familiar is out. The horns are left alone once their recast starts, so their cooldown stays visible.", BST.JobID)]
+    BeastmasterPartingBlowFeature = 4302,
+
+    [TintableCombo]
+    [SectionCombo("Familiar")]
+    [ParentCombo(BeastmasterPartingBlowFeature)]
+    [CustomComboInfo("Separate First Battlehorn Color", "Pick a color for the Parting Blow shown on the First Battlehorn.", BST.JobID)]
+    BeastmasterPartingBlowFirstHornTint = 4305,
+
+    [TintableCombo]
+    [SectionCombo("Familiar")]
+    [ParentCombo(BeastmasterPartingBlowFeature)]
+    [CustomComboInfo("Separate Second Battlehorn Color", "Pick a color for the Parting Blow shown on the Second Battlehorn.", BST.JobID)]
+    BeastmasterPartingBlowSecondHornTint = 4303,
+
+    [TintableCombo]
+    [SectionCombo("Familiar")]
+    [ParentCombo(BeastmasterPartingBlowFeature)]
+    [CustomComboInfo("Separate Third Battlehorn Color", "Pick a color for the Parting Blow shown on the Third Battlehorn.", BST.JobID)]
+    BeastmasterPartingBlowThirdHornTint = 4304,
 
     #endregion
     // ====================================================================================
