@@ -151,7 +151,7 @@ public class ConfigWindow : Window
                         // This is cursed. I'm lazy. Don't judge me. Or do. I don't care. It's imgui anyway.
                         if (!(Service.Configuration.CurrentJobTab is "Adventurer" or "Disciples of the Land" or "Paladin" or "Monk" or "Warrior" or "Dragoon" or "Bard" or "White Mage"
                             or "Black Mage" or "Summoner" or "Scholar" or "Ninja" or "Machinist" or "Dark Knight" or "Astrologian"
-                            or "Samurai" or "Red Mage" or "Gunbreaker" or "Dancer" or "Reaper" or "Sage" or "Viper" or "Pictomancer"))
+                            or "Samurai" or "Red Mage" or "Gunbreaker" or "Dancer" or "Reaper" or "Sage" or "Viper" or "Pictomancer" or "Beastmaster"))
                         {
                             Service.Configuration.CurrentJobTab = "Adventurer";
                             Service.Configuration.Save();
@@ -1257,11 +1257,11 @@ public class ConfigWindow : Window
         var iconID = 62100 + jobID;
 
         // Outside of bounds, either DoL, DoH, or we messed up.
-        if (iconID < 62101 || iconID > 62142)
+        if (iconID < 62101 || iconID > 62143)
             iconID = 62146;
         // Adventurer
         if (jobID == 0)
-            iconID = 62147;
+            iconID = 62576;
 
         return GetIcon((uint)iconID);
     }
