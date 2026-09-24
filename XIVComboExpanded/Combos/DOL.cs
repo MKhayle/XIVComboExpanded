@@ -12,6 +12,7 @@ internal static class DOL
         SolidReason = 232,
         Cast = 289,
         Hook = 296,
+        Mooch = 297,
         CastLight = 2135,
         Snagging = 4100,
         SurfaceSlap = 4595,
@@ -99,6 +100,28 @@ internal class FisherCast : CustomCombo
             {
                 if (HasCondition(ConditionFlag.Diving))
                     return DOL.Gig;
+            }
+        }
+
+        if (actionID == DOL.Hook)
+        {
+
+            if (IsEnabled(CustomComboPreset.DolHookGigFeature))
+            {
+                if (HasCondition(ConditionFlag.Diving))
+                    return DOL.Gig;
+            }
+
+            if (IsEnabled(CustomComboPreset.DolHookMoochFeature))
+            {
+                if (CanUseAction(DOL.Mooch))
+                    return DOL.Mooch;
+            }
+
+            if (IsEnabled(CustomComboPreset.DolHookCastFeature))
+            {
+                if (!HasCondition(ConditionFlag.Fishing))
+                    return DOL.Cast;
             }
         }
 
