@@ -81,7 +81,7 @@ internal static class SAM
             HissatsuShinten = 52,
             HissatsuGyoten = 54,
             HissatsuYaten = 56,
-            HissatsuKyuten = 64,
+            HissatsuKyuten = 62,
             Ikishoten = 68,
             HissatsuGuren = 70,
             HissatsuSenei = 72,
@@ -397,6 +397,10 @@ internal class SamuraiKyuten : CustomCombo
         if (actionID == SAM.HissatsuKyuten)
         {
             var gauge = GetJobGauge<SAMGauge>();
+
+            if (IsEnabled(CustomComboPreset.SamuraiKyutenShintenFeature) &&
+                level < SAM.Levels.HissatsuKyuten && level >= SAM.Levels.HissatsuShinten)
+                return SAM.HissatsuShinten;
 
             if (IsEnabled(CustomComboPreset.SamuraiKyutenZanshinFeature))
             {

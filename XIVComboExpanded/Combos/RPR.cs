@@ -584,6 +584,10 @@ internal class ReaperGrimSwathe : CustomCombo
         {
             var gauge = GetJobGauge<RPRGauge>();
 
+            if (IsEnabled(CustomComboPreset.ReaperGrimSwatheBloodStalkFeature) &&
+                level < RPR.Levels.GrimSwathe && level >= RPR.Levels.BloodStalk)
+                return RPR.BloodStalk;
+
             if (IsEnabled(CustomComboPreset.ReaperLemuresSacrificiumFeature) &&
                 level >= RPR.Levels.Enshroud && gauge.EnshroudedTimeRemaining > 0)
             {

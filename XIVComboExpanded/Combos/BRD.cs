@@ -317,6 +317,10 @@ internal class BardRainOfDeath : CustomCombo
         {
             var gauge = GetJobGauge<BRDGauge>();
 
+            if (IsEnabled(CustomComboPreset.BardRainOfDeathBloodletterFeature) &&
+                level < BRD.Levels.RainOfDeath && level >= BRD.Levels.Bloodletter)
+                return BRD.Bloodletter;
+
             if (IsEnabled(CustomComboPreset.BardExpiringPerfectRainOfDeathFeature))
             {
                 if (level >= BRD.Levels.PitchPerfect && gauge.Song == Song.WanderersMinuet && gauge.Repertoire >= 1)

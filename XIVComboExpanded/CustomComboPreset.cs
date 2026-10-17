@@ -508,6 +508,12 @@ public enum CustomComboPreset
     [CustomComboInfo("Raging Barrage Feature", "Replace Raging Strikes with Barrage when the former is on cooldown and the latter is not.", BRD.JobID)]
     BardRagingBarrageFeature = 2326,
 
+    [SectionCombo("Cooldowns")]
+    [IconsCombo([BRD.RainOfDeath, UTL.ArrowLeft, BRD.Bloodletter])]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Rain of Death Level Sync", "Replace Rain of Death with Bloodletter when it is not yet learned.", BRD.JobID)]
+    BardRainOfDeathBloodletterFeature = 2327,
+
     #endregion
     // ====================================================================================
     #region DANCER
@@ -702,6 +708,12 @@ public enum CustomComboPreset
         "\nYou can get Action IDs with Garland Tools by searching for the action and clicking the cog.",
         DNC.JobID)]
     DancerDanceComboCompatibility = 3806,
+
+    [IconsCombo([DNC.FanDance2, UTL.ArrowLeft, DNC.FanDance1])]
+    [SectionCombo("Fan features")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Fan Dance II Level Sync", "Replace Fan Dance II with Fan Dance when it is not yet learned.", DNC.JobID)]
+    DancerFanDance2FanDanceFeature = 3833,
 
     #endregion
     // ====================================================================================
@@ -1884,6 +1896,12 @@ public enum CustomComboPreset
     [CustomComboInfo("Scythe Soulsow Feature", "Replace Nightmare Scythe with Soulsow when not active and out of combat.", RPR.JobID)]
     ReaperScytheSoulsowFeature = 3931,
 
+    [IconsCombo([RPR.GrimSwathe, UTL.ArrowLeft, RPR.BloodStalk])]
+    [SectionCombo("Level Synchronization")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Grim Swathe Level Sync", "Replace Grim Swathe with Blood Stalk when it is not yet learned.", RPR.JobID)]
+    ReaperGrimSwatheBloodStalkFeature = 3953,
+
     #endregion
     // ====================================================================================
     #region RED MAGE
@@ -2317,6 +2335,12 @@ public enum CustomComboPreset
     [ExpandedCustomCombo]
     [CustomComboInfo("Senei to Guren Level Sync", "Replace Hissatsu: Senei with Guren when level synced below 72.", SAM.JobID)]
     SamuraiSeneiGurenFeature = 3418,
+
+    [IconsCombo([SAM.HissatsuKyuten, UTL.ArrowLeft, SAM.HissatsuShinten])]
+    [SectionCombo("Level Synchronization")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Kyuten Level Sync", "Replace Hissatsu: Kyuten with Hissatsu: Shinten when it is not yet learned.", SAM.JobID)]
+    SamuraiKyutenShintenFeature = 3428,
 
     #endregion
     // ====================================================================================
@@ -2789,6 +2813,12 @@ public enum CustomComboPreset
     [ExpandedCustomCombo]
     [CustomComboInfo("Nascent Flash Level Sync", "Replace Nascent Flash with Raw Intuition when Level Synced.", WAR.JobID)]
     WarriorNascentFlashSyncFeature = 2106,
+
+    [SectionCombo("Level Synchronization")]
+    [IconsCombo([WAR.Orogeny, UTL.ArrowLeft, WAR.Upheaval])]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Orogeny Level Sync", "Replace Orogeny with Upheaval when it is not yet learned.", WAR.JobID)]
+    WarriorOrogenyUpheavalFeature = 2115,
 
     #endregion
     // ====================================================================================

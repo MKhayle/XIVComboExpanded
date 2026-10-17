@@ -87,9 +87,11 @@ internal static class DNC
             StandardStep = 15,
             ReverseCascade = 20,
             Bladeshower = 25,
+            FanDance1 = 30,
             RisingWindmill = 35,
             Fountainfall = 40,
             Bloodshower = 45,
+            FanDance2 = 50,
             ClosedPosition = 60,
             FanDance3 = 66,
             TechnicalStep = 70,
@@ -144,6 +146,10 @@ internal class DancerFanDance12 : CustomCombo
     {
         if (actionID == DNC.FanDance1 || actionID == DNC.FanDance2)
         {
+            if (IsEnabled(CustomComboPreset.DancerFanDance2FanDanceFeature) &&
+                actionID == DNC.FanDance2 && level < DNC.Levels.FanDance2 && level >= DNC.Levels.FanDance1)
+                return DNC.FanDance1;
+
             if (level < DNC.Levels.FanDance3)
                 return actionID;
 

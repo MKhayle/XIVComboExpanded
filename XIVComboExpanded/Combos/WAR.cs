@@ -26,11 +26,13 @@ internal static class WAR
         RawIntuition = 3551,
         Equilibrium = 3552,
         InnerRelease = 7389,
+        Upheaval = 7387,
         MythrilTempest = 16462,
         ChaoticCyclone = 16463,
         NascentFlash = 16464,
         InnerChaos = 16465,
         Bloodwhetting = 25751,
+        Orogeny = 25752,
         PrimalRend = 25753,
         DefianceRemoval = 32066,
         PrimalWrath = 36924,
@@ -71,11 +73,13 @@ internal static class WAR
             RawIntuition = 56,
             Equilibrium = 58,
             Decimate = 60,
+            Upheaval = 64,
             InnerRelease = 70,
             MythrilTempestTrait = 74,
             NascentFlash = 76,
             InnerChaos = 80,
             Bloodwhetting = 82,
+            Orogeny = 86,
             PrimalRend = 90,
             PrimalWrath = 96,
             PrimalRuination = 100;
@@ -296,6 +300,22 @@ internal class WarriorNascentFlashFeature : CustomCombo
         {
             if (level < WAR.Levels.NascentFlash && level >= WAR.Levels.RawIntuition)
                 return WAR.RawIntuition;
+        }
+
+        return actionID;
+    }
+}
+
+internal class WarriorOrogeny : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.WarriorOrogenyUpheavalFeature;
+
+    protected override ComboAction Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == WAR.Orogeny)
+        {
+            if (level < WAR.Levels.Orogeny && level >= WAR.Levels.Upheaval)
+                return WAR.Upheaval;
         }
 
         return actionID;
