@@ -299,6 +299,12 @@ internal class BlackFreezeFlare : CustomCombo
 
             if (IsEnabled(CustomComboPreset.BlackFreezeFlareFeature))
             {
+                if (IsEnabled(CustomComboPreset.BlackAoeFlareStarFeature))
+                {
+                    if (level >= BLM.Levels.FlareStar && gauge.AstralSoulStacks >= 6)
+                        return BLM.FlareStar;
+                }
+
                 if (level >= BLM.Levels.Freeze && gauge.InUmbralIce)
                     return BLM.Freeze;
 

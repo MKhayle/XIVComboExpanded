@@ -311,6 +311,13 @@ public enum CustomComboPreset
     [CustomComboInfo("Freeze/Flare Feature", "Freeze and Flare become whichever action you can currently use.", BLM.JobID)]
     BlackFreezeFlareFeature = 2506,
 
+    [IconsCombo([BLM.Flare, BLM.Freeze, UTL.ArrowLeft, BLM.FlareStar, UTL.Blank, BLM.FlareStar, UTL.Checkmark])]
+    [SectionCombo("Area of Effect")]
+    [ParentCombo(BlackFreezeFlareFeature)]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("AoE Flare Star Feature", "Replace Flare and Freeze with Flare Star when you have 6 astral soul.", BLM.JobID)]
+    BlackAoeFlareStarFeature = 2527,
+
     [IconsCombo([BLM.HighFire2, UTL.ArrowLeft, BLM.Flare, UTL.ArrowLeft, BLM.FlareStar, UTL.Blank, UTL.Idea])]
     [SectionCombo("Area of Effect")]
     [AccessibilityCustomCombo]
