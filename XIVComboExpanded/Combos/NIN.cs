@@ -151,6 +151,12 @@ internal class NinjaArmorCrush : CustomCombo
     {
         if (actionID == NIN.ArmorCrush)
         {
+            if (IsEnabled(CustomComboPreset.NinjaArmorCrushNinjutsuFeature))
+            {
+                if (level >= NIN.Levels.Ninjutsu && HasEffect(NIN.Buffs.Mudra))
+                    return OriginalHook(NIN.Ninjutsu);
+            }
+
             if (level >= NIN.Levels.Raiju && HasEffect(NIN.Buffs.RaijuReady))
             {
                 if (IsEnabled(CustomComboPreset.NinjaArmorCrushFleetingRaijuFeature))
@@ -158,12 +164,6 @@ internal class NinjaArmorCrush : CustomCombo
 
                 if (IsEnabled(CustomComboPreset.NinjaArmorCrushForkedRaijuFeature))
                     return NIN.ForkedRaiju;
-            }
-
-            if (IsEnabled(CustomComboPreset.NinjaArmorCrushNinjutsuFeature))
-            {
-                if (level >= NIN.Levels.Ninjutsu && HasEffect(NIN.Buffs.Mudra))
-                    return OriginalHook(NIN.Ninjutsu);
             }
 
             if (IsEnabled(CustomComboPreset.NinjaArmorCrushCombo))
